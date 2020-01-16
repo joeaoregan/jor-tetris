@@ -1,4 +1,7 @@
-# JorTetris
+# JOR Tetris
+
+![Angular Tetris](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshots/tetris1.jpg "Angular Tetris")
+###### Angular Tetris
 
 ---
 
