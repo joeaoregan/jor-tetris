@@ -35,8 +35,8 @@ To deploy to Heroku the following is required in `package.json` along with the `
 
 ## links
 
-[Play on Heroku](https://jor-tetris.herokuapp.com/)
-[Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
+* [Play on Heroku](https://jor-tetris.herokuapp.com/)
+* [Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
 
 ---
 
