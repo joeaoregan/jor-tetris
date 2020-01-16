@@ -1,5 +1,35 @@
 # JorTetris
 
+---
+
+Tetris game in Angular. [Play Heroku Web-App](https://jor-tetris.herokuapp.com/)
+
+## Development server
+
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production 
+
+## Dependencies
+
+This project has the following dependencies: express, path, angular
+
+`npm install express  --save`
+`npm install @angular/cli@latest @angular/compiler-cli --save-dev`
+`npm install express path --save`
+
+## Deploy
+
+To deploy to Heroku the following is required in `package.json` along with the `server.js` file
+
+`"start": "node server.js"`
+`"scripts": { "heroku-postbuild": "ng build --prod" }`
+`"engines": { "node": "6.11.0", "npm": "3.10.10" }`
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
 ## Development server
