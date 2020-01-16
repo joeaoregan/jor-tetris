@@ -17,13 +17,14 @@ import {
     LEVEL,
     POINTS,
     KEY
-} from './constants';
-import { Piece, IPiece } from './piece.component';
-import { GameService } from './game.service';
+} from '../constants';
+import { Piece, IPiece } from '../piece.component';
+import { GameService } from '../game.service';
 
 @Component({
     selector: 'game-board',
-    templateUrl: 'board.component.html'
+    templateUrl: 'board.component.html',
+    styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
     @ViewChild('board', { static: true })

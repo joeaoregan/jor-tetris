@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <game-board></game-board>
+    <app-info></app-info>
+    <app-footer></app-footer>
   `,
   styles: []
 })
