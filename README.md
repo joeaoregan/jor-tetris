@@ -26,7 +26,7 @@ To deploy to Heroku the following is required in `package.json` along with the `
 
 `"start": "node server.js"`
 `"scripts": { "heroku-postbuild": "ng build --prod" }`
-`"engines": { "node": "6.11.0", "npm": "3.10.10" }`
+`"engines": { "node": "~10.16.2", "npm": "~6.9.0" }`
 
 ---
 
