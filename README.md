@@ -4,6 +4,8 @@
 
 Tetris game in Angular. [Play Heroku Web-App](https://jor-tetris.herokuapp.com/)
 
+Only CSS added, and deployment to Heroku to test Angular app deployment.
+
 ## Development server
 
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -27,6 +29,11 @@ To deploy to Heroku the following is required in `package.json` along with the `
 `"start": "node server.js"`
 `"scripts": { "heroku-postbuild": "ng build --prod" }`
 `"engines": { "node": "~10.16.2", "npm": "~6.9.0" }`
+
+## links
+
+[Play on Heroku](https://jor-tetris.herokuapp.com/)
+[Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
 
 ---
 
