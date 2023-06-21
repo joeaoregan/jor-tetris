@@ -1,11 +1,13 @@
+Tetris game in Angular. [Play Web-App on Render](https://tetris-js.onrender.com/)
+
+---
+
 # JOR Tetris
 
 ![Angular Tetris](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg "Angular Tetris")
 ###### Angular Tetris
 
 ---
-
-Tetris game in Angular. [Play Heroku Web-App](https://jor-tetris.herokuapp.com/)
 
 Only CSS added, and deployment to Heroku to test Angular app deployment.
 
