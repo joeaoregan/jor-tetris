@@ -1,1 +1,7705 @@
-"use strict";(self.webpackChunkjor_tetris=self.webpackChunkjor_tetris||[]).push([[792],{716:()=>{let jn;function ui(){return jn}function yt(e){const t=jn;return jn=e,t}const wa=Symbol("NotFound");class _E extends Error{name="\u0275NotFound";constructor(t){super(t)}}function li(e){return e===wa||"\u0275NotFound"===e?.name}let ge=null;const Ie=Symbol("SIGNAL");function T(e){const t=ge;return ge=e,t}const Bn={version:0,lastCleanEpoch:0,dirty:!1,producerNode:void 0,producerLastReadVersion:void 0,producerIndexOfThis:void 0,nextProducerIndex:0,liveConsumerNode:void 0,liveConsumerIndexOfThis:void 0,consumerAllowSignalWrites:!1,consumerIsAlwaysLive:!1,kind:"unknown",producerMustRecompute:()=>!1,producerRecomputeValue:()=>{},consumerMarkedDirty:()=>{},consumerOnSignalRead:()=>{}};function Br(e){if((!Hr(e)||e.dirty)&&(e.dirty||1!==e.lastCleanEpoch)){if(!e.producerMustRecompute(e)&&!hi(e))return void fi(e);e.producerRecomputeValue(e),fi(e)}}function fi(e){e.dirty=!1,e.lastCleanEpoch=1}function Vn(e){return e&&(e.nextProducerIndex=0),T(e)}function Vr(e,t){if(T(t),e&&void 0!==e.producerNode&&void 0!==e.producerIndexOfThis&&void 0!==e.producerLastReadVersion){if(Hr(e))for(let n=e.nextProducerIndex;n<e.producerNode.length;n++)gi(e.producerNode[n],e.producerIndexOfThis[n]);for(;e.producerNode.length>e.nextProducerIndex;)e.producerNode.pop(),e.producerLastReadVersion.pop(),e.producerIndexOfThis.pop()}}function hi(e){mi(e);for(let t=0;t<e.producerNode.length;t++){const n=e.producerNode[t],r=e.producerLastReadVersion[t];if(r!==n.version||(Br(n),r!==n.version))return!0}return!1}function pi(e){if(mi(e),Hr(e))for(let t=0;t<e.producerNode.length;t++)gi(e.producerNode[t],e.producerIndexOfThis[t]);e.producerNode.length=e.producerLastReadVersion.length=e.producerIndexOfThis.length=0,e.liveConsumerNode&&(e.liveConsumerNode.length=e.liveConsumerIndexOfThis.length=0)}function gi(e,t){if(function Yd(e){e.liveConsumerNode??=[],e.liveConsumerIndexOfThis??=[]}(e),1===e.liveConsumerNode.length&&function Qd(e){return void 0!==e.producerNode}(e))for(let r=0;r<e.producerNode.length;r++)gi(e.producerNode[r],e.producerIndexOfThis[r]);const n=e.liveConsumerNode.length-1;if(e.liveConsumerNode[t]=e.liveConsumerNode[n],e.liveConsumerIndexOfThis[t]=e.liveConsumerIndexOfThis[n],e.liveConsumerNode.length--,e.liveConsumerIndexOfThis.length--,t<e.liveConsumerNode.length){const r=e.liveConsumerIndexOfThis[t],o=e.liveConsumerNode[t];mi(o),o.producerIndexOfThis[r]=t}}function Hr(e){return e.consumerIsAlwaysLive||(e?.liveConsumerNode?.length??0)>0}function mi(e){e.producerNode??=[],e.producerIndexOfThis??=[],e.producerLastReadVersion??=[]}let Kd=function IE(){throw new Error};function ct(e){return"function"==typeof e}function tf(e){const n=e(r=>{Error.call(r),r.stack=(new Error).stack});return n.prototype=Object.create(Error.prototype),n.prototype.constructor=n,n}const Ra=tf(e=>function(n){e(this),this.message=n?`${n.length} errors occurred during unsubscription:\n${n.map((r,o)=>`${o+1}) ${r.toString()}`).join("\n  ")}`:"",this.name="UnsubscriptionError",this.errors=n});function xa(e,t){if(e){const n=e.indexOf(t);0<=n&&e.splice(n,1)}}class Ge{constructor(t){this.initialTeardown=t,this.closed=!1,this._parentage=null,this._finalizers=null}unsubscribe(){let t;if(!this.closed){this.closed=!0;const{_parentage:n}=this;if(n)if(this._parentage=null,Array.isArray(n))for(const i of n)i.remove(this);else n.remove(this);const{initialTeardown:r}=this;if(ct(r))try{r()}catch(i){t=i instanceof Ra?i.errors:[i]}const{_finalizers:o}=this;if(o){this._finalizers=null;for(const i of o)try{of(i)}catch(s){t=t??[],s instanceof Ra?t=[...t,...s.errors]:t.push(s)}}if(t)throw new Ra(t)}}add(t){var n;if(t&&t!==this)if(this.closed)of(t);else{if(t instanceof Ge){if(t.closed||t._hasParent(this))return;t._addParent(this)}(this._finalizers=null!==(n=this._finalizers)&&void 0!==n?n:[]).push(t)}}_hasParent(t){const{_parentage:n}=this;return n===t||Array.isArray(n)&&n.includes(t)}_addParent(t){const{_parentage:n}=this;this._parentage=Array.isArray(n)?(n.push(t),n):n?[n,t]:t}_removeParent(t){const{_parentage:n}=this;n===t?this._parentage=null:Array.isArray(n)&&xa(n,t)}remove(t){const{_finalizers:n}=this;n&&xa(n,t),t instanceof Ge&&t._removeParent(this)}}Ge.EMPTY=(()=>{const e=new Ge;return e.closed=!0,e})();const nf=Ge.EMPTY;function rf(e){return e instanceof Ge||e&&"closed"in e&&ct(e.remove)&&ct(e.add)&&ct(e.unsubscribe)}function of(e){ct(e)?e():e.unsubscribe()}const tn={onUnhandledError:null,onStoppedNotification:null,Promise:void 0,useDeprecatedSynchronousErrorHandling:!1,useDeprecatedNextContext:!1},yi={setTimeout(e,t,...n){const{delegate:r}=yi;return r?.setTimeout?r.setTimeout(e,t,...n):setTimeout(e,t,...n)},clearTimeout(e){const{delegate:t}=yi;return(t?.clearTimeout||clearTimeout)(e)},delegate:void 0};function sf(){}const ME=ka("C",void 0,void 0);function ka(e,t,n){return{kind:e,value:t,error:n}}let nn=null;function Di(e){if(tn.useDeprecatedSynchronousErrorHandling){const t=!nn;if(t&&(nn={errorThrown:!1,error:null}),e(),t){const{errorThrown:n,error:r}=nn;if(nn=null,n)throw r}}else e()}class Oa extends Ge{constructor(t){super(),this.isStopped=!1,t?(this.destination=t,rf(t)&&t.add(this)):this.destination=FE}static create(t,n,r){return new Pa(t,n,r)}next(t){this.isStopped?La(function AE(e){return ka("N",e,void 0)}(t),this):this._next(t)}error(t){this.isStopped?La(function NE(e){return ka("E",void 0,e)}(t),this):(this.isStopped=!0,this._error(t))}complete(){this.isStopped?La(ME,this):(this.isStopped=!0,this._complete())}unsubscribe(){this.closed||(this.isStopped=!0,super.unsubscribe(),this.destination=null)}_next(t){this.destination.next(t)}_error(t){try{this.destination.error(t)}finally{this.unsubscribe()}}_complete(){try{this.destination.complete()}finally{this.unsubscribe()}}}const xE=Function.prototype.bind;function Fa(e,t){return xE.call(e,t)}class kE{constructor(t){this.partialObserver=t}next(t){const{partialObserver:n}=this;if(n.next)try{n.next(t)}catch(r){vi(r)}}error(t){const{partialObserver:n}=this;if(n.error)try{n.error(t)}catch(r){vi(r)}else vi(t)}complete(){const{partialObserver:t}=this;if(t.complete)try{t.complete()}catch(n){vi(n)}}}class Pa extends Oa{constructor(t,n,r){let o;if(super(),ct(t)||!t)o={next:t??void 0,error:n??void 0,complete:r??void 0};else{let i;this&&tn.useDeprecatedNextContext?(i=Object.create(t),i.unsubscribe=()=>this.unsubscribe(),o={next:t.next&&Fa(t.next,i),error:t.error&&Fa(t.error,i),complete:t.complete&&Fa(t.complete,i)}):o=t}this.destination=new kE(o)}}function vi(e){tn.useDeprecatedSynchronousErrorHandling?function RE(e){tn.useDeprecatedSynchronousErrorHandling&&nn&&(nn.errorThrown=!0,nn.error=e)}(e):function SE(e){yi.setTimeout(()=>{const{onUnhandledError:t}=tn;if(!t)throw e;t(e)})}(e)}function La(e,t){const{onStoppedNotification:n}=tn;n&&yi.setTimeout(()=>n(e,t))}const FE={closed:!0,next:sf,error:function OE(e){throw e},complete:sf},PE="function"==typeof Symbol&&Symbol.observable||"@@observable";function LE(e){return e}let ja=(()=>{class e{constructor(n){n&&(this._subscribe=n)}lift(n){const r=new e;return r.source=this,r.operator=n,r}subscribe(n,r,o){const i=function BE(e){return e&&e instanceof Oa||function jE(e){return e&&ct(e.next)&&ct(e.error)&&ct(e.complete)}(e)&&rf(e)}(n)?n:new Pa(n,r,o);return Di(()=>{const{operator:s,source:a}=this;i.add(s?s.call(i,a):a?this._subscribe(i):this._trySubscribe(i))}),i}_trySubscribe(n){try{return this._subscribe(n)}catch(r){n.error(r)}}forEach(n,r){return new(r=cf(r))((o,i)=>{const s=new Pa({next:a=>{try{n(a)}catch(c){i(c),s.unsubscribe()}},error:i,complete:o});this.subscribe(s)})}_subscribe(n){var r;return null===(r=this.source)||void 0===r?void 0:r.subscribe(n)}[PE](){return this}pipe(...n){return function af(e){return 0===e.length?LE:1===e.length?e[0]:function(n){return e.reduce((r,o)=>o(r),n)}}(n)(this)}toPromise(n){return new(n=cf(n))((r,o)=>{let i;this.subscribe(s=>i=s,s=>o(s),()=>r(i))})}}return e.create=t=>new e(t),e})();function cf(e){var t;return null!==(t=e??tn.Promise)&&void 0!==t?t:Promise}const VE=tf(e=>function(){e(this),this.name="ObjectUnsubscribedError",this.message="object unsubscribed"});let $r=(()=>{class e extends ja{constructor(){super(),this.closed=!1,this.currentObservers=null,this.observers=[],this.isStopped=!1,this.hasError=!1,this.thrownError=null}lift(n){const r=new uf(this,this);return r.operator=n,r}_throwIfClosed(){if(this.closed)throw new VE}next(n){Di(()=>{if(this._throwIfClosed(),!this.isStopped){this.currentObservers||(this.currentObservers=Array.from(this.observers));for(const r of this.currentObservers)r.next(n)}})}error(n){Di(()=>{if(this._throwIfClosed(),!this.isStopped){this.hasError=this.isStopped=!0,this.thrownError=n;const{observers:r}=this;for(;r.length;)r.shift().error(n)}})}complete(){Di(()=>{if(this._throwIfClosed(),!this.isStopped){this.isStopped=!0;const{observers:n}=this;for(;n.length;)n.shift().complete()}})}unsubscribe(){this.isStopped=this.closed=!0,this.observers=this.currentObservers=null}get observed(){var n;return(null===(n=this.observers)||void 0===n?void 0:n.length)>0}_trySubscribe(n){return this._throwIfClosed(),super._trySubscribe(n)}_subscribe(n){return this._throwIfClosed(),this._checkFinalizedStatuses(n),this._innerSubscribe(n)}_innerSubscribe(n){const{hasError:r,isStopped:o,observers:i}=this;return r||o?nf:(this.currentObservers=null,i.push(n),new Ge(()=>{this.currentObservers=null,xa(i,n)}))}_checkFinalizedStatuses(n){const{hasError:r,thrownError:o,isStopped:i}=this;r?n.error(o):i&&n.complete()}asObservable(){const n=new ja;return n.source=this,n}}return e.create=(t,n)=>new uf(t,n),e})();class uf extends $r{constructor(t,n){super(),this.destination=t,this.source=n}next(t){var n,r;null===(r=null===(n=this.destination)||void 0===n?void 0:n.next)||void 0===r||r.call(n,t)}error(t){var n,r;null===(r=null===(n=this.destination)||void 0===n?void 0:n.error)||void 0===r||r.call(n,t)}complete(){var t,n;null===(n=null===(t=this.destination)||void 0===t?void 0:t.complete)||void 0===n||n.call(t)}_subscribe(t){var n,r;return null!==(r=null===(n=this.source)||void 0===n?void 0:n.subscribe(t))&&void 0!==r?r:nf}}class HE extends $r{constructor(t){super(),this._value=t}get value(){return this.getValue()}_subscribe(t){const n=super._subscribe(t);return!n.closed&&t.next(this._value),n}getValue(){const{hasError:t,thrownError:n,_value:r}=this;if(t)throw n;return this._throwIfClosed(),r}next(t){super.next(this._value=t)}}class E extends Error{code;constructor(t,n){super(function kt(e,t){return`${function $E(e){return`NG0${Math.abs(e)}`}(e)}${t?": "+t:""}`}(t,n)),this.code=t}}const oe=globalThis;function J(e){for(let t in e)if(e[t]===J)return t;throw Error("")}function De(e){if("string"==typeof e)return e;if(Array.isArray(e))return`[${e.map(De).join(", ")}]`;if(null==e)return""+e;const t=e.overriddenName||e.name;if(t)return`${t}`;const n=e.toString();if(null==n)return""+n;const r=n.indexOf("\n");return r>=0?n.slice(0,r):n}function Ba(e,t){return e?t?`${e} ${t}`:e:t||""}const zE=J({__forward_ref__:J});function Va(e){return e.__forward_ref__=Va,e.toString=function(){return De(this())},e}function A(e){return function Ei(e){return"function"==typeof e&&e.hasOwnProperty(zE)&&e.__forward_ref__===Va}(e)?e():e}function L(e){return{token:e.token,providedIn:e.providedIn||null,factory:e.factory,value:void 0}}function $n(e){return{providers:e.providers||[],imports:e.imports||[]}}function Ii(e){return function ZE(e,t){return e.hasOwnProperty(t)&&e[t]||null}(e,wi)}function Ci(e){return e&&e.hasOwnProperty(Ha)?e[Ha]:null}const wi=J({\u0275prov:J}),Ha=J({\u0275inj:J});class I{_desc;ngMetadataName="InjectionToken";\u0275prov;constructor(t,n){this._desc=t,this.\u0275prov=void 0,"number"==typeof n?this.__NG_ELEMENT_ID__=n:void 0!==n&&(this.\u0275prov=L({token:this,providedIn:n.providedIn||"root",factory:n.factory}))}get multi(){return this}toString(){return`InjectionToken ${this._desc}`}}function Ua(e){return e&&!!e.\u0275providers}const za=J({\u0275cmp:J}),XE=J({\u0275dir:J}),eI=J({\u0275pipe:J}),ff=J({\u0275mod:J}),on=J({\u0275fac:J}),Gr=J({__NG_ELEMENT_ID__:J}),hf=J({__NG_ENV_ID__:J});function N(e){return"string"==typeof e?e:null==e?"":String(e)}function pf(e,t){throw new E(-200,e)}function Ga(e,t){throw new E(-201,!1)}let qa;function gf(){return qa}function Re(e){const t=qa;return qa=e,t}function mf(e,t,n){const r=Ii(e);return r&&"root"==r.providedIn?void 0===r.value?r.value=r.factory():r.value:8&n?null:void 0!==t?t:void Ga()}const sn={};class rI{injector;constructor(t){this.injector=t}retrieve(t,n){const r=qr(n)||0;try{return this.injector.get(t,8&r?null:sn,r)}catch(o){if(li(o))return o;throw o}}}const bi="ngTempTokenPath",iI=/\n/gm,_f="__source";function aI(e,t=0){const n=ui();if(void 0===n)throw new E(-203,!1);if(null===n)return mf(e,void 0,t);{const r=function cI(e){return{optional:!!(8&e),host:!!(1&e),self:!!(2&e),skipSelf:!!(4&e)}}(t),o=n.retrieve(e,r);if(li(o)){if(r.optional)return null;throw o}return o}}function j(e,t=0){return(gf()||aI)(A(e),t)}function w(e,t){return j(e,qr(t))}function qr(e){return typeof e>"u"||"number"==typeof e?e:0|(e.optional&&8)|(e.host&&1)|(e.self&&2)|(e.skipSelf&&4)}function Za(e){const t=[];for(let n=0;n<e.length;n++){const r=A(e[n]);if(Array.isArray(r)){if(0===r.length)throw new E(900,!1);let o,i=0;for(let s=0;s<r.length;s++){const a=r[s],c=uI(a);"number"==typeof c?-1===c?o=a.token:i|=c:o=a}t.push(j(o,i))}else t.push(j(r))}return t}function uI(e){return e.__NG_DI_FLAG__}function an(e,t){return e.hasOwnProperty(on)?e[on]:null}function Un(e,t){e.forEach(n=>Array.isArray(n)?Un(n,t):t(n))}function Df(e,t,n){t>=e.length?e.push(n):e.splice(t,0,n)}function Ti(e,t){return t>=e.length-1?e.pop():e.splice(t,1)[0]}const ut={},Q=[],cn=new I(""),If=new I("",-1),Qa=new I("");class Ni{get(t,n=sn){if(n===sn)throw new _E(`NullInjectorError: No provider for ${De(t)}!`);return n}}function V(e){return e[za]||null}function be(e){return e[XE]||null}function dt(e){return e[eI]||null}function gI(...e){return{\u0275providers:Ja(0,e),\u0275fromNgModule:!0}}function Ja(e,...t){const n=[],r=new Set;let o;const i=s=>{n.push(s)};return Un(t,s=>{const a=s;Ai(a,i,[],r)&&(o||=[],o.push(a))}),void 0!==o&&wf(o,i),n}function wf(e,t){for(let n=0;n<e.length;n++){const{ngModule:r,providers:o}=e[n];Xa(o,i=>{t(i,r)})}}function Ai(e,t,n,r){if(!(e=A(e)))return!1;let o=null,i=Ci(e);const s=!i&&V(e);if(i||s){if(s&&!s.standalone)return!1;o=e}else{const c=e.ngModule;if(i=Ci(c),!i)return!1;o=c}const a=r.has(o);if(s){if(a)return!1;if(r.add(o),s.dependencies){const c="function"==typeof s.dependencies?s.dependencies():s.dependencies;for(const u of c)Ai(u,t,n,r)}}else{if(!i)return!1;{if(null!=i.imports&&!a){let u;r.add(o);try{Un(i.imports,l=>{Ai(l,t,n,r)&&(u||=[],u.push(l))})}finally{}void 0!==u&&wf(u,t)}if(!a){const u=an(o)||(()=>new o);t({provide:o,useFactory:u,deps:Q},o),t({provide:Qa,useValue:o,multi:!0},o),t({provide:cn,useValue:()=>j(o),multi:!0},o)}const c=i.providers;if(null!=c&&!a){const u=e;Xa(c,l=>{t(l,u)})}}}return o!==e&&void 0!==e.providers}function Xa(e,t){for(let n of e)Ua(n)&&(n=n.\u0275providers),Array.isArray(n)?Xa(n,t):t(n)}const mI=J({provide:String,useValue:J});function ec(e){return null!==e&&"object"==typeof e&&mI in e}function Ft(e){return"function"==typeof e}const tc=new I(""),Ri={},Sf={};let nc;function rc(){return void 0===nc&&(nc=new Ni),nc}class We{}class un extends We{parent;source;scopes;records=new Map;_ngOnDestroyHooks=new Set;_onDestroyHooks=[];get destroyed(){return this._destroyed}_destroyed=!1;injectorDefTypes;constructor(t,n,r,o){super(),this.parent=n,this.source=r,this.scopes=o,ic(t,s=>this.processProvider(s)),this.records.set(If,zn(void 0,this)),o.has("environment")&&this.records.set(We,zn(void 0,this));const i=this.records.get(tc);null!=i&&"string"==typeof i.value&&this.scopes.add(i.value),this.injectorDefTypes=new Set(this.get(Qa,Q,{self:!0}))}retrieve(t,n){const r=qr(n)||0;try{return this.get(t,sn,r)}catch(o){if(li(o))return o;throw o}}destroy(){Qr(this),this._destroyed=!0;const t=T(null);try{for(const r of this._ngOnDestroyHooks)r.ngOnDestroy();const n=this._onDestroyHooks;this._onDestroyHooks=[];for(const r of n)r()}finally{this.records.clear(),this._ngOnDestroyHooks.clear(),this.injectorDefTypes.clear(),T(t)}}onDestroy(t){return Qr(this),this._onDestroyHooks.push(t),()=>this.removeOnDestroy(t)}runInContext(t){Qr(this);const n=yt(this),r=Re(void 0);try{return t()}finally{yt(n),Re(r)}}get(t,n=sn,r){if(Qr(this),t.hasOwnProperty(hf))return t[hf](this);const o=qr(r),s=yt(this),a=Re(void 0);try{if(!(4&o)){let u=this.records.get(t);if(void 0===u){const l=function II(e){return"function"==typeof e||"object"==typeof e&&"InjectionToken"===e.ngMetadataName}(t)&&Ii(t);u=l&&this.injectableDefInScope(l)?zn(oc(t),Ri):null,this.records.set(t,u)}if(null!=u)return this.hydrate(t,u)}return(2&o?rc():this.parent).get(t,n=8&o&&n===sn?null:n)}catch(c){if(li(c)){if((c[bi]=c[bi]||[]).unshift(De(t)),s)throw c;return function lI(e,t,n,r){const o=e[bi];throw t[_f]&&o.unshift(t[_f]),e.message=function dI(e,t,n,r=null){e=e&&"\n"===e.charAt(0)&&"\u0275"==e.charAt(1)?e.slice(2):e;let o=De(t);if(Array.isArray(t))o=t.map(De).join(" -> ");else if("object"==typeof t){let i=[];for(let s in t)if(t.hasOwnProperty(s)){let a=t[s];i.push(s+":"+("string"==typeof a?JSON.stringify(a):De(a)))}o=`{${i.join(", ")}}`}return`${n}${r?"("+r+")":""}[${o}]: ${e.replace(iI,"\n  ")}`}("\n"+e.message,o,n,r),e.ngTokenPath=o,e[bi]=null,e}(c,t,"R3InjectorError",this.source)}throw c}finally{Re(a),yt(s)}}resolveInjectorInitializers(){const t=T(null),n=yt(this),r=Re(void 0);try{const i=this.get(cn,Q,{self:!0});for(const s of i)s()}finally{yt(n),Re(r),T(t)}}toString(){const t=[],n=this.records;for(const r of n.keys())t.push(De(r));return`R3Injector[${t.join(", ")}]`}processProvider(t){let n=Ft(t=A(t))?t:A(t&&t.provide);const r=function DI(e){return ec(e)?zn(void 0,e.useValue):zn(function Mf(e,t,n){let r;if(Ft(e)){const o=A(e);return an(o)||oc(o)}if(ec(e))r=()=>A(e.useValue);else if(function Tf(e){return!(!e||!e.useFactory)}(e))r=()=>e.useFactory(...Za(e.deps||[]));else if(function bf(e){return!(!e||!e.useExisting)}(e))r=()=>j(A(e.useExisting));else{const o=A(e&&(e.useClass||e.provide));if(!function vI(e){return!!e.deps}(e))return an(o)||oc(o);r=()=>new o(...Za(e.deps))}return r}(e),Ri)}(t);if(!Ft(t)&&!0===t.multi){let o=this.records.get(n);o||(o=zn(void 0,Ri,!0),o.factory=()=>Za(o.multi),this.records.set(n,o)),n=t,o.multi.push(t)}this.records.set(n,r)}hydrate(t,n){const r=T(null);try{return n.value===Sf?pf(De(t)):n.value===Ri&&(n.value=Sf,n.value=n.factory()),"object"==typeof n.value&&n.value&&function EI(e){return null!==e&&"object"==typeof e&&"function"==typeof e.ngOnDestroy}(n.value)&&this._ngOnDestroyHooks.add(n.value),n.value}finally{T(r)}}injectableDefInScope(t){if(!t.providedIn)return!1;const n=A(t.providedIn);return"string"==typeof n?"any"===n||this.scopes.has(n):this.injectorDefTypes.has(n)}removeOnDestroy(t){const n=this._onDestroyHooks.indexOf(t);-1!==n&&this._onDestroyHooks.splice(n,1)}}function oc(e){const t=Ii(e),n=null!==t?t.factory:an(e);if(null!==n)return n;if(e instanceof I)throw new E(204,!1);if(e instanceof Function)return function yI(e){if(e.length>0)throw new E(204,!1);const n=function YE(e){return(e?.[wi]??null)||null}(e);return null!==n?()=>n.factory(e):()=>new e}(e);throw new E(204,!1)}function Qr(e){if(e.destroyed)throw new E(205,!1)}function zn(e,t,n=!1){return{factory:e,value:t,multi:n?[]:void 0}}function ic(e,t){for(const n of e)Array.isArray(n)?ic(n,t):n&&Ua(n)?ic(n.\u0275providers,t):t(n)}function Nf(e,t){let n;e instanceof un?(Qr(e),n=e):n=new rI(e);const o=yt(n),i=Re(void 0);try{return t()}finally{yt(o),Re(i)}}function sc(){return void 0!==gf()||null!=ui()}const F=11,M=26;function re(e){return Array.isArray(e)&&"object"==typeof e[1]}function Te(e){return Array.isArray(e)&&!0===e[1]}function uc(e){return!!(4&e.flags)}function jt(e){return e.componentOffset>-1}function Oi(e){return!(1&~e.flags)}function $e(e){return!!e.template}function Bt(e){return!!(512&e[2])}function Et(e){return!(256&~e[2])}function ye(e){for(;Array.isArray(e);)e=e[0];return e}function xe(e,t){return ye(t[e.index])}function Se(e,t){const n=t[e];return re(n)?n:n[0]}function dc(e){return!(128&~e[2])}function ke(e,t){return null==t?null:e[t]}function Pf(e){e[17]=0}function Lf(e){1024&e[2]||(e[2]|=1024,dc(e)&&Kn(e))}function Pi(e){return!!(9216&e[2]||e[24]?.dirty)}function fc(e){e[10].changeDetectionScheduler?.notify(8),64&e[2]&&(e[2]|=1024),Pi(e)&&Kn(e)}function Kn(e){e[10].changeDetectionScheduler?.notify(0);let t=It(e);for(;null!==t&&!(8192&t[2])&&(t[2]|=8192,dc(t));)t=It(t)}function Li(e,t){if(Et(e))throw new E(911,!1);null===e[21]&&(e[21]=[]),e[21].push(t)}function It(e){const t=e[3];return Te(t)?t[3]:t}function Bf(e){return e[7]??=[]}function Vf(e){return e.cleanup??=[]}const S={lFrame:Jf(null),bindingsEnabled:!0,skipHydrationRootTNode:null};let gc=!1;function m(){return S.lFrame.lView}function R(){return S.lFrame.tView}function O(){let e=zf();for(;null!==e&&64===e.type;)e=e.parent;return e}function zf(){return S.lFrame.currentTNode}function nt(e,t){const n=S.lFrame;n.currentTNode=e,n.isParent=t}function _c(){return S.lFrame.isParent}function Wf(){return gc}function ji(e){const t=gc;return gc=e,t}function jI(e,t){const n=S.lFrame;n.bindingIndex=n.bindingRootIndex=e,Dc(t)}function Dc(e){S.lFrame.currentDirectiveIndex=e}function Ec(){return S.lFrame.currentQueryIndex}function Bi(e){S.lFrame.currentQueryIndex=e}function VI(e){const t=e[1];return 2===t.type?t.declTNode:1===t.type?e[5]:null}function Qf(e,t,n){if(4&n){let o=t,i=e;for(;!(o=o.parent,null!==o||1&n||(o=VI(i),null===o||(i=i[14],10&o.type))););if(null===o)return!1;t=o,e=i}const r=S.lFrame=Kf();return r.currentTNode=t,r.lView=e,!0}function Ic(e){const t=Kf(),n=e[1];S.lFrame=t,t.currentTNode=n.firstChild,t.lView=e,t.tView=n,t.contextLView=e,t.bindingIndex=n.bindingStartIndex,t.inI18n=!1}function Kf(){const e=S.lFrame,t=null===e?null:e.child;return null===t?Jf(e):t}function Jf(e){const t={currentTNode:null,isParent:!0,lView:null,tView:null,selectedIndex:-1,contextLView:null,elementDepthCount:0,currentNamespace:null,currentDirectiveIndex:-1,bindingRootIndex:-1,bindingIndex:-1,currentQueryIndex:0,parent:e,child:null,inI18n:!1};return null!==e&&(e.child=t),t}function Xf(){const e=S.lFrame;return S.lFrame=e.parent,e.currentTNode=null,e.lView=null,e}const eh=Xf;function Cc(){const e=Xf();e.isParent=!0,e.tView=null,e.selectedIndex=-1,e.contextLView=null,e.elementDepthCount=0,e.currentDirectiveIndex=-1,e.currentNamespace=null,e.bindingRootIndex=-1,e.bindingIndex=-1,e.currentQueryIndex=0}function ve(){return S.lFrame.selectedIndex}function gn(e){S.lFrame.selectedIndex=e}let th=!0;function eo(){return th}function to(e){th=e}function nh(e,t=null,n=null,r){const o=rh(e,t,n,r);return o.resolveInjectorInitializers(),o}function rh(e,t=null,n=null,r,o=new Set){const i=[n||Q,gI(e)];return r=r||("object"==typeof e?void 0:De(e)),new un(i,t||rc(),r||null,o)}class rt{static THROW_IF_NOT_FOUND=sn;static NULL=new Ni;static create(t,n){if(Array.isArray(t))return nh({name:""},n,t,"");{const r=t.name??"";return nh({name:r},t.parent,t.providers,r)}}static \u0275prov=L({token:rt,providedIn:"any",factory:()=>j(If)});static __NG_ELEMENT_ID__=-1}const Vt=new I("");let mn=(()=>class e{static __NG_ELEMENT_ID__=WI;static __NG_ENV_ID__=n=>n})();class oh extends mn{_lView;constructor(t){super(),this._lView=t}get destroyed(){return Et(this._lView)}onDestroy(t){const n=this._lView;return Li(n,t),()=>function hc(e,t){if(null===e[21])return;const n=e[21].indexOf(t);-1!==n&&e[21].splice(n,1)}(n,t)}}function WI(){return new oh(m())}class Xn{_console=console;handleError(t){this._console.error("ERROR",t)}}const bt=new I("",{providedIn:"root",factory:()=>{const e=w(We);let t;return n=>{e.destroyed&&!t?setTimeout(()=>{throw n}):(t??=e.get(Xn),t.handleError(n))}}}),ZI={provide:cn,useValue:()=>{w(Xn)},multi:!0};class er{}const ch=new I("",{providedIn:"root",factory:()=>!1}),uh=new I(""),lh=new I("");let tr=(()=>{class e{taskId=0;pendingTasks=new Set;destroyed=!1;pendingTask=new HE(!1);get hasPendingTasks(){return!this.destroyed&&this.pendingTask.value}get hasPendingTasksObservable(){return this.destroyed?new ja(n=>{n.next(!1),n.complete()}):this.pendingTask}add(){!this.hasPendingTasks&&!this.destroyed&&this.pendingTask.next(!0);const n=this.taskId++;return this.pendingTasks.add(n),n}has(n){return this.pendingTasks.has(n)}remove(n){this.pendingTasks.delete(n),0===this.pendingTasks.size&&this.hasPendingTasks&&this.pendingTask.next(!1)}ngOnDestroy(){this.pendingTasks.clear(),this.hasPendingTasks&&this.pendingTask.next(!1),this.destroyed=!0,this.pendingTask.unsubscribe()}static \u0275prov=L({token:e,providedIn:"root",factory:()=>new e})}return e})();function no(...e){}let fh=(()=>{class e{static \u0275prov=L({token:e,providedIn:"root",factory:()=>new KI})}return e})();class KI{dirtyEffectCount=0;queues=new Map;add(t){this.enqueue(t),this.schedule(t)}schedule(t){t.dirty&&this.dirtyEffectCount++}remove(t){const r=this.queues.get(t.zone);r.has(t)&&(r.delete(t),t.dirty&&this.dirtyEffectCount--)}enqueue(t){const n=t.zone;this.queues.has(n)||this.queues.set(n,new Set);const r=this.queues.get(n);r.has(t)||r.add(t)}flush(){for(;this.dirtyEffectCount>0;){let t=!1;for(const[n,r]of this.queues)t||=null===n?this.flushQueue(r):n.run(()=>this.flushQueue(r));t||(this.dirtyEffectCount=0)}}flushQueue(t){let n=!1;for(const r of t)r.dirty&&(this.dirtyEffectCount--,n=!0,r.run());return n}}class tC extends Oa{constructor(t,n,r,o,i,s){super(t),this.onFinalize=i,this.shouldUnsubscribe=s,this._next=n?function(a){try{n(a)}catch(c){t.error(c)}}:super._next,this._error=o?function(a){try{o(a)}catch(c){t.error(c)}finally{this.unsubscribe()}}:super._error,this._complete=r?function(){try{r()}catch(a){t.error(a)}finally{this.unsubscribe()}}:super._complete}unsubscribe(){var t;if(!this.shouldUnsubscribe||this.shouldUnsubscribe()){const{closed:n}=this;super.unsubscribe(),!n&&(null===(t=this.onFinalize)||void 0===t||t.call(this))}}}function nC(e,t){return function XI(e){return t=>{if(function JI(e){return ct(e?.lift)}(t))return t.lift(function(n){try{return e(n,this)}catch(r){this.error(r)}});throw new TypeError("Unable to lift unknown Observable type")}}((n,r)=>{let o=0;n.subscribe(function eC(e,t,n,r,o){return new tC(e,t,n,r,o)}(r,i=>{r.next(e.call(t,i,o++))}))})}function Tt(e){return{toString:e}.toString()}class hC{previousValue;currentValue;firstChange;constructor(t,n,r){this.previousValue=t,this.currentValue=n,this.firstChange=r}isFirstChange(){return this.firstChange}}function mh(e,t,n,r){null!==t?t.applyValueToInputSignal(t,r):e[n]=r}function pC(){const e=Dh(this),t=e?.current;if(t){const n=e.previous;if(n===ut)e.previous=t;else for(let r in t)n[r]=t[r];e.current=null,this.ngOnChanges(t)}}function gC(e,t,n,r,o){const i=this.declaredInputs[r],s=Dh(e)||function mC(e,t){return e[yh]=t}(e,{previous:ut,current:null}),a=s.current||(s.current={}),c=s.previous,u=c[i];a[i]=new hC(u&&u.currentValue,n,c===ut),mh(e,t,o,n)}const yh="__ngSimpleChanges__";function Dh(e){return e[yh]||null}const _n=[],U=function(e,t=null,n){for(let r=0;r<_n.length;r++)(0,_n[r])(e,t,n)};function Hi(e,t,n){vh(e,t,3,n)}function $i(e,t,n,r){(3&e[2])===n&&vh(e,t,n,r)}function xc(e,t){let n=e[2];(3&n)===t&&(n&=16383,n+=1,e[2]=n)}function vh(e,t,n,r){const i=r??-1,s=t.length-1;let a=0;for(let c=void 0!==r?65535&e[17]:0;c<s;c++)if("number"==typeof t[c+1]){if(a=t[c],null!=r&&a>=r)break}else t[c]<0&&(e[17]+=65536),(a<i||-1==i)&&(EC(e,n,t,c),e[17]=(4294901760&e[17])+c+2),c++}function Eh(e,t){U(4,e,t);const n=T(null);try{t.call(e)}finally{T(n),U(5,e,t)}}function EC(e,t,n,r){const o=n[r]<0,i=n[r+1],a=e[o?-n[r]:n[r]];o?e[2]>>14<e[17]>>16&&(3&e[2])===t&&(e[2]+=16384,Eh(a,i)):Eh(a,i)}class io{factory;injectImpl;resolving=!1;canSeeViewProviders;multi;componentProviders;index;providerFactory;constructor(t,n,r){this.factory=t,this.canSeeViewProviders=n,this.injectImpl=r}}function Ch(e){return 3===e||4===e||6===e}function wh(e){return 64===e.charCodeAt(0)}function ar(e,t){if(null!==t&&0!==t.length)if(null===e||0===e.length)e=t.slice();else{let n=-1;for(let r=0;r<t.length;r++){const o=t[r];"number"==typeof o?n=o:0===n||bh(e,n,o,0,-1===n||2===n?t[++r]:null)}}return e}function bh(e,t,n,r,o){let i=0,s=e.length;if(-1===t)s=-1;else for(;i<e.length;){const a=e[i++];if("number"==typeof a){if(a===t){s=-1;break}if(a>t){s=i-1;break}}}for(;i<e.length;){const a=e[i];if("number"==typeof a)break;if(a===n)return void(null!==o&&(e[i+1]=o));i++,null!==o&&i++}-1!==s&&(e.splice(s,0,t),i=s+1),e.splice(i++,0,n),null!==o&&e.splice(i++,0,o)}function Oc(e){return-1!==e}function so(e){return 32767&e}function ao(e,t){let n=function bC(e){return e>>16}(e),r=t;for(;n>0;)r=r[14],n--;return r}let Fc=!0;function Ui(e){const t=Fc;return Fc=e,t}let TC=0;const ht={};function zi(e,t){const n=Mh(e,t);if(-1!==n)return n;const r=t[1];r.firstCreatePass&&(e.injectorIndex=t.length,Pc(r.data,e),Pc(t,null),Pc(r.blueprint,null));const o=Gi(e,t),i=e.injectorIndex;if(Oc(o)){const s=so(o),a=ao(o,t),c=a[1].data;for(let u=0;u<8;u++)t[i+u]=a[s+u]|c[s+u]}return t[i+8]=o,i}function Pc(e,t){e.push(0,0,0,0,0,0,0,0,t)}function Mh(e,t){return-1===e.injectorIndex||e.parent&&e.parent.injectorIndex===e.injectorIndex||null===t[e.injectorIndex+8]?-1:e.injectorIndex}function Gi(e,t){if(e.parent&&-1!==e.parent.injectorIndex)return e.parent.injectorIndex;let n=0,r=null,o=t;for(;null!==o;){if(r=Fh(o),null===r)return-1;if(n++,o=o[14],-1!==r.injectorIndex)return r.injectorIndex|n<<16}return-1}function Lc(e,t,n){!function SC(e,t,n){let r;"string"==typeof n?r=n.charCodeAt(0)||0:n.hasOwnProperty(Gr)&&(r=n[Gr]),null==r&&(r=n[Gr]=TC++);const o=255&r;t.data[e+(o>>5)]|=1<<o}(e,t,n)}function Nh(e,t,n){if(8&n||void 0!==e)return e;Ga()}function Ah(e,t,n,r){if(8&n&&void 0===r&&(r=null),!(3&n)){const o=e[9],i=Re(void 0);try{return o?o.get(t,r,8&n):mf(t,r,8&n)}finally{Re(i)}}return Nh(r,0,n)}function Rh(e,t,n,r=0,o){if(null!==e){if(2048&t[2]&&!(2&r)){const s=function kC(e,t,n,r,o){let i=e,s=t;for(;null!==i&&null!==s&&2048&s[2]&&!Bt(s);){const a=xh(i,s,n,2|r,ht);if(a!==ht)return a;let c=i.parent;if(!c){const u=s[20];if(u){const l=u.get(n,ht,r);if(l!==ht)return l}c=Fh(s),s=s[14]}i=c}return o}(e,t,n,r,ht);if(s!==ht)return s}const i=xh(e,t,n,r,ht);if(i!==ht)return i}return Ah(t,n,r,o)}function xh(e,t,n,r,o){const i=function AC(e){if("string"==typeof e)return e.charCodeAt(0)||0;const t=e.hasOwnProperty(Gr)?e[Gr]:void 0;return"number"==typeof t?t>=0?255&t:RC:t}(n);if("function"==typeof i){if(!Qf(t,e,r))return 1&r?Nh(o,0,r):Ah(t,n,r,o);try{let s;if(s=i(r),null!=s||8&r)return s;Ga()}finally{eh()}}else if("number"==typeof i){let s=null,a=Mh(e,t),c=-1,u=1&r?t[15][5]:null;for((-1===a||4&r)&&(c=-1===a?Gi(e,t):t[a+8],-1!==c&&Oh(r,!1)?(s=t[1],a=so(c),t=ao(c,t)):a=-1);-1!==a;){const l=t[1];if(kh(i,a,l.data)){const d=NC(a,t,n,s,r,u);if(d!==ht)return d}c=t[a+8],-1!==c&&Oh(r,t[1].data[a+8]===u)&&kh(i,a,t)?(s=l,a=so(c),t=ao(c,t)):a=-1}}return o}function NC(e,t,n,r,o,i){const s=t[1],a=s.data[e+8],l=qi(a,s,n,null==r?jt(a)&&Fc:r!=s&&!!(3&a.type),1&o&&i===a);return null!==l?co(t,s,l,a):ht}function qi(e,t,n,r,o){const i=e.providerIndexes,s=t.data,a=1048575&i,c=e.directiveStart,l=i>>20,h=o?a+l:e.directiveEnd;for(let f=r?a:a+l;f<h;f++){const p=s[f];if(f<c&&n===p||f>=c&&p.type===n)return f}if(o){const f=s[c];if(f&&$e(f)&&f.type===n)return c}return null}function co(e,t,n,r){let o=e[n];const i=t.data;if(o instanceof io){const s=o;s.resolving&&pf(function B(e){return"function"==typeof e?e.name||e.toString():"object"==typeof e&&null!=e&&"function"==typeof e.type?e.type.name||e.type.toString():N(e)}(i[n]));const a=Ui(s.canSeeViewProviders);s.resolving=!0;const l=s.injectImpl?Re(s.injectImpl):null;Qf(e,r,0);try{o=e[n]=s.factory(void 0,i,e,r),t.firstCreatePass&&n>=r.directiveStart&&function vC(e,t,n){const{ngOnChanges:r,ngOnInit:o,ngDoCheck:i}=t.type.prototype;if(r){const s=function _h(e){return e.type.prototype.ngOnChanges&&(e.setInput=gC),pC}(t);(n.preOrderHooks??=[]).push(e,s),(n.preOrderCheckHooks??=[]).push(e,s)}o&&(n.preOrderHooks??=[]).push(0-e,o),i&&((n.preOrderHooks??=[]).push(e,i),(n.preOrderCheckHooks??=[]).push(e,i))}(n,i[n],t)}finally{null!==l&&Re(l),Ui(a),s.resolving=!1,eh()}}return o}function kh(e,t,n){return!!(n[t+(e>>5)]&1<<e)}function Oh(e,t){return!(2&e||1&e&&t)}class ae{_tNode;_lView;constructor(t,n){this._tNode=t,this._lView=n}get(t,n,r){return Rh(this._tNode,this._lView,t,qr(r),n)}}function RC(){return new ae(O(),m())}function Fh(e){const t=e[1],n=t.type;return 2===n?t.declTNode:1===n?e[5]:null}function HC(){return cr(O(),m())}function cr(e,t){return new ur(xe(e,t))}let ur=(()=>class e{nativeElement;constructor(n){this.nativeElement=n}static __NG_ELEMENT_ID__=HC})();function Vh(e){return e instanceof ur?e.nativeElement:e}function $C(){return this._results[Symbol.iterator]()}class UC{_emitDistinctChangesOnly;dirty=!0;_onDirty=void 0;_results=[];_changesDetected=!1;_changes=void 0;length=0;first=void 0;last=void 0;get changes(){return this._changes??=new $r}constructor(t=!1){this._emitDistinctChangesOnly=t}get(t){return this._results[t]}map(t){return this._results.map(t)}filter(t){return this._results.filter(t)}find(t){return this._results.find(t)}reduce(t,n){return this._results.reduce(t,n)}forEach(t){this._results.forEach(t)}some(t){return this._results.some(t)}toArray(){return this._results.slice()}toString(){return this._results.toString()}reset(t,n){this.dirty=!1;const r=function qe(e){return e.flat(Number.POSITIVE_INFINITY)}(t);(this._changesDetected=!function fI(e,t,n){if(e.length!==t.length)return!1;for(let r=0;r<e.length;r++){let o=e[r],i=t[r];if(n&&(o=n(o),i=n(i)),i!==o)return!1}return!0}(this._results,r,n))&&(this._results=r,this.length=r.length,this.last=r[this.length-1],this.first=r[0])}notifyOnChanges(){void 0!==this._changes&&(this._changesDetected||!this._emitDistinctChangesOnly)&&this._changes.next(this)}onDirty(t){this._onDirty=t}setDirty(){this.dirty=!0,this._onDirty?.()}destroy(){void 0!==this._changes&&(this._changes.complete(),this._changes.unsubscribe())}[Symbol.iterator]=$C}function uo(e){return!(128&~e.flags)}var Zi=function(e){return e[e.OnPush=0]="OnPush",e[e.Default=1]="Default",e}(Zi||{});const Yi=new Map;let qC=0;function $c(e){Yi.delete(e[19])}const zc="__ngContext__";function Fe(e,t){re(t)?(e[zc]=t[19],function ZC(e){Yi.set(e[19],e)}(t)):e[zc]=t}function Kh(e){return Xh(e[12])}function Jh(e){return Xh(e[4])}function Xh(e){for(;null!==e&&!Te(e);)e=e[4];return e}let Gc;const Ki=new I("",{providedIn:"root",factory:()=>mw}),mw="ng",sp=new I(""),qc=new I("",{providedIn:"platform",factory:()=>"unknown"}),ap=new I("",{providedIn:"root",factory:()=>function Dn(){if(void 0!==Gc)return Gc;if(typeof document<"u")return document;throw new E(210,!1)}().body?.querySelector("[ngCspNonce]")?.getAttribute("ngCspNonce")||null}),bw=new I("",{providedIn:"root",factory:()=>!1});function Ap(e,t){const n=e.contentQueries;if(null!==n){const r=T(null);try{for(let o=0;o<n.length;o+=2){const s=n[o+1];if(-1!==s){const a=e.data[s];Bi(n[o]),a.contentQueries(2,t[s],s)}}}finally{T(r)}}}function uu(e,t,n){Bi(0);const r=T(null);try{t(e,n)}finally{T(r)}}function lu(e,t,n){if(uc(t)){const r=T(null);try{const i=t.directiveEnd;for(let s=t.directiveStart;s<i;s++){const a=e.data[s];a.contentQueries&&a.contentQueries(1,n[s],s)}}finally{T(r)}}}var St=function(e){return e[e.Emulated=0]="Emulated",e[e.None=2]="None",e[e.ShadowDom=3]="ShadowDom",e}(St||{});function Qp(e){return e.ownerDocument.defaultView}function Lb(e,t,n){let r=e.length;for(;;){const o=e.indexOf(t,n);if(-1===o)return o;if(0===o||e.charCodeAt(o-1)<=32){const i=t.length;if(o+i===r||e.charCodeAt(o+i)<=32)return o}n=o+1}}const tg="ng-template";function jb(e,t,n,r){let o=0;if(r){for(;o<t.length&&"string"==typeof t[o];o+=2)if("class"===t[o]&&-1!==Lb(t[o+1].toLowerCase(),n,0))return!0}else if(yu(e))return!1;if(o=t.indexOf(1,o),o>-1){let i;for(;++o<t.length&&"string"==typeof(i=t[o]);)if(i.toLowerCase()===n)return!0}return!1}function yu(e){return 4===e.type&&e.value!==tg}function Bb(e,t,n){return t===(4!==e.type||n?e.value:tg)}function Vb(e,t,n){let r=4;const o=e.attrs,i=null!==o?function Ub(e){for(let t=0;t<e.length;t++)if(Ch(e[t]))return t;return e.length}(o):0;let s=!1;for(let a=0;a<t.length;a++){const c=t[a];if("number"!=typeof c){if(!s)if(4&r){if(r=2|1&r,""!==c&&!Bb(e,c,n)||""===c&&1===t.length){if(ot(r))return!1;s=!0}}else if(8&r){if(null===o||!jb(e,o,c,n)){if(ot(r))return!1;s=!0}}else{const u=t[++a],l=Hb(c,o,yu(e),n);if(-1===l){if(ot(r))return!1;s=!0;continue}if(""!==u){let d;if(d=l>i?"":o[l+1].toLowerCase(),2&r&&u!==d){if(ot(r))return!1;s=!0}}}}else{if(!s&&!ot(r)&&!ot(c))return!1;if(s&&ot(c))continue;s=!1,r=c|1&r}}return ot(r)||s}function ot(e){return!(1&e)}function Hb(e,t,n,r){if(null===t)return-1;let o=0;if(r||!n){let i=!1;for(;o<t.length;){const s=t[o];if(s===e)return o;if(3===s||6===s)i=!0;else{if(1===s||2===s){let a=t[++o];for(;"string"==typeof a;)a=t[++o];continue}if(4===s)break;if(0===s){o+=4;continue}}o+=i?1:2}return-1}return function zb(e,t){let n=e.indexOf(4);if(n>-1)for(n++;n<e.length;){const r=e[n];if("number"==typeof r)return-1;if(r===t)return n;n++}return-1}(t,e)}function ng(e,t,n=!1){for(let r=0;r<t.length;r++)if(Vb(e,t[r],n))return!0;return!1}function rg(e,t){return e?":not("+t.trim()+")":t}function qb(e){let t=e[0],n=1,r=2,o="",i=!1;for(;n<e.length;){let s=e[n];if("string"==typeof s)if(2&r){const a=e[++n];o+="["+s+(a.length>0?'="'+a+'"':"")+"]"}else 8&r?o+="."+s:4&r&&(o+=" "+s);else""!==o&&!ot(s)&&(t+=rg(i,o),o=""),r=s,i=i||!ot(r);n++}return""!==o&&(t+=rg(i,o)),t}const $={};function cs(e,t,n){return e.createElement(t,n)}function En(e,t,n,r,o){e.insertBefore(t,n,r,o)}function ig(e,t,n){e.appendChild(t,n)}function sg(e,t,n,r,o){null!==r?En(e,t,n,r,o):ig(e,t,n)}function cg(e,t,n){const{mergedAttrs:r,classes:o,styles:i}=n;null!==r&&function wC(e,t,n){let r=0;for(;r<n.length;){const o=n[r];if("number"==typeof o){if(0!==o)break;r++;const i=n[r++],s=n[r++],a=n[r++];e.setAttribute(t,s,a,i)}else{const i=o,s=n[++r];wh(i)?e.setProperty(t,i,s):e.setAttribute(t,i,s),r++}}}(e,t,r),null!==o&&function Qb(e,t,n){""===n?e.removeAttribute(t,"class"):e.setAttribute(t,"class",n)}(e,t,o),null!==i&&function Yb(e,t,n){e.setAttribute(t,"style",n)}(e,t,i)}function Eu(e,t,n,r,o,i,s,a,c,u,l){const d=M+r,h=d+o,f=function Kb(e,t){const n=[];for(let r=0;r<t;r++)n.push(r<e?null:$);return n}(d,h),p="function"==typeof u?u():u;return f[1]={type:e,blueprint:f,template:n,queries:null,viewQuery:a,declTNode:t,data:f.slice().fill(null,d),bindingStartIndex:d,expandoStartIndex:h,hostBindingOpCodes:null,firstCreatePass:!0,firstUpdatePass:!0,staticViewQueries:!1,staticContentQueries:!1,preOrderHooks:null,preOrderCheckHooks:null,contentHooks:null,contentCheckHooks:null,viewHooks:null,viewCheckHooks:null,destroyHooks:null,cleanup:null,contentQueries:null,components:null,directiveRegistry:"function"==typeof i?i():i,pipeRegistry:"function"==typeof s?s():s,firstChild:null,schemas:c,consts:p,incompleteFirstPass:!1,ssrId:l}}function us(e,t,n,r,o,i,s,a,c,u,l){const d=t.blueprint.slice();return d[0]=o,d[2]=1228|r,(null!==u||e&&2048&e[2])&&(d[2]|=2048),Pf(d),d[3]=d[14]=e,d[8]=n,d[10]=s||e&&e[10],d[F]=a||e&&e[F],d[9]=c||e&&e[9]||null,d[5]=i,d[19]=function WC(){return qC++}(),d[6]=l,d[20]=u,d[15]=2==t.type?e[15]:d,d}function Iu(e){let t=16;return e.signals?t=4096:e.onPush&&(t=64),t}function yo(e,t,n,r){if(0===n)return-1;const o=t.length;for(let i=0;i<n;i++)t.push(r),e.blueprint.push(r),e.data.push(null);return o}function Cu(e,t){return e[12]?e[13][4]=t:e[12]=t,e[13]=t,t}function ls(e=1){lg(R(),m(),ve()+e,!1)}function lg(e,t,n,r){if(!r)if(3&~t[2]){const i=e.preOrderHooks;null!==i&&$i(t,i,0,n)}else{const i=e.preOrderCheckHooks;null!==i&&Hi(t,i,n)}gn(n)}var ds=function(e){return e[e.None=0]="None",e[e.SignalBased=1]="SignalBased",e[e.HasDecoratorInputTransform=2]="HasDecoratorInputTransform",e}(ds||{});function Do(e,t,n,r){const o=T(null);try{const[i,s,a]=e.inputs[n];let c=null;0!==(s&ds.SignalBased)&&(c=t[i][Ie]),null!==c&&void 0!==c.transformFn?r=c.transformFn(r):null!==a&&(r=a.call(t,r)),null!==e.setInput?e.setInput(t,c,r,n,i):mh(t,c,i,r)}finally{T(o)}}function dg(e,t,n,r,o){const i=ve(),s=2&r;try{gn(-1),s&&t.length>M&&lg(e,t,M,!1),U(s?2:0,o,n),n(r,o)}finally{gn(i),U(s?3:1,o,n)}}function fs(e,t,n){(function oT(e,t,n){const r=n.directiveStart,o=n.directiveEnd;jt(n)&&function Jb(e,t,n){const r=xe(t,e),o=function ug(e){const t=e.tView;return null===t||t.incompleteFirstPass?e.tView=Eu(1,null,e.template,e.decls,e.vars,e.directiveDefs,e.pipeDefs,e.viewQuery,e.schemas,e.consts,e.id):t}(n),i=e[10].rendererFactory,s=Cu(e,us(e,o,null,Iu(n),r,t,null,i.createRenderer(r,n),null,null,null));e[t.index]=s}(t,n,e.data[r+n.componentOffset]),e.firstCreatePass||zi(n,t);const i=n.initialInputs;for(let s=r;s<o;s++){const a=e.data[s],c=co(t,e,s,n);Fe(c,t),null!==i&&cT(0,s-r,c,a,0,i),$e(a)&&(Se(n.index,t)[8]=co(t,e,s,n))}})(e,t,n),!(64&~n.flags)&&function iT(e,t,n){const r=n.directiveStart,o=n.directiveEnd,i=n.index,s=function BI(){return S.lFrame.currentDirectiveIndex}();try{gn(i);for(let a=r;a<o;a++){const c=e.data[a],u=t[a];Dc(a),(null!==c.hostBindings||0!==c.hostVars||null!==c.hostAttrs)&&sT(c,u)}}finally{gn(-1),Dc(s)}}(e,t,n)}let fg=()=>null;function sT(e,t){null!==e.hostBindings&&e.hostBindings(1,t)}function Su(e,t){const n=e.directiveRegistry;let r=null;if(n)for(let o=0;o<n.length;o++){const i=n[o];ng(t,i.selectors,!1)&&(r??=[],$e(i)?r.unshift(i):r.push(i))}return r}function cT(e,t,n,r,o,i){const s=i[t];if(null!==s)for(let a=0;a<s.length;a+=2)Do(r,n,s[a],s[a+1])}function Au(e,t,n,r,o){const i=e.inputs?.[r],s=e.hostDirectiveInputs?.[r];let a=!1;if(s)for(let c=0;c<s.length;c+=2){const u=s[c];Do(t.data[u],n[u],s[c+1],o),a=!0}if(i)for(const c of i)Do(t.data[c],n[c],r,o),a=!0;return a}function lT(e,t){const n=Se(t,e),r=n[1];!function dT(e,t){for(let n=t.length;n<e.blueprint.length;n++)t.push(e.blueprint[n])}(r,n);const o=n[0];null!==o&&null===n[6]&&(n[6]=null),U(18),hs(r,n,n[8]),U(19,n[8])}function hs(e,t,n){Ic(t);try{const r=e.viewQuery;null!==r&&uu(1,r,n);const o=e.template;null!==o&&dg(e,t,o,1,n),e.firstCreatePass&&(e.firstCreatePass=!1),t[18]?.finishViewCreation(e),e.staticContentQueries&&Ap(e,t),e.staticViewQueries&&uu(2,e.viewQuery,n);const i=e.components;null!==i&&function fT(e,t){for(let n=0;n<t.length;n++)lT(e,t[n])}(t,i)}catch(r){throw e.firstCreatePass&&(e.incompleteFirstPass=!0,e.firstCreatePass=!1),r}finally{t[2]&=-5,Cc()}}function In(e,t){return!t||null===t.firstChild||uo(e)}function xu(e,t){return undefined(e,t)}var zt=function(e){return e[e.Important=1]="Important",e[e.DashCase=2]="DashCase",e}(zt||{});function Cn(e){return!(32&~e.flags)}function yr(e,t,n,r,o){if(null!=r){let i,s=!1;Te(r)?i=r:re(r)&&(s=!0,r=r[0]);const a=ye(r);0===e&&null!==n?null==o?ig(t,n,a):En(t,n,a,o||null,!0):1===e&&null!==n?En(t,n,a,o||null,!0):2===e?function _o(e,t,n){e.removeChild(null,t,n)}(t,a,s):3===e&&t.destroyNode(a),null!=i&&function vT(e,t,n,r,o){const i=n[7];i!==ye(n)&&yr(t,e,r,i,o);for(let a=10;a<n.length;a++){const c=n[a];gs(c[1],c,e,t,r,i)}}(t,e,i,n,o)}}function _g(e,t){t[10].changeDetectionScheduler?.notify(9),gs(e,t,t[F],2,null,null)}function ku(e,t){const n=e[9],r=n.indexOf(t);n.splice(r,1)}function vo(e,t){if(Et(t))return;const n=t[F];n.destroyNode&&gs(e,t,n,3,null,null),function mT(e){let t=e[12];if(!t)return Ou(e[1],e);for(;t;){let n=null;if(re(t))n=t[12];else{const r=t[10];r&&(n=r)}if(!n){for(;t&&!t[4]&&t!==e;)re(t)&&Ou(t[1],t),t=t[3];null===t&&(t=e),re(t)&&Ou(t[1],t),n=t&&t[4]}t=n}}(t)}function Ou(e,t){if(Et(t))return;const n=T(null);try{t[2]&=-129,t[2]|=256,t[24]&&pi(t[24]),function yT(e,t){let n;if(null!=e&&null!=(n=e.destroyHooks))for(let r=0;r<n.length;r+=2){const o=t[n[r]];if(!(o instanceof io)){const i=n[r+1];if(Array.isArray(i))for(let s=0;s<i.length;s+=2){const a=o[i[s]],c=i[s+1];U(4,a,c);try{c.call(a)}finally{U(5,a,c)}}else{U(4,o,i);try{i.call(o)}finally{U(5,o,i)}}}}}(e,t),function _T(e,t){const n=e.cleanup,r=t[7];if(null!==n)for(let s=0;s<n.length-1;s+=2)if("string"==typeof n[s]){const a=n[s+3];a>=0?r[a]():r[-a].unsubscribe(),s+=2}else n[s].call(r[n[s+1]]);null!==r&&(t[7]=null);const o=t[21];if(null!==o){t[21]=null;for(let s=0;s<o.length;s++)(0,o[s])()}const i=t[23];if(null!==i){t[23]=null;for(const s of i)s.destroy()}}(e,t),1===t[1].type&&t[F].destroy();const r=t[16];if(null!==r&&Te(t[3])){r!==t[3]&&ku(r,t);const o=t[18];null!==o&&o.detachView(e)}$c(t)}finally{T(n)}}function Fu(e,t,n){return function yg(e,t,n){let r=t;for(;null!==r&&168&r.type;)r=(t=r).parent;if(null===r)return n[0];if(jt(r)){const{encapsulation:o}=e.data[r.directiveStart+r.componentOffset];if(o===St.None||o===St.Emulated)return null}return xe(r,n)}(e,t.parent,n)}let Eg=function vg(e,t,n){return 40&e.type?xe(e,n):null};function ps(e,t,n,r){const o=Fu(e,r,t),i=t[F],a=function Dg(e,t,n){return Eg(e,t,n)}(r.parent||t[5],r,t);if(null!=o)if(Array.isArray(n))for(let c=0;c<n.length;c++)sg(i,o,n[c],a,!1);else sg(i,o,n,a,!1)}function wn(e,t){if(null!==t){const n=t.type;if(3&n)return xe(t,e);if(4&n)return Lu(-1,e[t.index]);if(8&n){const r=t.child;if(null!==r)return wn(e,r);{const o=e[t.index];return Te(o)?Lu(-1,o):ye(o)}}if(128&n)return wn(e,t.next);if(32&n)return xu(t,e)()||ye(e[t.index]);{const r=Cg(e,t);return null!==r?Array.isArray(r)?r[0]:wn(It(e[15]),r):wn(e,t.next)}}return null}function Cg(e,t){return null!==t?e[15][5].projection[t.projection]:null}function Lu(e,t){const n=10+e+1;if(n<t.length){const r=t[n],o=r[1].firstChild;if(null!==o)return wn(r,o)}return t[7]}function ju(e,t,n,r,o,i,s){for(;null!=n;){if(128===n.type){n=n.next;continue}const a=r[n.index],c=n.type;if(s&&0===t&&(a&&Fe(ye(a),r),n.flags|=2),!Cn(n))if(8&c)ju(e,t,n.child,r,o,i,!1),yr(t,e,o,a,i);else if(32&c){const u=xu(n,r);let l;for(;l=u();)yr(t,e,o,l,i);yr(t,e,o,a,i)}else 16&c?wg(e,t,r,n,o,i):yr(t,e,o,a,i);n=s?n.projectionNext:n.next}}function gs(e,t,n,r,o,i){ju(n,r,e.firstChild,t,o,i,!1)}function wg(e,t,n,r,o,i){const s=n[15],c=s[5].projection[r.projection];if(Array.isArray(c))for(let u=0;u<c.length;u++)yr(t,e,o,c[u],i);else{let u=c;const l=s[3];uo(r)&&(u.flags|=128),ju(e,t,u,l,o,i,!0)}}function Eo(e,t,n,r,o=!1){for(;null!==n;){if(128===n.type){n=o?n.projectionNext:n.next;continue}const i=t[n.index];null!==i&&r.push(ye(i)),Te(i)&&IT(i,r);const s=n.type;if(8&s)Eo(e,t,n.child,r);else if(32&s){const a=xu(n,t);let c;for(;c=a();)r.push(c)}else if(16&s){const a=Cg(t,n);if(Array.isArray(a))r.push(...a);else{const c=It(t[15]);Eo(c[1],c,a,r,!0)}}n=o?n.projectionNext:n.next}return r}function IT(e,t){for(let n=10;n<e.length;n++){const r=e[n],o=r[1].firstChild;null!==o&&Eo(r[1],r,o,t)}e[7]!==e[0]&&t.push(e[7])}function bg(e){if(null!==e[25]){for(const t of e[25])t.impl.addSequence(t);e[25].length=0}}let Tg=[];const TT={...Bn,consumerIsAlwaysLive:!0,kind:"template",consumerMarkedDirty:e=>{Kn(e.lView)},consumerOnSignalRead(){this.lView[24]=this}},MT={...Bn,consumerIsAlwaysLive:!0,kind:"template",consumerMarkedDirty:e=>{let t=It(e.lView);for(;t&&!Sg(t[1]);)t=It(t);t&&Lf(t)},consumerOnSignalRead(){this.lView[24]=this}};function Sg(e){return 2!==e.type}function Mg(e){if(null===e[23])return;let t=!0;for(;t;){let n=!1;for(const r of e[23])r.dirty&&(n=!0,null===r.zone||Zone.current===r.zone?r.run():r.zone.run(()=>r.run()));t=n&&!!(8192&e[2])}}function ms(e,t=0){const r=e[10].rendererFactory;r.begin?.();try{!function AT(e,t){const n=Wf();try{ji(!0),Bu(e,t);let r=0;for(;Pi(e);){if(100===r)throw new E(103,!1);r++,Bu(e,1)}}finally{ji(n)}}(e,t)}finally{r.end?.()}}function Ng(e,t,n,r){if(Et(t))return;const o=t[2];Ic(t);let a=!0,c=null,u=null;Sg(e)?(u=function CT(e){return e[24]??function wT(e){const t=Tg.pop()??Object.create(TT);return t.lView=e,t}(e)}(t),c=Vn(u)):null===function Ma(){return ge}()?(a=!1,u=function ST(e){const t=e[24]??Object.create(MT);return t.lView=e,t}(t),c=Vn(u)):t[24]&&(pi(t[24]),t[24]=null);try{Pf(t),function Zf(e){return S.lFrame.bindingIndex=e}(e.bindingStartIndex),null!==n&&dg(e,t,n,2,r);const l=!(3&~o);if(l){const f=e.preOrderCheckHooks;null!==f&&Hi(t,f,null)}else{const f=e.preOrderHooks;null!==f&&$i(t,f,0,null),xc(t,0)}if(function xT(e){for(let t=Kh(e);null!==t;t=Jh(t)){if(!(2&t[2]))continue;const n=t[9];for(let r=0;r<n.length;r++)Lf(n[r])}}(t),Mg(t),Ag(t,0),null!==e.contentQueries&&Ap(e,t),l){const f=e.contentCheckHooks;null!==f&&Hi(t,f)}else{const f=e.contentHooks;null!==f&&$i(t,f,1),xc(t,1)}!function OT(e,t){const n=e.hostBindingOpCodes;if(null!==n)try{for(let r=0;r<n.length;r++){const o=n[r];if(o<0)gn(~o);else{const i=o,s=n[++r],a=n[++r];jI(s,i);const c=t[i];U(24,c),a(2,c),U(25,c)}}}finally{gn(-1)}}(e,t);const d=e.components;null!==d&&xg(t,d,0);const h=e.viewQuery;if(null!==h&&uu(2,h,r),l){const f=e.viewCheckHooks;null!==f&&Hi(t,f)}else{const f=e.viewHooks;null!==f&&$i(t,f,2),xc(t,2)}if(!0===e.firstUpdatePass&&(e.firstUpdatePass=!1),t[22]){for(const f of t[22])f();t[22]=null}bg(t),t[2]&=-73}catch(l){throw Kn(t),l}finally{null!==u&&(Vr(u,c),a&&function bT(e){e.lView[24]!==e&&(e.lView=null,Tg.push(e))}(u)),Cc()}}function Ag(e,t){for(let n=Kh(e);null!==n;n=Jh(n))for(let r=10;r<n.length;r++)Rg(n[r],t)}function kT(e,t,n){U(18);const r=Se(t,e);Rg(r,n),U(19,r[8])}function Rg(e,t){dc(e)&&Bu(e,t)}function Bu(e,t){const r=e[1],o=e[2],i=e[24];let s=!!(0===t&&16&o);if(s||=!!(64&o&&0===t),s||=!!(1024&o),s||=!(!i?.dirty||!hi(i)),s||=!1,i&&(i.dirty=!1),e[2]&=-9217,s)Ng(r,e,r.template,e[8]);else if(8192&o){const a=T(null);try{Mg(e),Ag(e,1);const c=r.components;null!==c&&xg(e,c,1),bg(e)}finally{T(a)}}}function xg(e,t,n){for(let r=0;r<t.length;r++)kT(e,t[r],n)}function Io(e,t){const n=Wf()?64:1088;for(e[10].changeDetectionScheduler?.notify(t);e;){e[2]|=n;const r=It(e);if(Bt(e)&&!r)return e;e=r}return null}function Co(e,t){if(e.length<=10)return;const n=10+t,r=e[n];if(r){const o=r[16];null!==o&&o!==e&&ku(o,r),t>0&&(e[n-1][4]=r[4]);const i=Ti(e,10+t);!function mg(e,t){_g(e,t),t[0]=null,t[5]=null}(r[1],r);const s=i[18];null!==s&&s.detachView(i[1]),r[3]=null,r[4]=null,r[2]&=-129}return r}function Fg(e,t){const n=e[9],r=t[3];(re(r)||t[15]!==r[3][15])&&(e[2]|=2),null===n?e[9]=[t]:n.push(t)}class wo{_lView;_cdRefInjectingView;_appRef=null;_attachedToViewContainer=!1;exhaustive;get rootNodes(){const t=this._lView,n=t[1];return Eo(n,t,n.firstChild,[])}constructor(t,n){this._lView=t,this._cdRefInjectingView=n}get context(){return this._lView[8]}set context(t){this._lView[8]=t}get destroyed(){return Et(this._lView)}destroy(){if(this._appRef)this._appRef.detachView(this);else if(this._attachedToViewContainer){const t=this._lView[3];if(Te(t)){const n=t[8],r=n?n.indexOf(this):-1;r>-1&&(Co(t,r),Ti(n,r))}this._attachedToViewContainer=!1}vo(this._lView[1],this._lView)}onDestroy(t){Li(this._lView,t)}markForCheck(){Io(this._cdRefInjectingView||this._lView,4)}detach(){this._lView[2]&=-129}reattach(){fc(this._lView),this._lView[2]|=128}detectChanges(){this._lView[2]|=1024,ms(this._lView)}checkNoChanges(){}attachToViewContainerRef(){if(this._appRef)throw new E(902,!1);this._attachedToViewContainer=!0}detachFromAppRef(){this._appRef=null;const t=Bt(this._lView),n=this._lView[16];null!==n&&!t&&ku(n,this._lView),_g(this._lView[1],this._lView)}attachToAppRef(t){if(this._attachedToViewContainer)throw new E(902,!1);this._appRef=t;const n=Bt(this._lView),r=this._lView[16];null!==r&&!n&&Fg(r,this._lView),fc(this._lView)}}let Nt=(()=>class e{_declarationLView;_declarationTContainer;elementRef;static __NG_ELEMENT_ID__=PT;constructor(n,r,o){this._declarationLView=n,this._declarationTContainer=r,this.elementRef=o}get ssrId(){return this._declarationTContainer.tView?.ssrId||null}createEmbeddedView(n,r){return this.createEmbeddedViewImpl(n,r)}createEmbeddedViewImpl(n,r,o){const i=function _r(e,t,n,r){const o=T(null);try{const i=t.tView,c=us(e,i,n,4096&e[2]?4096:16,null,t,null,null,r?.injector??null,r?.embeddedViewInjector??null,r?.dehydratedView??null);c[16]=e[t.index];const l=e[18];return null!==l&&(c[18]=l.createEmbeddedView(i)),hs(i,c,n),c}finally{T(o)}}(this._declarationLView,this._declarationTContainer,n,{embeddedViewInjector:r,dehydratedView:o});return new wo(i)}})();function PT(){return _s(O(),m())}function _s(e,t){return 4&e.type?new Nt(t,e,cr(e,t)):null}function vr(e,t,n,r,o){let i=e.data[t];if(null===i)i=function zu(e,t,n,r,o){const i=zf(),s=_c(),c=e.data[t]=function GT(e,t,n,r,o,i){let s=t?t.injectorIndex:-1,a=0;return function Hf(){return null!==S.skipHydrationRootTNode}()&&(a|=128),{type:n,index:r,insertBeforeIndex:null,injectorIndex:s,directiveStart:-1,directiveEnd:-1,directiveStylingLast:-1,componentOffset:-1,propertyBindings:null,flags:a,providerIndexes:0,value:o,attrs:i,mergedAttrs:null,localNames:null,initialInputs:null,inputs:null,hostDirectiveInputs:null,outputs:null,hostDirectiveOutputs:null,directiveToIndex:null,tView:null,next:null,prev:null,projectionNext:null,child:null,parent:t,projection:null,styles:null,stylesWithoutHost:null,residualStyles:void 0,classes:null,classesWithoutHost:null,residualClasses:void 0,classBindings:0,styleBindings:0}}(0,s?i:i&&i.parent,n,t,r,o);return function zT(e,t,n,r){null===e.firstChild&&(e.firstChild=t),null!==n&&(r?null==n.child&&null!==t.parent&&(n.child=t):null===n.next&&(n.next=t,t.prev=n))}(e,c,i,s),c}(e,t,n,r,o),function LI(){return S.lFrame.inI18n}()&&(i.flags|=32);else if(64&i.type){i.type=n,i.value=r,i.attrs=o;const s=function Xr(){const e=S.lFrame,t=e.currentTNode;return e.isParent?t:t.parent}();i.injectorIndex=null===s?-1:s.injectorIndex}return nt(i,!0),i}let SS=class{},sm=class{};class MS{resolveComponentFactory(t){throw new E(917,!1)}}let bs=class{static NULL=new MS};class Ku{}let AS=(()=>{class e{static \u0275prov=L({token:e,providedIn:"root",factory:()=>null})}return e})();const Xu={};class Cr{injector;parentInjector;constructor(t,n){this.injector=t,this.parentInjector=n}get(t,n,r){const o=this.injector.get(t,Xu,r);return o!==Xu||n===Xu?o:this.parentInjector.get(t,n,r)}}function el(e,t,n){let r=n?e.styles:null,o=n?e.classes:null,i=0;if(null!==t)for(let s=0;s<t.length;s++){const a=t[s];"number"==typeof a?i=a:1==i?o=Ba(o,a):2==i&&(r=Ba(r,a+": "+t[++s]+";"))}n?e.styles=r:e.stylesWithoutHost=r,n?e.classes=o:e.classesWithoutHost=o}function P(e,t=0){const n=m();return null===n?j(e,t):Rh(O(),n,A(e),t)}function PS(e,t,n){t.componentOffset=n,(e.components??=[]).push(t.index)}function um(e,t,n,r){const o=0===e?n.inputs:n.outputs;for(const i in o)if(o.hasOwnProperty(i)){let s;s=0===e?t.inputs??={}:t.outputs??={},s[i]??=[],s[i].push(r),dm(t,i)}}function lm(e,t,n,r){const o=0===e?n.inputs:n.outputs;for(const i in o)if(o.hasOwnProperty(i)){const s=o[i];let a;a=0===e?t.hostDirectiveInputs??={}:t.hostDirectiveOutputs??={},a[s]??=[],a[s].push(r,i),dm(t,s)}}function dm(e,t){"class"===t?e.flags|=8:"style"===t&&(e.flags|=16)}function fm(e,t,n){const{attrs:r,inputs:o,hostDirectiveInputs:i}=e;if(null===r||!n&&null===o||n&&null===i||yu(e))return e.initialInputs??=[],void e.initialInputs.push(null);let s=null,a=0;for(;a<r.length;){const c=r[a];if(0!==c)if(5!==c){if("number"==typeof c)break;if(!n&&o.hasOwnProperty(c)){const u=o[c];for(const l of u)if(l===t){s??=[],s.push(c,r[a+1]);break}}else if(n&&i.hasOwnProperty(c)){const u=i[c];for(let l=0;l<u.length;l+=2)if(u[l]===t){s??=[],s.push(u[l+1],r[a+1]);break}}a+=2}else a+=2;else a+=4}e.initialInputs??=[],e.initialInputs.push(s)}function BS(e,t,n,r,o){e.data[r]=o;const i=o.factory||(o.factory=an(o.type)),s=new io(i,$e(o),P);e.blueprint[r]=s,n[r]=s,function VS(e,t,n,r,o){const i=o.hostBindings;if(i){let s=e.hostBindingOpCodes;null===s&&(s=e.hostBindingOpCodes=[]);const a=~t.index;(function HS(e){let t=e.length;for(;t>0;){const n=e[--t];if("number"==typeof n&&n<0)return n}return 0})(s)!=a&&s.push(a),s.push(n,r,i)}}(e,t,r,yo(e,n,o.hostVars,$),o)}function $S(e,t,n){if(n){if(t.exportAs)for(let r=0;r<t.exportAs.length;r++)n[t.exportAs[r]]=e;$e(t)&&(n[""]=e)}}function hm(e,t,n,r,o,i,s,a){const c=t.consts,l=vr(t,e,2,r,ke(c,s));return i&&function tl(e,t,n,r,o){const i=null===r?null:{"":-1},s=o(e,n);if(null!==s){let a=s,c=null,u=null;for(const l of s)if(null!==l.resolveHostDirectives){[a,c,u]=l.resolveHostDirectives(s);break}!function LS(e,t,n,r,o,i,s){const a=r.length;let c=!1;for(let h=0;h<a;h++){const f=r[h];!c&&$e(f)&&(c=!0,PS(e,n,h)),Lc(zi(n,t),e,f.type)}!function US(e,t,n){e.flags|=1,e.directiveStart=t,e.directiveEnd=t+n,e.providerIndexes=t}(n,e.data.length,a);for(let h=0;h<a;h++){const f=r[h];f.providersResolver&&f.providersResolver(f)}let u=!1,l=!1,d=yo(e,t,a,null);a>0&&(n.directiveToIndex=new Map);for(let h=0;h<a;h++){const f=r[h];if(n.mergedAttrs=ar(n.mergedAttrs,f.hostAttrs),BS(e,n,t,d,f),$S(d,f,o),null!==s&&s.has(f)){const[g,y]=s.get(f);n.directiveToIndex.set(f.type,[d,g+n.directiveStart,y+n.directiveStart])}else(null===i||!i.has(f))&&n.directiveToIndex.set(f.type,d);null!==f.contentQueries&&(n.flags|=4),(null!==f.hostBindings||null!==f.hostAttrs||0!==f.hostVars)&&(n.flags|=64);const p=f.type.prototype;!u&&(p.ngOnChanges||p.ngOnInit||p.ngDoCheck)&&((e.preOrderHooks??=[]).push(n.index),u=!0),!l&&(p.ngOnChanges||p.ngDoCheck)&&((e.preOrderCheckHooks??=[]).push(n.index),l=!0),d++}!function jS(e,t,n){for(let r=t.directiveStart;r<t.directiveEnd;r++){const o=e.data[r];if(null!==n&&n.has(o)){const i=n.get(o);lm(0,t,i,r),lm(1,t,i,r),fm(t,r,!0)}else um(0,t,o,r),um(1,t,o,r),fm(t,r,!1)}}(e,n,i)}(e,t,n,a,i,c,u)}null!==i&&null!==r&&function FS(e,t,n){const r=e.localNames=[];for(let o=0;o<t.length;o+=2){const i=n[t[o+1]];if(null==i)throw new E(-301,!1);r.push(t[o],i)}}(n,r,i)}(t,n,l,ke(c,a),o),l.mergedAttrs=ar(l.mergedAttrs,l.attrs),null!==l.attrs&&el(l,l.attrs,!1),null!==l.mergedAttrs&&el(l,l.mergedAttrs,!0),null!==t.queries&&t.queries.elementStart(t,l),l}function pm(e,t){(function Rc(e,t){for(let n=t.directiveStart,r=t.directiveEnd;n<r;n++){const i=e.data[n].type.prototype,{ngAfterContentInit:s,ngAfterContentChecked:a,ngAfterViewInit:c,ngAfterViewChecked:u,ngOnDestroy:l}=i;s&&(e.contentHooks??=[]).push(-n,s),a&&((e.contentHooks??=[]).push(n,a),(e.contentCheckHooks??=[]).push(n,a)),c&&(e.viewHooks??=[]).push(-n,c),u&&((e.viewHooks??=[]).push(n,u),(e.viewCheckHooks??=[]).push(n,u)),null!=l&&(e.destroyHooks??=[]).push(n,l)}})(e,t),uc(t)&&e.queries.elementEnd(t)}function Ns(e,t,n){return function r(o){Io(jt(e)?Se(e.index,t):t,5);const s=t[8];let a=gm(t,s,n,o),c=r.__ngNextListenerFn__;for(;c;)a=gm(t,s,c,o)&&a,c=c.__ngNextListenerFn__;return a}}function gm(e,t,n,r){const o=T(null);try{return U(6,t,n),!1!==n(r)}catch(i){return function Nu(e,t){const n=e[9];n&&n.get(bt,null)?.(t)}(e,i),!1}finally{U(7,t,n),T(o)}}function mm(e,t,n,r,o,i,s){const a=t.firstCreatePass?Vf(t):null,c=Bf(n),u=c.length;c.push(o,i),a&&a.push(r,e,u,(u+1)*(s?-1:1))}function As(e,t,n,r,o,i){const a=t[1],d=t[n][a.data[n].outputs[r]].subscribe(i);mm(e.index,a,t,o,i,d,!0)}const qt=Symbol("BINDING");class _m extends bs{ngModule;constructor(t){super(),this.ngModule=t}resolveComponentFactory(t){const n=V(t);return new rl(n,this.ngModule)}}class rl extends sm{componentDef;ngModule;selector;componentType;ngContentSelectors;isBoundToModule;cachedInputs=null;cachedOutputs=null;get inputs(){return this.cachedInputs??=function nM(e){return Object.keys(e).map(t=>{const[n,r,o]=e[t],i={propName:n,templateName:t,isSignal:0!==(r&ds.SignalBased)};return o&&(i.transform=o),i})}(this.componentDef.inputs),this.cachedInputs}get outputs(){return this.cachedOutputs??=function rM(e){return Object.keys(e).map(t=>({propName:e[t],templateName:t}))}(this.componentDef.outputs),this.cachedOutputs}constructor(t,n){super(),this.componentDef=t,this.ngModule=n,this.componentType=t.type,this.selector=function Wb(e){return e.map(qb).join(",")}(t.selectors),this.ngContentSelectors=t.ngContentSelectors??[],this.isBoundToModule=!!n}create(t,n,r,o,i,s){U(22);const a=T(null);try{const c=this.componentDef,u=function aM(e,t,n,r){const o=e?["ng-version","20.0.5"]:function Zb(e){const t=[],n=[];let r=1,o=2;for(;r<e.length;){let i=e[r];if("string"==typeof i)2===o?""!==i&&t.push(i,e[++r]):8===o&&n.push(i);else{if(!ot(o))break;o=i}r++}return n.length&&t.push(1,...n),t}(t.selectors[0]);let i=null,s=null,a=0;if(n)for(const l of n)a+=l[qt].requiredVars,l.create&&(l.targetIdx=0,(i??=[]).push(l)),l.update&&(l.targetIdx=0,(s??=[]).push(l));if(r)for(let l=0;l<r.length;l++){const d=r[l];if("function"!=typeof d)for(const h of d.bindings){a+=h[qt].requiredVars;const f=l+1;h.create&&(h.targetIdx=f,(i??=[]).push(h)),h.update&&(h.targetIdx=f,(s??=[]).push(h))}}const c=[t];if(r)for(const l of r){const h=be("function"==typeof l?l:l.type);c.push(h)}return Eu(0,null,function cM(e,t){return e||t?n=>{if(1&n&&e)for(const r of e)r.create();if(2&n&&t)for(const r of t)r.update()}:null}(i,s),1,a,c,null,null,null,[o],null)}(r,c,s,i),l=function oM(e,t,n){let r=t instanceof We?t:t?.injector;return r&&null!==e.getStandaloneInjector&&(r=e.getStandaloneInjector(r)||r),r?new Cr(n,r):n}(c,o||this.ngModule,t),d=function iM(e){const t=e.get(Ku,null);if(null===t)throw new E(407,!1);return{rendererFactory:t,sanitizer:e.get(AS,null),changeDetectionScheduler:e.get(er,null),ngReflect:!1}}(l),h=d.rendererFactory.createRenderer(null,c),f=r?function Xb(e,t,n,r){const i=r.get(bw,!1)||n===St.ShadowDom,s=e.selectRootElement(t,i);return function eT(e){fg(e)}(s),s}(h,r,c.encapsulation,l):function sM(e,t){const n=(e.selectors[0][0]||"div").toLowerCase();return cs(t,n,"svg"===n?"svg":"math"===n?"math":null)}(c,h),p=s?.some(ym)||i?.some(v=>"function"!=typeof v&&v.bindings.some(ym)),g=us(null,u,null,512|Iu(c),null,null,d,h,l,null,null);g[M]=f,Ic(g);let y=null;try{const v=hm(M,u,g,"#host",()=>u.directiveRegistry,!0,0);f&&(cg(h,f,v),Fe(f,g)),fs(u,g,v),lu(u,v,g),pm(u,v),void 0!==n&&function lM(e,t,n){const r=e.projection=[];for(let o=0;o<t.length;o++){const i=n[o];r.push(null!=i&&i.length?Array.from(i):null)}}(v,this.ngContentSelectors,n),y=Se(v.index,g),g[8]=y[8],hs(u,g,null)}catch(v){throw null!==y&&$c(y),$c(g),v}finally{U(23),Cc()}return new uM(this.componentType,g,!!p)}finally{T(a)}}}function ym(e){const t=e[qt].kind;return"input"===t||"twoWay"===t}class uM extends SS{_rootLView;_hasInputBindings;instance;hostView;changeDetectorRef;componentType;location;previousInputValues=null;_tNode;constructor(t,n,r){super(),this._rootLView=n,this._hasInputBindings=r,this._tNode=function Qn(e,t){return e.data[t]}(n[1],M),this.location=cr(this._tNode,n),this.instance=Se(this._tNode.index,n)[8],this.hostView=this.changeDetectorRef=new wo(n,void 0),this.componentType=t}setInput(t,n){const r=this._tNode;if(this.previousInputValues??=new Map,this.previousInputValues.has(t)&&Object.is(this.previousInputValues.get(t),n))return;const o=this._rootLView;Au(r,o[1],o,t,n),this.previousInputValues.set(t,n),Io(Se(r.index,o),1)}get injector(){return new ae(this._tNode,this._rootLView)}destroy(){this.hostView.destroy()}onDestroy(t){this.hostView.onDestroy(t)}}let mt=(()=>class e{static __NG_ELEMENT_ID__=dM})();function dM(){return Em(O(),m())}const fM=mt,Dm=class extends fM{_lContainer;_hostTNode;_hostLView;constructor(t,n,r){super(),this._lContainer=t,this._hostTNode=n,this._hostLView=r}get element(){return cr(this._hostTNode,this._hostLView)}get injector(){return new ae(this._hostTNode,this._hostLView)}get parentInjector(){const t=Gi(this._hostTNode,this._hostLView);if(Oc(t)){const n=ao(t,this._hostLView),r=so(t);return new ae(n[1].data[r+8],n)}return new ae(null,this._hostLView)}clear(){for(;this.length>0;)this.remove(this.length-1)}get(t){const n=vm(this._lContainer);return null!==n&&n[t]||null}get length(){return this._lContainer.length-10}createEmbeddedView(t,n,r){let o,i;"number"==typeof r?o=r:null!=r&&(o=r.index,i=r.injector);const a=t.createEmbeddedViewImpl(n||{},i,null);return this.insertImpl(a,o,In(this._hostTNode,null)),a}createComponent(t,n,r,o,i,s,a){const c=t&&!function oo(e){return"function"==typeof e}(t);let u;if(c)u=n;else{const y=n||{};u=y.index,r=y.injector,o=y.projectableNodes,i=y.environmentInjector||y.ngModuleRef,s=y.directives,a=y.bindings}const l=c?t:new rl(V(t)),d=r||this.parentInjector;if(!i&&null==l.ngModule){const v=(c?d:this.parentInjector).get(We,null);v&&(i=v)}V(l.componentType??{});const g=l.create(d,o,null,i,s,a);return this.insertImpl(g.hostView,u,In(this._hostTNode,null)),g}insert(t,n){return this.insertImpl(t,n,!0)}insertImpl(t,n,r){const o=t._lView;if(function MI(e){return Te(e[3])}(o)){const a=this.indexOf(t);if(-1!==a)this.detach(a);else{const c=o[3],u=new Dm(c,c[5],c[3]);u.detach(u.indexOf(t))}}const i=this._adjustIndex(n),s=this._lContainer;return function Dr(e,t,n,r=!0){const o=t[1];if(function FT(e,t,n,r){const o=10+r,i=n.length;r>0&&(n[o-1][4]=t),r<i-10?(t[4]=n[o],Df(n,10+r,t)):(n.push(t),t[4]=null),t[3]=n;const s=t[16];null!==s&&n!==s&&Fg(s,t);const a=t[18];null!==a&&a.insertView(e),fc(t),t[2]|=128}(o,t,e,n),r){const s=Lu(n,e),a=t[F],c=a.parentNode(e[7]);null!==c&&function gT(e,t,n,r,o,i){r[0]=o,r[5]=t,gs(e,r,n,1,o,i)}(o,e[5],a,t,c,s)}const i=t[6];null!==i&&null!==i.firstChild&&(i.firstChild=null)}(s,o,i,r),t.attachToViewContainerRef(),Df(ol(s),i,t),t}move(t,n){return this.insert(t,n)}indexOf(t){const n=vm(this._lContainer);return null!==n?n.indexOf(t):-1}remove(t){const n=this._adjustIndex(t,-1),r=Co(this._lContainer,n);r&&(Ti(ol(this._lContainer),n),vo(r[1],r))}detach(t){const n=this._adjustIndex(t,-1),r=Co(this._lContainer,n);return r&&null!=Ti(ol(this._lContainer),n)?new wo(r):null}_adjustIndex(t,n=0){return t??this.length+n}};function vm(e){return e[8]}function ol(e){return e[8]||(e[8]=[])}function Em(e,t){let n;const r=t[e.index];return Te(r)?n=r:(n=function kg(e,t,n,r){return[e,!0,0,t,null,r,null,n,null,null]}(r,t,null,e),t[e.index]=n,Cu(t,n)),Im(n,t,e,r),new Dm(n,e,t)}let Im=function wm(e,t,n,r){if(e[7])return;let o;o=8&n.type?ye(r):function hM(e,t){const n=e[F],r=n.createComment(""),o=xe(t,e),i=n.parentNode(o);return En(n,i,r,n.nextSibling(o),!1),r}(t,n),e[7]=o};class sl{queryList;matches=null;constructor(t){this.queryList=t}clone(){return new sl(this.queryList)}setDirty(){this.queryList.setDirty()}}class al{queries;constructor(t=[]){this.queries=t}createEmbeddedView(t){const n=t.queries;if(null!==n){const r=null!==t.contentQueries?t.contentQueries[0]:n.length,o=[];for(let i=0;i<r;i++){const s=n.getByIndex(i);o.push(this.queries[s.indexInDeclarationView].clone())}return new al(o)}return null}insertView(t){this.dirtyQueriesWithMatches(t)}detachView(t){this.dirtyQueriesWithMatches(t)}finishViewCreation(t){this.dirtyQueriesWithMatches(t)}dirtyQueriesWithMatches(t){for(let n=0;n<this.queries.length;n++)null!==fl(t,n).matches&&this.queries[n].setDirty()}}class bm{flags;read;predicate;constructor(t,n,r=null){this.flags=n,this.read=r,this.predicate="string"==typeof t?function vM(e){return e.split(",").map(t=>t.trim())}(t):t}}class cl{queries;constructor(t=[]){this.queries=t}elementStart(t,n){for(let r=0;r<this.queries.length;r++)this.queries[r].elementStart(t,n)}elementEnd(t){for(let n=0;n<this.queries.length;n++)this.queries[n].elementEnd(t)}embeddedTView(t){let n=null;for(let r=0;r<this.length;r++){const o=null!==n?n.length:0,i=this.getByIndex(r).embeddedTView(t,o);i&&(i.indexInDeclarationView=r,null!==n?n.push(i):n=[i])}return null!==n?new cl(n):null}template(t,n){for(let r=0;r<this.queries.length;r++)this.queries[r].template(t,n)}getByIndex(t){return this.queries[t]}get length(){return this.queries.length}track(t){this.queries.push(t)}}class ul{metadata;matches=null;indexInDeclarationView=-1;crossesNgTemplate=!1;_declarationNodeIndex;_appliesToNextNode=!0;constructor(t,n=-1){this.metadata=t,this._declarationNodeIndex=n}elementStart(t,n){this.isApplyingToNode(n)&&this.matchTNode(t,n)}elementEnd(t){this._declarationNodeIndex===t.index&&(this._appliesToNextNode=!1)}template(t,n){this.elementStart(t,n)}embeddedTView(t,n){return this.isApplyingToNode(t)?(this.crossesNgTemplate=!0,this.addMatch(-t.index,n),new ul(this.metadata)):null}isApplyingToNode(t){if(this._appliesToNextNode&&1&~this.metadata.flags){const n=this._declarationNodeIndex;let r=t.parent;for(;null!==r&&8&r.type&&r.index!==n;)r=r.parent;return n===(null!==r?r.index:-1)}return this._appliesToNextNode}matchTNode(t,n){const r=this.metadata.predicate;if(Array.isArray(r))for(let o=0;o<r.length;o++){const i=r[o];this.matchTNodeWithReadOption(t,n,mM(n,i)),this.matchTNodeWithReadOption(t,n,qi(n,t,i,!1,!1))}else r===Nt?4&n.type&&this.matchTNodeWithReadOption(t,n,-1):this.matchTNodeWithReadOption(t,n,qi(n,t,r,!1,!1))}matchTNodeWithReadOption(t,n,r){if(null!==r){const o=this.metadata.read;if(null!==o)if(o===ur||o===mt||o===Nt&&4&n.type)this.addMatch(n.index,-2);else{const i=qi(n,t,o,!1,!1);null!==i&&this.addMatch(n.index,i)}else this.addMatch(n.index,r)}}addMatch(t,n){null===this.matches?this.matches=[t,n]:this.matches.push(t,n)}}function mM(e,t){const n=e.localNames;if(null!==n)for(let r=0;r<n.length;r+=2)if(n[r]===t)return n[r+1];return null}function yM(e,t,n,r){return-1===n?function _M(e,t){return 11&e.type?cr(e,t):4&e.type?_s(e,t):null}(t,e):-2===n?function DM(e,t,n){return n===ur?cr(t,e):n===Nt?_s(t,e):n===mt?Em(t,e):void 0}(e,t,r):co(e,e[1],n,t)}function Tm(e,t,n,r){const o=t[18].queries[r];if(null===o.matches){const i=e.data,s=n.matches,a=[];for(let c=0;null!==s&&c<s.length;c+=2){const u=s[c];a.push(u<0?null:yM(t,i[u],s[c+1],n.metadata.read))}o.matches=a}return o.matches}function ll(e,t,n,r){const o=e.queries.getByIndex(n),i=o.matches;if(null!==i){const s=Tm(e,t,o,n);for(let a=0;a<i.length;a+=2){const c=i[a];if(c>0)r.push(s[a/2]);else{const u=i[a+1],l=t[-c];for(let d=10;d<l.length;d++){const h=l[d];h[16]===h[3]&&ll(h[1],h,u,r)}if(null!==l[9]){const d=l[9];for(let h=0;h<d.length;h++){const f=d[h];ll(f[1],f,u,r)}}}}}return r}function Mm(e,t,n){const r=R();return r.firstCreatePass&&(function Am(e,t,n){null===e.queries&&(e.queries=new cl),e.queries.track(new ul(t,n))}(r,new bm(e,t,n),-1),!(2&~t)&&(r.staticViewQueries=!0)),function Sm(e,t,n){const r=new UC(!(4&~n));return function NI(e,t,n,r){const o=Bf(t);o.push(n),e.firstCreatePass&&Vf(e).push(r,o.length-1)}(e,t,r,r.destroy),(t[18]??=new al).queries.push(new sl(r))-1}(r,m(),t)}function fl(e,t){return e.queries.getByIndex(t)}function Rm(e,t){const n=e[1],r=fl(n,t);return r.crossesNgTemplate?ll(n,e,t,[]):Tm(n,e,r,t)}const Pm=new Set;let Sn=class{},RM=class{};class gl extends Sn{ngModuleType;_parent;_bootstrapComponents=[];_r3Injector;instance;destroyCbs=[];componentFactoryResolver=new _m(this);constructor(t,n,r,o=!0){super(),this.ngModuleType=t,this._parent=n;const i=function lt(e){return e[ff]||null}(t);this._bootstrapComponents=function pt(e){return e instanceof Function?e():e}(i.bootstrap),this._r3Injector=rh(t,n,[{provide:Sn,useValue:this},{provide:bs,useValue:this.componentFactoryResolver},...r],De(t),new Set(["environment"])),o&&this.resolveInjectorInitializers()}resolveInjectorInitializers(){this._r3Injector.resolveInjectorInitializers(),this.instance=this._r3Injector.get(this.ngModuleType)}get injector(){return this._r3Injector}destroy(){const t=this._r3Injector;!t.destroyed&&t.destroy(),this.destroyCbs.forEach(n=>n()),this.destroyCbs=null}onDestroy(t){this.destroyCbs.push(t)}}class Lm extends RM{moduleType;constructor(t){super(),this.moduleType=t}create(t){return new gl(this.moduleType,t,[])}}class OM extends Sn{injector;componentFactoryResolver=new _m(this);instance=null;constructor(t){super();const n=new un([...t.providers,{provide:Sn,useValue:this},{provide:bs,useValue:this.componentFactoryResolver}],t.parent||rc(),t.debugName,new Set(["environment"]));this.injector=n,t.runEnvironmentInitializers&&n.resolveInjectorInitializers()}destroy(){this.injector.destroy()}onDestroy(t){this.injector.onDestroy(t)}}let FM=(()=>{class e{_injector;cachedInjectors=new Map;constructor(n){this._injector=n}getOrCreateStandaloneInjector(n){if(!n.standalone)return null;if(!this.cachedInjectors.has(n)){const r=Ja(0,n.type),o=r.length>0?function jm(e,t,n=null){return new OM({providers:e,parent:t,debugName:n,runEnvironmentInitializers:!0}).injector}([r],this._injector,`Standalone[${n.type.name}]`):null;this.cachedInjectors.set(n,o)}return this.cachedInjectors.get(n)}ngOnDestroy(){try{for(const n of this.cachedInjectors.values())null!==n&&n.destroy()}finally{this.cachedInjectors.clear()}}static \u0275prov=L({token:e,providedIn:"environment",factory:()=>new e(j(We))})}return e})();function Po(e){return Tt(()=>{const t=function Bm(e){const t={};return{type:e.type,providersResolver:null,factory:null,hostBindings:e.hostBindings||null,hostVars:e.hostVars||0,hostAttrs:e.hostAttrs||null,contentQueries:e.contentQueries||null,declaredInputs:t,inputConfig:e.inputs||ut,exportAs:e.exportAs||null,standalone:e.standalone??!0,signals:!0===e.signals,selectors:e.selectors||Q,viewQuery:e.viewQuery||null,features:e.features||null,setInput:null,resolveHostDirectives:null,hostDirectives:null,inputs:jM(e.inputs,t),outputs:BM(e.outputs),debugInfo:null}}(e),n={...t,decls:e.decls,vars:e.vars,template:e.template,consts:e.consts||null,ngContentSelectors:e.ngContentSelectors,onPush:e.changeDetection===Zi.OnPush,directiveDefs:null,pipeDefs:null,dependencies:t.standalone&&e.dependencies||null,getStandaloneInjector:t.standalone?o=>o.get(FM).getOrCreateStandaloneInjector(n):null,getExternalStyles:null,signals:e.signals??!1,data:e.data||{},encapsulation:e.encapsulation||St.Emulated,styles:e.styles||Q,_:null,schemas:e.schemas||null,tView:null,id:""};t.standalone&&function Ke(e){Pm.has(e)||(Pm.add(e),performance?.mark?.("mark_feature_usage",{detail:{feature:e}}))}("NgStandalone"),function Vm(e){e.features?.forEach(t=>t(e))}(n);const r=e.dependencies;return n.directiveDefs=Rs(r,!1),n.pipeDefs=Rs(r,!0),n.id=function HM(e){let t=0;const r=[e.selectors,e.ngContentSelectors,e.hostVars,e.hostAttrs,"function"==typeof e.consts?"":e.consts,e.vars,e.decls,e.encapsulation,e.standalone,e.signals,e.exportAs,JSON.stringify(e.inputs),JSON.stringify(e.outputs),Object.getOwnPropertyNames(e.type.prototype),!!e.contentQueries,!!e.viewQuery];for(const i of r.join("|"))t=Math.imul(31,t)+i.charCodeAt(0)|0;return t+=2147483648,"c"+t}(n),n})}function PM(e){return V(e)||be(e)}function LM(e){return null!==e}function Lo(e){return Tt(()=>({type:e.type,bootstrap:e.bootstrap||Q,declarations:e.declarations||Q,imports:e.imports||Q,exports:e.exports||Q,transitiveCompileScopes:null,schemas:e.schemas||null,id:e.id||null}))}function jM(e,t){if(null==e)return ut;const n={};for(const r in e)if(e.hasOwnProperty(r)){const o=e[r];let i,s,a,c;Array.isArray(o)?(a=o[0],i=o[1],s=o[2]??i,c=o[3]||null):(i=o,s=o,a=ds.None,c=null),n[i]=[r,a,c],t[i]=s}return n}function BM(e){if(null==e)return ut;const t={};for(const n in e)e.hasOwnProperty(n)&&(t[e[n]]=n);return t}function Rs(e,t){if(!e)return null;const n=t?dt:PM;return()=>("function"==typeof e?e():e).map(r=>n(r)).filter(LM)}var yl=function(e){return e[e.CHANGE_DETECTION=0]="CHANGE_DETECTION",e[e.AFTER_NEXT_RENDER=1]="AFTER_NEXT_RENDER",e}(yl||{});const Vo=new I(""),e_=!1,Wt=class iN extends $r{__isAsync;destroyRef=void 0;pendingTasks=void 0;constructor(t=!1){super(),this.__isAsync=t,sc()&&(this.destroyRef=w(mn,{optional:!0})??void 0,this.pendingTasks=w(tr,{optional:!0})??void 0)}emit(t){const n=T(null);try{super.next(t)}finally{T(n)}}subscribe(t,n,r){let o=t,i=n||(()=>null),s=r;if(t&&"object"==typeof t){const c=t;o=c.next?.bind(c),i=c.error?.bind(c),s=c.complete?.bind(c)}this.__isAsync&&(i=this.wrapInTimeout(i),o&&(o=this.wrapInTimeout(o)),s&&(s=this.wrapInTimeout(s)));const a=super.subscribe({next:o,error:i,complete:s});return t instanceof Ge&&t.add(a),a}wrapInTimeout(t){return n=>{const r=this.pendingTasks?.add();setTimeout(()=>{try{t(n)}finally{void 0!==r&&this.pendingTasks?.remove(r)}})}}};function t_(e){let t,n;function r(){e=no;try{void 0!==n&&"function"==typeof cancelAnimationFrame&&cancelAnimationFrame(n),void 0!==t&&clearTimeout(t)}catch{}}return t=setTimeout(()=>{e(),r()}),"function"==typeof requestAnimationFrame&&(n=requestAnimationFrame(()=>{e(),r()})),()=>r()}function n_(e){return queueMicrotask(()=>e()),()=>{e=no}}const Dl="isAngularZone",Fs=Dl+"_ID";let sN=0;class G{hasPendingMacrotasks=!1;hasPendingMicrotasks=!1;isStable=!0;onUnstable=new Wt(!1);onMicrotaskEmpty=new Wt(!1);onStable=new Wt(!1);onError=new Wt(!1);constructor(t){const{enableLongStackTrace:n=!1,shouldCoalesceEventChangeDetection:r=!1,shouldCoalesceRunChangeDetection:o=!1,scheduleInRootZone:i=e_}=t;if(typeof Zone>"u")throw new E(908,!1);Zone.assertZonePatched();const s=this;s._nesting=0,s._outer=s._inner=Zone.current,Zone.TaskTrackingZoneSpec&&(s._inner=s._inner.fork(new Zone.TaskTrackingZoneSpec)),n&&Zone.longStackTraceZoneSpec&&(s._inner=s._inner.fork(Zone.longStackTraceZoneSpec)),s.shouldCoalesceEventChangeDetection=!o&&r,s.shouldCoalesceRunChangeDetection=o,s.callbackScheduled=!1,s.scheduleInRootZone=i,function uN(e){const t=()=>{!function cN(e){function t(){t_(()=>{e.callbackScheduled=!1,El(e),e.isCheckStableRunning=!0,vl(e),e.isCheckStableRunning=!1})}e.isCheckStableRunning||e.callbackScheduled||(e.callbackScheduled=!0,e.scheduleInRootZone?Zone.root.run(()=>{t()}):e._outer.run(()=>{t()}),El(e))}(e)},n=sN++;e._inner=e._inner.fork({name:"angular",properties:{[Dl]:!0,[Fs]:n,[Fs+n]:!0},onInvokeTask:(r,o,i,s,a,c)=>{if(function lN(e){return i_(e,"__ignore_ng_zone__")}(c))return r.invokeTask(i,s,a,c);try{return r_(e),r.invokeTask(i,s,a,c)}finally{(e.shouldCoalesceEventChangeDetection&&"eventTask"===s.type||e.shouldCoalesceRunChangeDetection)&&t(),o_(e)}},onInvoke:(r,o,i,s,a,c,u)=>{try{return r_(e),r.invoke(i,s,a,c,u)}finally{e.shouldCoalesceRunChangeDetection&&!e.callbackScheduled&&!function dN(e){return i_(e,"__scheduler_tick__")}(c)&&t(),o_(e)}},onHasTask:(r,o,i,s)=>{r.hasTask(i,s),o===i&&("microTask"==s.change?(e._hasPendingMicrotasks=s.microTask,El(e),vl(e)):"macroTask"==s.change&&(e.hasPendingMacrotasks=s.macroTask))},onHandleError:(r,o,i,s)=>(r.handleError(i,s),e.runOutsideAngular(()=>e.onError.emit(s)),!1)})}(s)}static isInAngularZone(){return typeof Zone<"u"&&!0===Zone.current.get(Dl)}static assertInAngularZone(){if(!G.isInAngularZone())throw new E(909,!1)}static assertNotInAngularZone(){if(G.isInAngularZone())throw new E(909,!1)}run(t,n,r){return this._inner.run(t,n,r)}runTask(t,n,r,o){const i=this._inner,s=i.scheduleEventTask("NgZoneEvent: "+o,t,aN,no,no);try{return i.runTask(s,n,r)}finally{i.cancelTask(s)}}runGuarded(t,n,r){return this._inner.runGuarded(t,n,r)}runOutsideAngular(t){return this._outer.run(t)}}const aN={};function vl(e){if(0==e._nesting&&!e.hasPendingMicrotasks&&!e.isStable)try{e._nesting++,e.onMicrotaskEmpty.emit(null)}finally{if(e._nesting--,!e.hasPendingMicrotasks)try{e.runOutsideAngular(()=>e.onStable.emit(null))}finally{e.isStable=!0}}}function El(e){e.hasPendingMicrotasks=!!(e._hasPendingMicrotasks||(e.shouldCoalesceEventChangeDetection||e.shouldCoalesceRunChangeDetection)&&!0===e.callbackScheduled)}function r_(e){e._nesting++,e.isStable&&(e.isStable=!1,e.onUnstable.emit(null))}function o_(e){e._nesting--,vl(e)}class Il{hasPendingMicrotasks=!1;hasPendingMacrotasks=!1;isStable=!0;onUnstable=new Wt;onMicrotaskEmpty=new Wt;onStable=new Wt;onError=new Wt;run(t,n,r){return t.apply(n,r)}runGuarded(t,n,r){return t.apply(n,r)}runOutsideAngular(t){return t()}runTask(t,n,r,o){return t.apply(n,r)}}function i_(e,t){return!(!Array.isArray(e)||1!==e.length)&&!0===e[0]?.data?.[t]}let s_=(()=>{class e{impl=null;execute(){this.impl?.execute()}static \u0275prov=L({token:e,providedIn:"root",factory:()=>new e})}return e})();const A_=new I(""),Vs=new I("");let Rl,Nl=(()=>{class e{_ngZone;registry;_isZoneStable=!0;_callbacks=[];_taskTrackingZone=null;_destroyRef;constructor(n,r,o){this._ngZone=n,this.registry=r,sc()&&(this._destroyRef=w(mn,{optional:!0})??void 0),Rl||(function E0(e){Rl=e}(o),o.addToWindow(r)),this._watchAngularEvents(),n.run(()=>{this._taskTrackingZone=typeof Zone>"u"?null:Zone.current.get("TaskTrackingZone")})}_watchAngularEvents(){const n=this._ngZone.onUnstable.subscribe({next:()=>{this._isZoneStable=!1}}),r=this._ngZone.runOutsideAngular(()=>this._ngZone.onStable.subscribe({next:()=>{G.assertNotInAngularZone(),queueMicrotask(()=>{this._isZoneStable=!0,this._runCallbacksIfReady()})}}));this._destroyRef?.onDestroy(()=>{n.unsubscribe(),r.unsubscribe()})}isStable(){return this._isZoneStable&&!this._ngZone.hasPendingMacrotasks}_runCallbacksIfReady(){if(this.isStable())queueMicrotask(()=>{for(;0!==this._callbacks.length;){let n=this._callbacks.pop();clearTimeout(n.timeoutId),n.doneCb()}});else{let n=this.getPendingTasks();this._callbacks=this._callbacks.filter(r=>!r.updateCb||!r.updateCb(n)||(clearTimeout(r.timeoutId),!1))}}getPendingTasks(){return this._taskTrackingZone?this._taskTrackingZone.macroTasks.map(n=>({source:n.source,creationLocation:n.creationLocation,data:n.data})):[]}addCallback(n,r,o){let i=-1;r&&r>0&&(i=setTimeout(()=>{this._callbacks=this._callbacks.filter(s=>s.timeoutId!==i),n()},r)),this._callbacks.push({doneCb:n,timeoutId:i,updateCb:o})}whenStable(n,r,o){if(o&&!this._taskTrackingZone)throw new Error('Task tracking zone is required when passing an update callback to whenStable(). Is "zone.js/plugins/task-tracking" loaded?');this.addCallback(n,r,o),this._runCallbacksIfReady()}registerApplication(n){this.registry.registerApplication(n,this)}unregisterApplication(n){this.registry.unregisterApplication(n)}findProviders(n,r,o){return[]}static \u0275fac=function(r){return new(r||e)(j(G),j(Al),j(Vs))};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})(),Al=(()=>{class e{_applications=new Map;registerApplication(n,r){this._applications.set(n,r)}unregisterApplication(n){this._applications.delete(n)}unregisterAllApplications(){this._applications.clear()}getTestability(n){return this._applications.get(n)||null}getAllTestabilities(){return Array.from(this._applications.values())}getAllRootElements(){return Array.from(this._applications.keys())}findTestabilityInTree(n,r=!0){return Rl?.findTestabilityInTree(this,n,r)??null}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"platform"})}return e})();function xl(e){return!!e&&"function"==typeof e.then}function R_(e){return!!e&&"function"==typeof e.subscribe}const x_=new I("");let k_=(()=>{class e{resolve;reject;initialized=!1;done=!1;donePromise=new Promise((n,r)=>{this.resolve=n,this.reject=r});appInits=w(x_,{optional:!0})??[];injector=w(rt);constructor(){}runInitializers(){if(this.initialized)return;const n=[];for(const o of this.appInits){const i=Nf(this.injector,o);if(xl(i))n.push(i);else if(R_(i)){const s=new Promise((a,c)=>{i.subscribe({complete:a,error:c})});n.push(s)}}const r=()=>{this.done=!0,this.resolve()};Promise.all(n).then(()=>{r()}).catch(o=>{this.reject(o)}),0===n.length&&r(),this.initialized=!0}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"root"})}return e})();const I0=new I("");function O_(e,t){return Array.isArray(t)?t.reduce(O_,e):{...e,...t}}let Rn=(()=>{class e{_runningTick=!1;_destroyed=!1;_destroyListeners=[];_views=[];internalErrorHandler=w(bt);afterRenderManager=w(s_);zonelessEnabled=w(ch);rootEffectScheduler=w(fh);dirtyFlags=0;tracingSnapshot=null;allTestViews=new Set;autoDetectTestViews=new Set;includeAllTestViews=!1;afterTick=new $r;get allViews(){return[...(this.includeAllTestViews?this.allTestViews:this.autoDetectTestViews).keys(),...this._views]}get destroyed(){return this._destroyed}componentTypes=[];components=[];internalPendingTask=w(tr);get isStable(){return this.internalPendingTask.hasPendingTasksObservable.pipe(nC(n=>!n))}constructor(){w(Vo,{optional:!0})}whenStable(){let n;return new Promise(r=>{n=this.isStable.subscribe({next:o=>{o&&r()}})}).finally(()=>{n.unsubscribe()})}_injector=w(We);_rendererFactory=null;get injector(){return this._injector}bootstrap(n,r){return this.bootstrapImpl(n,r)}bootstrapImpl(n,r,o=rt.NULL){return this._injector.get(G).run(()=>{U(10);const s=n instanceof sm;if(!this._injector.get(k_).done)throw new E(405,"");let c;c=s?n:this._injector.get(bs).resolveComponentFactory(n),this.componentTypes.push(c.componentType);const u=function w0(e){return e.isBoundToModule}(c)?void 0:this._injector.get(Sn),d=c.create(o,[],r||c.selector,u),h=d.location.nativeElement,f=d.injector.get(A_,null);return f?.registerApplication(h),d.onDestroy(()=>{this.detachView(d.hostView),Hs(this.components,d),f?.unregisterApplication(h)}),this._loadComponent(d),U(11,d),d})}tick(){this.zonelessEnabled||(this.dirtyFlags|=1),this._tick()}_tick(){U(12),null!==this.tracingSnapshot?this.tracingSnapshot.run(yl.CHANGE_DETECTION,this.tickImpl):this.tickImpl()}tickImpl=()=>{if(this._runningTick)throw new E(101,!1);const n=T(null);try{this._runningTick=!0,this.synchronize()}finally{this._runningTick=!1,this.tracingSnapshot?.dispose(),this.tracingSnapshot=null,T(n),this.afterTick.next(),U(13)}};synchronize(){null===this._rendererFactory&&!this._injector.destroyed&&(this._rendererFactory=this._injector.get(Ku,null,{optional:!0}));let n=0;for(;0!==this.dirtyFlags&&n++<10;)U(14),this.synchronizeOnce(),U(15)}synchronizeOnce(){16&this.dirtyFlags&&(this.dirtyFlags&=-17,this.rootEffectScheduler.flush());let n=!1;if(7&this.dirtyFlags){const r=!!(1&this.dirtyFlags);this.dirtyFlags&=-8,this.dirtyFlags|=8;for(let{_lView:o}of this.allViews)(r||Pi(o))&&(ms(o,r&&!this.zonelessEnabled?0:1),n=!0);if(this.dirtyFlags&=-5,this.syncDirtyFlagsWithViews(),23&this.dirtyFlags)return}n||(this._rendererFactory?.begin?.(),this._rendererFactory?.end?.()),8&this.dirtyFlags&&(this.dirtyFlags&=-9,this.afterRenderManager.execute()),this.syncDirtyFlagsWithViews()}syncDirtyFlagsWithViews(){this.allViews.some(({_lView:n})=>Pi(n))?this.dirtyFlags|=2:this.dirtyFlags&=-8}attachView(n){const r=n;this._views.push(r),r.attachToAppRef(this)}detachView(n){const r=n;Hs(this._views,r),r.detachFromAppRef()}_loadComponent(n){this.attachView(n.hostView);try{this.tick()}catch(o){this.internalErrorHandler(o)}this.components.push(n),this._injector.get(I0,[]).forEach(o=>o(n))}ngOnDestroy(){if(!this._destroyed)try{this._destroyListeners.forEach(n=>n()),this._views.slice().forEach(n=>n.destroy())}finally{this._destroyed=!0,this._views=[],this._destroyListeners=[]}}onDestroy(n){return this._destroyListeners.push(n),()=>Hs(this._destroyListeners,n)}destroy(){if(this._destroyed)throw new E(406,!1);const n=this._injector;n.destroy&&!n.destroyed&&n.destroy()}get viewCount(){return this._views.length}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"root"})}return e})();function Hs(e,t){const n=e.indexOf(t);n>-1&&e.splice(n,1)}function Hl(e,t,n,r,o){Au(t,e,n,o?"class":"style",r)}function de(e,t,n,r){const o=m(),i=R(),s=M+e,a=o[F],c=i.firstCreatePass?hm(s,i,o,t,Su,function mc(){return S.bindingsEnabled}(),n,r):i.data[s],u=Z_(i,o,c,a,t,e);o[s]=u;const l=Oi(c);return nt(c,!0),cg(a,u,c),!Cn(c)&&eo()&&ps(i,o,u,c),(0===function AI(){return S.lFrame.elementDepthCount}()||l)&&Fe(u,o),function RI(){S.lFrame.elementDepthCount++}(),l&&(fs(i,o,c),lu(i,c,o)),null!==r&&function wu(e,t,n=xe){const r=t.localNames;if(null!==r){let o=t.index+1;for(let i=0;i<r.length;i+=2){const s=r[i+1],a=-1===s?n(t,e):e[s];e[o++]=a}}}(o,c),de}function W(){let e=O();_c()?function yc(){S.lFrame.isParent=!1}():(e=e.parent,nt(e,!1));const t=e;(function kI(e){return S.skipHydrationRootTNode===e})(t)&&function PI(){S.skipHydrationRootTNode=null}(),function xI(){S.lFrame.elementDepthCount--}();const n=R();return n.firstCreatePass&&pm(n,t),null!=t.classesWithoutHost&&function IC(e){return!!(8&e.flags)}(t)&&Hl(n,t,m(),t.classesWithoutHost,!0),null!=t.stylesWithoutHost&&function CC(e){return!!(16&e.flags)}(t)&&Hl(n,t,m(),t.stylesWithoutHost,!1),W}function zo(e,t,n,r){return de(e,t,n,r),W(),zo}let Z_=(e,t,n,r,o,i)=>(to(!0),cs(r,o,function qI(){return S.lFrame.currentNamespace}()));const Us="en-US";let ny=Us;function Ws(e,t,n){const r=m(),o=R(),i=O();return function ql(e,t,n,r,o,i,s){let a=!0,c=null;if((3&r.type||s)&&(c??=Ns(r,t,i),function WS(e,t,n,r,o,i,s,a){const c=Oi(e);let u=!1,l=null;if(!r&&c&&(l=function ZS(e,t,n,r){const o=e.cleanup;if(null!=o)for(let i=0;i<o.length-1;i+=2){const s=o[i];if(s===n&&o[i+1]===r){const a=t[7],c=o[i+2];return a&&a.length>c?a[c]:null}"string"==typeof s&&(i+=2)}return null}(t,n,i,e.index)),null!==l)(l.__ngLastListenerFn__||l).__ngNextListenerFn__=s,l.__ngLastListenerFn__=s,u=!0;else{const d=xe(e,n),h=r?r(d):d,f=o.listen(h,i,a);mm(r?g=>r(ye(g[e.index])):e.index,t,n,i,a,f,!1)}return u}(r,e,t,s,n,o,i,c)&&(a=!1)),a){const u=r.outputs?.[o],l=r.hostDirectiveOutputs?.[o];if(l&&l.length)for(let d=0;d<l.length;d+=2){const h=l[d],f=l[d+1];c??=Ns(r,t,i),As(r,t,h,f,o,c)}if(u&&u.length)for(const d of u)c??=Ns(r,t,i),As(r,t,d,o,o,c)}}(o,r,r[F],i,e,t,n),Ws}function Wl(e,t,n){Mm(e,t,n)}function Zl(e){const t=m(),n=R(),r=Ec();Bi(r+1);const o=fl(n,r);if(e.dirty&&function SI(e){return!(4&~e[2])}(t)===!(2&~o.metadata.flags)){if(null===o.matches)e.reset([]);else{const i=Rm(t,r);e.reset(i,Vh),e.notifyOnChanges()}return!0}return!1}function Yl(){return function dl(e,t){return e[18].queries[t].queryList}(m(),Ec())}function te(e,t=""){const n=m(),r=R(),o=e+M,i=r.firstCreatePass?vr(r,o,1,t,null):r.data[o],s=jy(r,n,i,t,e);n[o]=s,eo()&&ps(r,n,s,i),nt(i,!1)}let jy=(e,t,n,r,o)=>(to(!0),function Du(e,t){return e.createText(t)}(t[F],r));function Vy(e,t,n,r=""){return function ee(e,t,n){return n!==$&&!Object.is(e[t],n)&&(e[t]=n,!0)}(e,function Ue(){return S.lFrame.bindingIndex++}(),n)?t+N(n)+r:$}function Or(e,t,n){const r=m(),o=Vy(r,e,t,n);return o!==$&&function At(e,t,n){const r=function Yn(e,t){return ye(t[e])}(t,e);!function og(e,t,n){e.setValue(t,n)}(e[F],r,n)}(r,ve(),o),Or}let ck=(()=>{class e{zone=w(G);changeDetectionScheduler=w(er);applicationRef=w(Rn);applicationErrorHandler=w(bt);_onMicrotaskEmptySubscription;initialize(){this._onMicrotaskEmptySubscription||(this._onMicrotaskEmptySubscription=this.zone.onMicrotaskEmpty.subscribe({next:()=>{this.changeDetectionScheduler.runningTick||this.zone.run(()=>{try{this.applicationRef.dirtyFlags|=1,this.applicationRef._tick()}catch(n){this.applicationErrorHandler(n)}})}}))}ngOnDestroy(){this._onMicrotaskEmptySubscription?.unsubscribe()}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"root"})}return e})();function RD({ngZoneFactory:e,ignoreChangesOutsideZone:t,scheduleInRootZone:n}){return e??=()=>new G({...cd(),scheduleInRootZone:n}),[{provide:G,useFactory:e},{provide:cn,multi:!0,useFactory:()=>{const r=w(ck,{optional:!0});return()=>r.initialize()}},{provide:cn,multi:!0,useFactory:()=>{const r=w(lk);return()=>{r.initialize()}}},!0===t?{provide:uh,useValue:!0}:[],{provide:lh,useValue:n??e_},{provide:bt,useFactory:()=>{const r=w(G),o=w(We);let i;return s=>{r.runOutsideAngular(()=>{o.destroyed&&!i?setTimeout(()=>{throw s}):(i??=o.get(Xn),i.handleError(s))})}}}]}function cd(e){return{enableLongStackTrace:!1,shouldCoalesceEventChangeDetection:e?.eventCoalescing??!1,shouldCoalesceRunChangeDetection:e?.runCoalescing??!1}}let lk=(()=>{class e{subscription=new Ge;initialized=!1;zone=w(G);pendingTasks=w(tr);initialize(){if(this.initialized)return;this.initialized=!0;let n=null;!this.zone.isStable&&!this.zone.hasPendingMacrotasks&&!this.zone.hasPendingMicrotasks&&(n=this.pendingTasks.add()),this.zone.runOutsideAngular(()=>{this.subscription.add(this.zone.onStable.subscribe(()=>{G.assertNotInAngularZone(),queueMicrotask(()=>{null!==n&&!this.zone.hasPendingMacrotasks&&!this.zone.hasPendingMicrotasks&&(this.pendingTasks.remove(n),n=null)})}))}),this.subscription.add(this.zone.onUnstable.subscribe(()=>{G.assertInAngularZone(),n??=this.pendingTasks.add()}))}ngOnDestroy(){this.subscription.unsubscribe()}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"root"})}return e})(),OD=(()=>{class e{applicationErrorHandler=w(bt);appRef=w(Rn);taskService=w(tr);ngZone=w(G);zonelessEnabled=w(ch);tracing=w(Vo,{optional:!0});disableScheduling=w(uh,{optional:!0})??!1;zoneIsDefined=typeof Zone<"u"&&!!Zone.root.run;schedulerTickApplyArgs=[{data:{__scheduler_tick__:!0}}];subscriptions=new Ge;angularZoneId=this.zoneIsDefined?this.ngZone._inner?.get(Fs):null;scheduleInRootZone=!this.zonelessEnabled&&this.zoneIsDefined&&(w(lh,{optional:!0})??!1);cancelScheduledCallback=null;useMicrotaskScheduler=!1;runningTick=!1;pendingRenderTaskId=null;constructor(){this.subscriptions.add(this.appRef.afterTick.subscribe(()=>{this.runningTick||this.cleanup()})),this.subscriptions.add(this.ngZone.onUnstable.subscribe(()=>{this.runningTick||this.cleanup()})),this.disableScheduling||=!this.zonelessEnabled&&(this.ngZone instanceof Il||!this.zoneIsDefined)}notify(n){if(!this.zonelessEnabled&&5===n)return;let r=!1;switch(n){case 0:this.appRef.dirtyFlags|=2;break;case 3:case 2:case 4:case 5:case 1:this.appRef.dirtyFlags|=4;break;case 6:case 13:this.appRef.dirtyFlags|=2,r=!0;break;case 12:this.appRef.dirtyFlags|=16,r=!0;break;case 11:r=!0;break;default:this.appRef.dirtyFlags|=8}if(this.appRef.tracingSnapshot=this.tracing?.snapshot(this.appRef.tracingSnapshot)??null,!this.shouldScheduleTick(r))return;const o=this.useMicrotaskScheduler?n_:t_;this.pendingRenderTaskId=this.taskService.add(),this.cancelScheduledCallback=this.scheduleInRootZone?Zone.root.run(()=>o(()=>this.tick())):this.ngZone.runOutsideAngular(()=>o(()=>this.tick()))}shouldScheduleTick(n){return!(this.disableScheduling&&!n||this.appRef.destroyed||null!==this.pendingRenderTaskId||this.runningTick||this.appRef._runningTick||!this.zonelessEnabled&&this.zoneIsDefined&&Zone.current.get(Fs+this.angularZoneId))}tick(){if(this.runningTick||this.appRef.destroyed)return;if(0===this.appRef.dirtyFlags)return void this.cleanup();!this.zonelessEnabled&&7&this.appRef.dirtyFlags&&(this.appRef.dirtyFlags|=1);const n=this.taskService.add();try{this.ngZone.run(()=>{this.runningTick=!0,this.appRef._tick()},void 0,this.schedulerTickApplyArgs)}catch(r){this.taskService.remove(n),this.applicationErrorHandler(r)}finally{this.cleanup()}this.useMicrotaskScheduler=!0,n_(()=>{this.useMicrotaskScheduler=!1,this.taskService.remove(n)})}ngOnDestroy(){this.subscriptions.unsubscribe(),this.cleanup()}cleanup(){if(this.runningTick=!1,this.cancelScheduledCallback?.(),this.cancelScheduledCallback=null,null!==this.pendingRenderTaskId){const n=this.pendingRenderTaskId;this.pendingRenderTaskId=null,this.taskService.remove(n)}}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"root"})}return e})();const Kt=new I("",{providedIn:"root",factory:()=>w(Kt,{optional:!0,skipSelf:!0})||function dk(){return typeof $localize<"u"&&$localize.locale||Us}()});new I("").__NG_ELEMENT_ID__=e=>{const t=O();if(null===t)throw new E(204,!1);if(2&t.type)return t.value;if(8&e)return null;throw new E(204,!1)};const na=new I(""),wk=new I("");function ei(e){return!e.moduleRef}let qD;function WD(){qD=bk}function bk(e,t){const n=e.injector.get(Rn);if(e._bootstrapComponents.length>0)e._bootstrapComponents.forEach(r=>n.bootstrap(r));else{if(!e.instance.ngDoBootstrap)throw new E(-403,!1);e.instance.ngDoBootstrap(n)}t.push(e)}let ZD=(()=>{class e{_injector;_modules=[];_destroyListeners=[];_destroyed=!1;constructor(n){this._injector=n}bootstrapModuleFactory(n,r){const o=r?.scheduleInRootZone,s=r?.ignoreChangesOutsideZone,a=[RD({ngZoneFactory:()=>function fN(e="zone.js",t){return"noop"===e?new Il:"zone.js"===e?new G(t):e}(r?.ngZone,{...cd({eventCoalescing:r?.ngZoneEventCoalescing,runCoalescing:r?.ngZoneRunCoalescing}),scheduleInRootZone:o}),ignoreChangesOutsideZone:s}),{provide:er,useExisting:OD},ZI],c=function kM(e,t,n){return new gl(e,t,n,!1)}(n.moduleType,this.injector,a);return WD(),function GD(e){const t=ei(e)?e.r3Injector:e.moduleRef.injector,n=t.get(G);return n.run(()=>{ei(e)?e.r3Injector.resolveInjectorInitializers():e.moduleRef.resolveInjectorInitializers();const r=t.get(bt);let o;if(n.runOutsideAngular(()=>{o=n.onError.subscribe({next:r})}),ei(e)){const i=()=>t.destroy(),s=e.platformInjector.get(na);s.add(i),t.onDestroy(()=>{o.unsubscribe(),s.delete(i)})}else{const i=()=>e.moduleRef.destroy(),s=e.platformInjector.get(na);s.add(i),e.moduleRef.onDestroy(()=>{Hs(e.allPlatformModules,e.moduleRef),o.unsubscribe(),s.delete(i)})}return function Tk(e,t,n){try{const r=n();return xl(r)?r.catch(o=>{throw t.runOutsideAngular(()=>e(o)),o}):r}catch(r){throw t.runOutsideAngular(()=>e(r)),r}}(r,n,()=>{const i=t.get(k_);return i.runInitializers(),i.donePromise.then(()=>{if(function NA(e){"string"==typeof e&&(ny=e.toLowerCase().replace(/_/g,"-"))}(t.get(Kt,Us)||Us),!t.get(wk,!0))return ei(e)?t.get(Rn):(e.allPlatformModules.push(e.moduleRef),e.moduleRef);if(ei(e)){const c=t.get(Rn);return void 0!==e.rootComponent&&c.bootstrap(e.rootComponent),c}return qD?.(e.moduleRef,e.allPlatformModules),e.moduleRef})})})}({moduleRef:c,allPlatformModules:this._modules,platformInjector:this.injector})}bootstrapModule(n,r=[]){const o=O_({},r);return WD(),function vk(e,t,n){const r=new Lm(n);return Promise.resolve(r)}(0,0,n).then(i=>this.bootstrapModuleFactory(i,o))}onDestroy(n){this._destroyListeners.push(n)}get injector(){return this._injector}destroy(){if(this._destroyed)throw new E(404,!1);this._modules.slice().forEach(r=>r.destroy()),this._destroyListeners.forEach(r=>r());const n=this._injector.get(na,null);n&&(n.forEach(r=>r()),n.clear()),this._destroyed=!0}get destroyed(){return this._destroyed}static \u0275fac=function(r){return new(r||e)(j(rt))};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"platform"})}return e})(),Jt=null;const YD=new I("");function QD(e,t,n=[]){const r=`Platform: ${t}`,o=new I(r);return(i=[])=>{let s=hd();if(!s||s.injector.get(YD,!1)){const a=[...n,...i,{provide:o,useValue:!0}];e?e(a):function Sk(e){if(Jt&&!Jt.get(YD,!1))throw new E(400,!1);(function C0(){!function CE(e){Kd=e}(()=>{throw new E(600,"")})})(),Jt=e;const t=e.get(ZD);(function JD(e){const t=e.get(sp,null);Nf(e,()=>{t?.forEach(n=>n())})})(e)}(function KD(e=[],t){return rt.create({name:t,providers:[{provide:tc,useValue:"platform"},{provide:na,useValue:new Set([()=>Jt=null])},...e]})}(a,r))}return function Mk(){const t=hd();if(!t)throw new E(401,!1);return t}()}}function hd(){return Jt?.get(ZD)??null}const Hk=QD(null,"core",[]);let $k=(()=>{class e{constructor(n){}static \u0275fac=function(r){return new(r||e)(j(Rn))};static \u0275mod=Lo({type:e});static \u0275inj=$n({})}return e})();let vv=null;function _d(){return vv}class gO{}Error,Error;let S1=(()=>{class e{static \u0275fac=function(r){return new(r||e)};static \u0275mod=Lo({type:e});static \u0275inj=$n({})}return e})();const Pd=new I("");let Xv=(()=>{class e{_zone;_plugins;_eventNameToPlugin=new Map;constructor(n,r){this._zone=r,n.forEach(o=>{o.manager=this}),this._plugins=n.slice().reverse()}addEventListener(n,r,o,i){return this._findPluginFor(r).addEventListener(n,r,o,i)}getZone(){return this._zone}_findPluginFor(n){let r=this._eventNameToPlugin.get(n);if(r)return r;if(r=this._plugins.find(i=>i.supports(n)),!r)throw new E(5101,!1);return this._eventNameToPlugin.set(n,r),r}static \u0275fac=function(r){return new(r||e)(j(Pd),j(G))};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})();class eE{_doc;constructor(t){this._doc=t}manager}const Ia="ng-app-id";function tE(e){for(const t of e)t.remove()}function nE(e,t){const n=t.createElement("style");return n.textContent=e,n}function Ld(e,t){const n=t.createElement("link");return n.setAttribute("rel","stylesheet"),n.setAttribute("href",e),n}let rE=(()=>{class e{doc;appId;nonce;inline=new Map;external=new Map;hosts=new Set;isServer;constructor(n,r,o,i={}){this.doc=n,this.appId=r,this.nonce=o,this.isServer=function EO(e){return"server"===e}(i),function M1(e,t,n,r){const o=e.head?.querySelectorAll(`style[${Ia}="${t}"],link[${Ia}="${t}"]`);if(o)for(const i of o)i.removeAttribute(Ia),i instanceof HTMLLinkElement?r.set(i.href.slice(i.href.lastIndexOf("/")+1),{usage:0,elements:[i]}):i.textContent&&n.set(i.textContent,{usage:0,elements:[i]})}(n,r,this.inline,this.external),this.hosts.add(n.head)}addStyles(n,r){for(const o of n)this.addUsage(o,this.inline,nE);r?.forEach(o=>this.addUsage(o,this.external,Ld))}removeStyles(n,r){for(const o of n)this.removeUsage(o,this.inline);r?.forEach(o=>this.removeUsage(o,this.external))}addUsage(n,r,o){const i=r.get(n);i?i.usage++:r.set(n,{usage:1,elements:[...this.hosts].map(s=>this.addElement(s,o(n,this.doc)))})}removeUsage(n,r){const o=r.get(n);o&&(o.usage--,o.usage<=0&&(tE(o.elements),r.delete(n)))}ngOnDestroy(){for(const[,{elements:n}]of[...this.inline,...this.external])tE(n);this.hosts.clear()}addHost(n){this.hosts.add(n);for(const[r,{elements:o}]of this.inline)o.push(this.addElement(n,nE(r,this.doc)));for(const[r,{elements:o}]of this.external)o.push(this.addElement(n,Ld(r,this.doc)))}removeHost(n){this.hosts.delete(n)}addElement(n,r){return this.nonce&&r.setAttribute("nonce",this.nonce),this.isServer&&r.setAttribute(Ia,this.appId),n.appendChild(r)}static \u0275fac=function(r){return new(r||e)(j(Vt),j(Ki),j(ap,8),j(qc))};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})();const jd={svg:"http://www.w3.org/2000/svg",xhtml:"http://www.w3.org/1999/xhtml",xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace",xmlns:"http://www.w3.org/2000/xmlns/",math:"http://www.w3.org/1998/Math/MathML"},Bd=/%COMP%/g,O1=new I("",{providedIn:"root",factory:()=>!0});function iE(e,t){return t.map(n=>n.replace(Bd,e))}let sE=(()=>{class e{eventManager;sharedStylesHost;appId;removeStylesOnCompDestroy;doc;platformId;ngZone;nonce;tracingService;rendererByCompId=new Map;defaultRenderer;platformIsServer;constructor(n,r,o,i,s,a,c,u=null,l=null){this.eventManager=n,this.sharedStylesHost=r,this.appId=o,this.removeStylesOnCompDestroy=i,this.doc=s,this.platformId=a,this.ngZone=c,this.nonce=u,this.tracingService=l,this.platformIsServer=!1,this.defaultRenderer=new Vd(n,s,c,this.platformIsServer,this.tracingService)}createRenderer(n,r){if(!n||!r)return this.defaultRenderer;const o=this.getOrCreateRenderer(n,r);return o instanceof cE?o.applyToHost(n):o instanceof Hd&&o.applyStyles(),o}getOrCreateRenderer(n,r){const o=this.rendererByCompId;let i=o.get(r.id);if(!i){const s=this.doc,a=this.ngZone,c=this.eventManager,u=this.sharedStylesHost,l=this.removeStylesOnCompDestroy,d=this.platformIsServer,h=this.tracingService;switch(r.encapsulation){case St.Emulated:i=new cE(c,u,r,this.appId,l,s,a,d,h);break;case St.ShadowDom:return new j1(c,u,n,r,s,a,this.nonce,d,h);default:i=new Hd(c,u,r,l,s,a,d,h)}o.set(r.id,i)}return i}ngOnDestroy(){this.rendererByCompId.clear()}componentReplaced(n){this.rendererByCompId.delete(n)}static \u0275fac=function(r){return new(r||e)(j(Xv),j(rE),j(Ki),j(O1),j(Vt),j(qc),j(G),j(ap),j(Vo,8))};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})();class Vd{eventManager;doc;ngZone;platformIsServer;tracingService;data=Object.create(null);throwOnSyntheticProps=!0;constructor(t,n,r,o,i){this.eventManager=t,this.doc=n,this.ngZone=r,this.platformIsServer=o,this.tracingService=i}destroy(){}destroyNode=null;createElement(t,n){return n?this.doc.createElementNS(jd[n]||n,t):this.doc.createElement(t)}createComment(t){return this.doc.createComment(t)}createText(t){return this.doc.createTextNode(t)}appendChild(t,n){(aE(t)?t.content:t).appendChild(n)}insertBefore(t,n,r){t&&(aE(t)?t.content:t).insertBefore(n,r)}removeChild(t,n){n.remove()}selectRootElement(t,n){let r="string"==typeof t?this.doc.querySelector(t):t;if(!r)throw new E(-5104,!1);return n||(r.textContent=""),r}parentNode(t){return t.parentNode}nextSibling(t){return t.nextSibling}setAttribute(t,n,r,o){if(o){n=o+":"+n;const i=jd[o];i?t.setAttributeNS(i,n,r):t.setAttribute(n,r)}else t.setAttribute(n,r)}removeAttribute(t,n,r){if(r){const o=jd[r];o?t.removeAttributeNS(o,n):t.removeAttribute(`${r}:${n}`)}else t.removeAttribute(n)}addClass(t,n){t.classList.add(n)}removeClass(t,n){t.classList.remove(n)}setStyle(t,n,r,o){o&(zt.DashCase|zt.Important)?t.style.setProperty(n,r,o&zt.Important?"important":""):t.style[n]=r}removeStyle(t,n,r){r&zt.DashCase?t.style.removeProperty(n):t.style[n]=""}setProperty(t,n,r){null!=t&&(t[n]=r)}setValue(t,n){t.nodeValue=n}listen(t,n,r,o){if("string"==typeof t&&!(t=_d().getGlobalEventTarget(this.doc,t)))throw new E(5102,!1);let i=this.decoratePreventDefault(r);return this.tracingService?.wrapEventListener&&(i=this.tracingService.wrapEventListener(t,n,i)),this.eventManager.addEventListener(t,n,i,o)}decoratePreventDefault(t){return n=>{if("__ngUnwrap__"===n)return t;!1===t(n)&&n.preventDefault()}}}function aE(e){return"TEMPLATE"===e.tagName&&void 0!==e.content}class j1 extends Vd{sharedStylesHost;hostEl;shadowRoot;constructor(t,n,r,o,i,s,a,c,u){super(t,i,s,c,u),this.sharedStylesHost=n,this.hostEl=r,this.shadowRoot=r.attachShadow({mode:"open"}),this.sharedStylesHost.addHost(this.shadowRoot);let l=o.styles;l=iE(o.id,l);for(const h of l){const f=document.createElement("style");a&&f.setAttribute("nonce",a),f.textContent=h,this.shadowRoot.appendChild(f)}const d=o.getExternalStyles?.();if(d)for(const h of d){const f=Ld(h,i);a&&f.setAttribute("nonce",a),this.shadowRoot.appendChild(f)}}nodeOrShadowRoot(t){return t===this.hostEl?this.shadowRoot:t}appendChild(t,n){return super.appendChild(this.nodeOrShadowRoot(t),n)}insertBefore(t,n,r){return super.insertBefore(this.nodeOrShadowRoot(t),n,r)}removeChild(t,n){return super.removeChild(null,n)}parentNode(t){return this.nodeOrShadowRoot(super.parentNode(this.nodeOrShadowRoot(t)))}destroy(){this.sharedStylesHost.removeHost(this.shadowRoot)}}class Hd extends Vd{sharedStylesHost;removeStylesOnCompDestroy;styles;styleUrls;constructor(t,n,r,o,i,s,a,c,u){super(t,i,s,a,c),this.sharedStylesHost=n,this.removeStylesOnCompDestroy=o;let l=r.styles;this.styles=u?iE(u,l):l,this.styleUrls=r.getExternalStyles?.(u)}applyStyles(){this.sharedStylesHost.addStyles(this.styles,this.styleUrls)}destroy(){this.removeStylesOnCompDestroy&&this.sharedStylesHost.removeStyles(this.styles,this.styleUrls)}}class cE extends Hd{contentAttr;hostAttr;constructor(t,n,r,o,i,s,a,c,u){const l=o+"-"+r.id;super(t,n,r,i,s,a,c,u,l),this.contentAttr=function F1(e){return"_ngcontent-%COMP%".replace(Bd,e)}(l),this.hostAttr=function P1(e){return"_nghost-%COMP%".replace(Bd,e)}(l)}applyToHost(t){this.applyStyles(),this.setAttribute(t,this.hostAttr,"")}createElement(t,n){const r=super.createElement(t,n);return super.setAttribute(r,this.contentAttr,""),r}}class $d extends gO{supportsDOMEvents=!0;static makeCurrent(){!function pO(e){vv??=e}(new $d)}onAndCancel(t,n,r,o){return t.addEventListener(n,r,o),()=>{t.removeEventListener(n,r,o)}}dispatchEvent(t,n){t.dispatchEvent(n)}remove(t){t.remove()}createElement(t,n){return(n=n||this.getDefaultDocument()).createElement(t)}createHtmlDocument(){return document.implementation.createHTMLDocument("fakeTitle")}getDefaultDocument(){return document}isElementNode(t){return t.nodeType===Node.ELEMENT_NODE}isShadowRoot(t){return t instanceof DocumentFragment}getGlobalEventTarget(t,n){return"window"===n?window:"document"===n?t:"body"===n?t.body:null}getBaseHref(t){const n=function B1(){return ai=ai||document.head.querySelector("base"),ai?ai.getAttribute("href"):null}();return null==n?null:function V1(e){return new URL(e,document.baseURI).pathname}(n)}resetBaseElement(){ai=null}getUserAgent(){return window.navigator.userAgent}getCookie(t){return function yO(e,t){t=encodeURIComponent(t);for(const n of e.split(";")){const r=n.indexOf("="),[o,i]=-1==r?[n,""]:[n.slice(0,r),n.slice(r+1)];if(o.trim()===t)return decodeURIComponent(i)}return null}(document.cookie,t)}}let ai=null,$1=(()=>{class e{build(){return new XMLHttpRequest}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})(),U1=(()=>{class e extends eE{constructor(n){super(n)}supports(n){return!0}addEventListener(n,r,o,i){return n.addEventListener(r,o,i),()=>this.removeEventListener(n,r,o,i)}removeEventListener(n,r,o,i){return n.removeEventListener(r,o,i)}static \u0275fac=function(r){return new(r||e)(j(Vt))};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})();const uE=["alt","control","meta","shift"],z1={"\b":"Backspace","\t":"Tab","\x7f":"Delete","\x1b":"Escape",Del:"Delete",Esc:"Escape",Left:"ArrowLeft",Right:"ArrowRight",Up:"ArrowUp",Down:"ArrowDown",Menu:"ContextMenu",Scroll:"ScrollLock",Win:"OS"},G1={alt:e=>e.altKey,control:e=>e.ctrlKey,meta:e=>e.metaKey,shift:e=>e.shiftKey};let q1=(()=>{class e extends eE{constructor(n){super(n)}supports(n){return null!=e.parseEventName(n)}addEventListener(n,r,o,i){const s=e.parseEventName(r),a=e.eventCallback(s.fullKey,o,this.manager.getZone());return this.manager.getZone().runOutsideAngular(()=>_d().onAndCancel(n,s.domEventName,a,i))}static parseEventName(n){const r=n.toLowerCase().split("."),o=r.shift();if(0===r.length||"keydown"!==o&&"keyup"!==o)return null;const i=e._normalizeKey(r.pop());let s="",a=r.indexOf("code");if(a>-1&&(r.splice(a,1),s="code."),uE.forEach(u=>{const l=r.indexOf(u);l>-1&&(r.splice(l,1),s+=u+".")}),s+=i,0!=r.length||0===i.length)return null;const c={};return c.domEventName=o,c.fullKey=s,c}static matchEventFullKeyCode(n,r){let o=z1[n.key]||n.key,i="";return r.indexOf("code.")>-1&&(o=n.code,i="code."),!(null==o||!o)&&(o=o.toLowerCase()," "===o?o="space":"."===o&&(o="dot"),uE.forEach(s=>{s!==o&&(0,G1[s])(n)&&(i+=s+".")}),i+=o,i===r)}static eventCallback(n,r,o){return i=>{e.matchEventFullKeyCode(i,n)&&o.runGuarded(()=>r(i))}}static _normalizeKey(n){return"esc"===n?"escape":n}static \u0275fac=function(r){return new(r||e)(j(Vt))};static \u0275prov=L({token:e,factory:e.\u0275fac})}return e})();const Q1=QD(Hk,"browser",[{provide:qc,useValue:"browser"},{provide:sp,useValue:function W1(){$d.makeCurrent()},multi:!0},{provide:Vt,useFactory:function Y1(){return function gw(e){Gc=e}(document),document}}]),fE=[{provide:Vs,useClass:class H1{addToWindow(t){oe.getAngularTestability=(r,o=!0)=>{const i=t.findTestabilityInTree(r,o);if(null==i)throw new E(5103,!1);return i},oe.getAllAngularTestabilities=()=>t.getAllTestabilities(),oe.getAllAngularRootElements=()=>t.getAllRootElements(),oe.frameworkStabilizers||(oe.frameworkStabilizers=[]),oe.frameworkStabilizers.push(r=>{const o=oe.getAllAngularTestabilities();let i=o.length;const s=function(){i--,0==i&&r()};o.forEach(a=>{a.whenStable(s)})})}findTestabilityInTree(t,n,r){return null==n?null:t.getTestability(n)??(r?_d().isShadowRoot(n)?this.findTestabilityInTree(t,n.host,!0):this.findTestabilityInTree(t,n.parentElement,!0):null)}}},{provide:A_,useClass:Nl,deps:[G,Al,Vs]},{provide:Nl,useClass:Nl,deps:[G,Al,Vs]}],hE=[{provide:tc,useValue:"root"},{provide:Xn,useFactory:function Z1(){return new Xn}},{provide:Pd,useClass:U1,multi:!0,deps:[Vt]},{provide:Pd,useClass:q1,multi:!0,deps:[Vt]},sE,rE,Xv,{provide:Ku,useExisting:sE},{provide:class DO{},useClass:$1},[]];let K1=(()=>{class e{constructor(){}static \u0275fac=function(r){return new(r||e)};static \u0275mod=Lo({type:e});static \u0275inj=$n({providers:[...hE,...fE],imports:[S1,$k]})}return e})();const zd=["none","cyan","blue","orange","yellow","green","purple","red"],J1=[[],[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],[[2,0,0],[2,2,2],[0,0,0]],[[0,0,3],[3,3,3],[0,0,0]],[[4,4],[4,4]],[[0,5,5],[5,5,0],[0,0,0]],[[0,6,0],[6,6,6],[0,0,0]],[[7,7,0],[0,7,7],[0,0,0]]];let _t=(()=>class e{static ESC=27;static SPACE=32;static LEFT=37;static UP=38;static RIGHT=39;static DOWN=40})(),ci=(()=>class e{static SINGLE=100;static DOUBLE=300;static TRIPLE=500;static TETRIS=800;static SOFT_DROP=1;static HARD_DROP=2})();class gE{static 0=800;static 1=720;static 2=630;static 3=550;static 4=470;static 5=380;static 6=300;static 7=220;static 8=130;static 9=100;static 10=80;static 11=80;static 12=80;static 13=70;static 14=70;static 15=70;static 16=50;static 17=50;static 18=50;static 19=30;static 20=30}class Gd{ctx;x;y;color;shape;constructor(t){this.ctx=t,this.spawn()}spawn(){const t=this.randomizeTetrominoType(zd.length-1);this.shape=J1[t],this.color=zd[t],this.x=4===t?4:3,this.y=0}draw(){this.ctx.fillStyle=this.color,this.shape.forEach((t,n)=>{t.forEach((r,o)=>{r>0&&this.ctx.fillRect(this.x+o,this.y+n,1,1)})})}drawNext(t){t.clearRect(0,0,t.canvas.width,t.canvas.height),t.fillStyle=this.color,this.shape.forEach((n,r)=>{n.forEach((o,i)=>{o>0&&t.fillRect(i,r,1,1)})})}move(t){this.x=t.x,this.y=t.y,this.shape=t.shape}randomizeTetrominoType(t){return Math.floor(Math.random()*t+1)}}let X1=(()=>{class e{valid(n,r){return n.shape.every((o,i)=>o.every((s,a)=>{let c=n.x+a,u=n.y+i;return this.isEmpty(s)||this.insideWalls(c)&&this.aboveFloor(u)&&this.notOccuppied(r,c,u)}))}isEmpty(n){return 0===n}insideWalls(n){return n>=0&&n<10}aboveFloor(n){return n<=20}notOccuppied(n,r,o){return n[o]&&0===n[o][r]}rotate(n){let r=JSON.parse(JSON.stringify(n));for(let o=0;o<r.shape.length;++o)for(let i=0;i<o;++i)[r.shape[i][o],r.shape[o][i]]=[r.shape[o][i],r.shape[i][o]];return r.shape.forEach(o=>o.reverse()),r}getLinesClearedPoints(n,r){return(r+1)*(1===n?ci.SINGLE:2===n?ci.DOUBLE:3===n?ci.TETRIS:0)}static \u0275fac=function(r){return new(r||e)};static \u0275prov=L({token:e,factory:e.\u0275fac,providedIn:"root"})}return e})();const eP=["board"],tP=["next"];let nP=(()=>{class e{service;canvas;canvasNext;ctx;ctxNext;board;piece;next;requestId;time;points;lines;level;moves={[_t.LEFT]:n=>({...n,x:n.x-1}),[_t.RIGHT]:n=>({...n,x:n.x+1}),[_t.DOWN]:n=>({...n,y:n.y+1}),[_t.SPACE]:n=>({...n,y:n.y+1}),[_t.UP]:n=>this.service.rotate(n)};keyEvent(n){if(n.keyCode===_t.ESC)this.gameOver();else if(this.moves[n.keyCode]){n.preventDefault();let r=this.moves[n.keyCode](this.piece);if(n.keyCode===_t.SPACE)for(;this.service.valid(r,this.board);)this.points+=ci.HARD_DROP,this.piece.move(r),r=this.moves[_t.DOWN](this.piece);else this.service.valid(r,this.board)&&(this.piece.move(r),n.keyCode===_t.DOWN&&(this.points+=ci.SOFT_DROP))}}constructor(n){this.service=n}ngOnInit(){this.initBoard(),this.initNext(),this.resetGame()}initBoard(){this.ctx=this.canvas.nativeElement.getContext("2d"),this.ctx.canvas.width=300,this.ctx.canvas.height=600,this.ctx.scale(30,30)}initNext(){this.ctxNext=this.canvasNext.nativeElement.getContext("2d"),this.ctxNext.canvas.width=120,this.ctxNext.canvas.height=120,this.ctxNext.scale(30,30)}play(){this.resetGame(),this.next=new Gd(this.ctx),this.piece=new Gd(this.ctx),this.next.drawNext(this.ctxNext),this.time.start=performance.now(),this.requestId&&cancelAnimationFrame(this.requestId),this.animate()}resetGame(){this.points=0,this.lines=0,this.level=0,this.board=this.getEmptyBoard(),this.time={start:0,elapsed:0,level:gE[this.level]}}animate(n=0){this.time.elapsed=n-this.time.start,this.time.elapsed>this.time.level&&(this.time.start=n,!this.drop())?this.gameOver():(this.draw(),this.requestId=requestAnimationFrame(this.animate.bind(this)))}draw(){this.ctx.clearRect(0,0,this.ctx.canvas.width,this.ctx.canvas.height),this.piece.draw(),this.drawBoard()}drop(){let n=this.moves[_t.DOWN](this.piece);if(this.service.valid(n,this.board))this.piece.move(n);else{if(this.freeze(),this.clearLines(),0===this.piece.y)return!1;this.piece=this.next,this.next=new Gd(this.ctx),this.next.drawNext(this.ctxNext)}return!0}clearLines(){let n=0;this.board.forEach((r,o)=>{r.every(i=>0!==i)&&(n++,this.board.splice(o,1),this.board.unshift(Array(10).fill(0)))}),n>0&&(this.points+=this.service.getLinesClearedPoints(n,this.level),this.lines+=n,this.lines>=10&&(this.level++,this.lines-=10,this.time.level=gE[this.level]))}freeze(){this.piece.shape.forEach((n,r)=>{n.forEach((o,i)=>{o>0&&(this.board[r+this.piece.y][i+this.piece.x]=o)})})}drawBoard(){this.board.forEach((n,r)=>{n.forEach((o,i)=>{o>0&&(this.ctx.fillStyle=zd[o],this.ctx.fillRect(i,r,1,1))})})}gameOver(){cancelAnimationFrame(this.requestId),this.ctx.fillStyle="black",this.ctx.fillRect(1,3,8,1.2),this.ctx.font="1px Arial",this.ctx.fillStyle="red",this.ctx.fillText("GAME OVER",1.8,4)}getEmptyBoard(){return Array.from({length:20},()=>Array(10).fill(0))}static \u0275fac=function(r){return new(r||e)(P(X1))};static \u0275cmp=Po({type:e,selectors:[["game-board"]],viewQuery:function(r,o){if(1&r&&(Wl(eP,7),Wl(tP,7)),2&r){let i;Zl(i=Yl())&&(o.canvas=i.first),Zl(i=Yl())&&(o.canvasNext=i.first)}},hostBindings:function(r,o){1&r&&Ws("keydown",function(s){return o.keyEvent(s)},Qp)},standalone:!1,decls:18,vars:3,consts:[["board",""],["next",""],[1,"container"],[1,"grid"],[1,"game-board"],[1,"right-column"],[1,"next"],[1,"play-button",3,"click"]],template:function(r,o){if(1&r){const i=function K_(){return m()}();de(0,"div",2)(1,"div",3),zo(2,"canvas",4,0),de(4,"div",5)(5,"div")(6,"h1"),te(7,"TETRIS"),W(),de(8,"p"),te(9),W(),de(10,"p"),te(11),W(),de(12,"p"),te(13),W(),zo(14,"canvas",6,1),W(),de(16,"button",7),Ws("click",function(){return function $f(e){return S.lFrame.contextLView=e,e[8]}(i),function Uf(e){return S.lFrame.contextLView=null,e}(o.play())}),te(17,"Play Game"),W()()()()}2&r&&(ls(9),Or("Score: ",o.points),ls(2),Or("Lines: ",o.lines),ls(2),Or("Level: ",o.level))},styles:[".container[_ngcontent-%COMP%]{box-shadow:5px 10px 18px #888;padding:15px;border-radius:15px;width:1280px;margin:0 auto;background-color:#add8e6}.grid[_ngcontent-%COMP%]{width:600px;display:grid;grid-template-columns:360px 200px;border:2px solid black;margin:0 auto;padding:10px;border-radius:15px;background-color:#ddd}.right-column[_ngcontent-%COMP%]{display:flex;flex-direction:column;justify-content:space-between}.game-board[_ngcontent-%COMP%]{border:2px solid grey;background-color:#fff}.play-button[_ngcontent-%COMP%]{border-radius:10px;box-shadow:5px 5px 5px #000;background-color:#4caf50;font-size:16px;padding:15px 30px;cursor:pointer}.play-button[_ngcontent-%COMP%]:hover{background-color:#00ca50}.next[_ngcontent-%COMP%]{border:1px solid grey}"]})}return e})(),rP=(()=>{class e{constructor(){}ngOnInit(){}static \u0275fac=function(r){return new(r||e)};static \u0275cmp=Po({type:e,selectors:[["app-info"]],standalone:!1,decls:31,vars:0,consts:[[1,"info"],[1,"keys"]],template:function(r,o){1&r&&(de(0,"div",0)(1,"h1"),te(2,"Information"),W(),de(3,"h2"),te(4,"Keyboard Controls"),W(),de(5,"div",1)(6,"ul")(7,"li")(8,"b"),te(9,"Move Left:"),W(),te(10," \u2190"),W(),de(11,"li")(12,"b"),te(13,"Move Right:"),W(),te(14," \u2192"),W(),de(15,"li")(16,"b"),te(17,"Move Down (faster):"),W(),te(18," \u2193"),W(),de(19,"li")(20,"b"),te(21,"Rotate:"),W(),te(22," \u2191"),W(),de(23,"li")(24,"b"),te(25,"Immediate Drop:"),W(),te(26," Spacebar"),W(),de(27,"li")(28,"b"),te(29,"Exit Game:"),W(),te(30," Esc"),W()()()())},styles:[".info[_ngcontent-%COMP%]{box-shadow:5px 10px 18px #888;padding:15px;border-radius:15px;width:1280px;margin:25px auto 0}h2[_ngcontent-%COMP%]{text-align:center}.keys[_ngcontent-%COMP%]{margin:0 auto}"]})}return e})(),oP=(()=>{class e{constructor(){}ngOnInit(){}static \u0275fac=function(r){return new(r||e)};static \u0275cmp=Po({type:e,selectors:[["app-footer"]],standalone:!1,decls:13,vars:0,consts:[[1,"footer"],["href","https://github.com/joeaoregan/jor-tetris","target","_blank"],["href","https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7","target","_blank"],["href","https://github.com/melcor76/ng-tetris","target","_blank"]],template:function(r,o){1&r&&(de(0,"div",0)(1,"h2"),te(2,"Links"),W(),de(3,"ul")(4,"li")(5,"a",1),te(6,"GitHub"),W()(),de(7,"li")(8,"a",2),te(9,"Original Tutorial"),W()(),de(10,"li")(11,"a",3),te(12,"Original Repo"),W()()()())},styles:["h2[_ngcontent-%COMP%]{text-align:center}ul[_ngcontent-%COMP%]{list-style-type:none}.footer[_ngcontent-%COMP%]{width:100%;margin-top:20px;padding:15px;height:max-content;background-color:#333;color:#fff}a[_ngcontent-%COMP%]:visited{color:#888}a[_ngcontent-%COMP%]:hover{color:#ccc}"]})}return e})(),iP=(()=>{class e{title="ng-tetris";static \u0275fac=function(r){return new(r||e)};static \u0275cmp=Po({type:e,selectors:[["app-root"]],standalone:!1,decls:3,vars:0,template:function(r,o){1&r&&zo(0,"game-board")(1,"app-info")(2,"app-footer")},dependencies:[nP,rP,oP],encapsulation:2})}return e})(),sP=(()=>{class e{static \u0275fac=function(r){return new(r||e)};static \u0275mod=Lo({type:e,bootstrap:[iP]});static \u0275inj=$n({imports:[K1]})}return e})();Q1().bootstrapModule(sP).catch(e=>console.error(e))}},jn=>{jn(jn.s=716)}]);
+"use strict";
+(self.webpackChunkjor_tetris = self.webpackChunkjor_tetris || []).push([
+  [792],
+  {
+    716: () => {
+      let jn;
+      function ui() {
+        return jn;
+      }
+      function yt(e) {
+        const t = jn;
+        return (jn = e), t;
+      }
+      const wa = Symbol("NotFound");
+      class _E extends Error {
+        name = "\u0275NotFound";
+        constructor(t) {
+          super(t);
+        }
+      }
+      function li(e) {
+        return e === wa || "\u0275NotFound" === e?.name;
+      }
+      let ge = null;
+      const Ie = Symbol("SIGNAL");
+      function T(e) {
+        const t = ge;
+        return (ge = e), t;
+      }
+      const Bn = {
+        version: 0,
+        lastCleanEpoch: 0,
+        dirty: !1,
+        producerNode: void 0,
+        producerLastReadVersion: void 0,
+        producerIndexOfThis: void 0,
+        nextProducerIndex: 0,
+        liveConsumerNode: void 0,
+        liveConsumerIndexOfThis: void 0,
+        consumerAllowSignalWrites: !1,
+        consumerIsAlwaysLive: !1,
+        kind: "unknown",
+        producerMustRecompute: () => !1,
+        producerRecomputeValue: () => {},
+        consumerMarkedDirty: () => {},
+        consumerOnSignalRead: () => {},
+      };
+      function Br(e) {
+        if ((!Hr(e) || e.dirty) && (e.dirty || 1 !== e.lastCleanEpoch)) {
+          if (!e.producerMustRecompute(e) && !hi(e)) return void fi(e);
+          e.producerRecomputeValue(e), fi(e);
+        }
+      }
+      function fi(e) {
+        (e.dirty = !1), (e.lastCleanEpoch = 1);
+      }
+      function Vn(e) {
+        return e && (e.nextProducerIndex = 0), T(e);
+      }
+      function Vr(e, t) {
+        if (
+          (T(t),
+          e &&
+            void 0 !== e.producerNode &&
+            void 0 !== e.producerIndexOfThis &&
+            void 0 !== e.producerLastReadVersion)
+        ) {
+          if (Hr(e))
+            for (let n = e.nextProducerIndex; n < e.producerNode.length; n++)
+              gi(e.producerNode[n], e.producerIndexOfThis[n]);
+          for (; e.producerNode.length > e.nextProducerIndex; )
+            e.producerNode.pop(),
+              e.producerLastReadVersion.pop(),
+              e.producerIndexOfThis.pop();
+        }
+      }
+      function hi(e) {
+        mi(e);
+        for (let t = 0; t < e.producerNode.length; t++) {
+          const n = e.producerNode[t],
+            r = e.producerLastReadVersion[t];
+          if (r !== n.version || (Br(n), r !== n.version)) return !0;
+        }
+        return !1;
+      }
+      function pi(e) {
+        if ((mi(e), Hr(e)))
+          for (let t = 0; t < e.producerNode.length; t++)
+            gi(e.producerNode[t], e.producerIndexOfThis[t]);
+        (e.producerNode.length =
+          e.producerLastReadVersion.length =
+          e.producerIndexOfThis.length =
+            0),
+          e.liveConsumerNode &&
+            (e.liveConsumerNode.length = e.liveConsumerIndexOfThis.length = 0);
+      }
+      function gi(e, t) {
+        if (
+          ((function Yd(e) {
+            (e.liveConsumerNode ??= []), (e.liveConsumerIndexOfThis ??= []);
+          })(e),
+          1 === e.liveConsumerNode.length &&
+            (function Qd(e) {
+              return void 0 !== e.producerNode;
+            })(e))
+        )
+          for (let r = 0; r < e.producerNode.length; r++)
+            gi(e.producerNode[r], e.producerIndexOfThis[r]);
+        const n = e.liveConsumerNode.length - 1;
+        if (
+          ((e.liveConsumerNode[t] = e.liveConsumerNode[n]),
+          (e.liveConsumerIndexOfThis[t] = e.liveConsumerIndexOfThis[n]),
+          e.liveConsumerNode.length--,
+          e.liveConsumerIndexOfThis.length--,
+          t < e.liveConsumerNode.length)
+        ) {
+          const r = e.liveConsumerIndexOfThis[t],
+            o = e.liveConsumerNode[t];
+          mi(o), (o.producerIndexOfThis[r] = t);
+        }
+      }
+      function Hr(e) {
+        return e.consumerIsAlwaysLive || (e?.liveConsumerNode?.length ?? 0) > 0;
+      }
+      function mi(e) {
+        (e.producerNode ??= []),
+          (e.producerIndexOfThis ??= []),
+          (e.producerLastReadVersion ??= []);
+      }
+      let Kd = function IE() {
+        throw new Error();
+      };
+      function ct(e) {
+        return "function" == typeof e;
+      }
+      function tf(e) {
+        const n = e((r) => {
+          Error.call(r), (r.stack = new Error().stack);
+        });
+        return (
+          (n.prototype = Object.create(Error.prototype)),
+          (n.prototype.constructor = n),
+          n
+        );
+      }
+      const Ra = tf(
+        (e) =>
+          function (n) {
+            e(this),
+              (this.message = n
+                ? `${n.length} errors occurred during unsubscription:\n${n
+                    .map((r, o) => `${o + 1}) ${r.toString()}`)
+                    .join("\n  ")}`
+                : ""),
+              (this.name = "UnsubscriptionError"),
+              (this.errors = n);
+          }
+      );
+      function xa(e, t) {
+        if (e) {
+          const n = e.indexOf(t);
+          0 <= n && e.splice(n, 1);
+        }
+      }
+      class Ge {
+        constructor(t) {
+          (this.initialTeardown = t),
+            (this.closed = !1),
+            (this._parentage = null),
+            (this._finalizers = null);
+        }
+        unsubscribe() {
+          let t;
+          if (!this.closed) {
+            this.closed = !0;
+            const { _parentage: n } = this;
+            if (n)
+              if (((this._parentage = null), Array.isArray(n)))
+                for (const i of n) i.remove(this);
+              else n.remove(this);
+            const { initialTeardown: r } = this;
+            if (ct(r))
+              try {
+                r();
+              } catch (i) {
+                t = i instanceof Ra ? i.errors : [i];
+              }
+            const { _finalizers: o } = this;
+            if (o) {
+              this._finalizers = null;
+              for (const i of o)
+                try {
+                  of(i);
+                } catch (s) {
+                  (t = t ?? []),
+                    s instanceof Ra ? (t = [...t, ...s.errors]) : t.push(s);
+                }
+            }
+            if (t) throw new Ra(t);
+          }
+        }
+        add(t) {
+          var n;
+          if (t && t !== this)
+            if (this.closed) of(t);
+            else {
+              if (t instanceof Ge) {
+                if (t.closed || t._hasParent(this)) return;
+                t._addParent(this);
+              }
+              (this._finalizers =
+                null !== (n = this._finalizers) && void 0 !== n ? n : []).push(
+                t
+              );
+            }
+        }
+        _hasParent(t) {
+          const { _parentage: n } = this;
+          return n === t || (Array.isArray(n) && n.includes(t));
+        }
+        _addParent(t) {
+          const { _parentage: n } = this;
+          this._parentage = Array.isArray(n) ? (n.push(t), n) : n ? [n, t] : t;
+        }
+        _removeParent(t) {
+          const { _parentage: n } = this;
+          n === t ? (this._parentage = null) : Array.isArray(n) && xa(n, t);
+        }
+        remove(t) {
+          const { _finalizers: n } = this;
+          n && xa(n, t), t instanceof Ge && t._removeParent(this);
+        }
+      }
+      Ge.EMPTY = (() => {
+        const e = new Ge();
+        return (e.closed = !0), e;
+      })();
+      const nf = Ge.EMPTY;
+      function rf(e) {
+        return (
+          e instanceof Ge ||
+          (e && "closed" in e && ct(e.remove) && ct(e.add) && ct(e.unsubscribe))
+        );
+      }
+      function of(e) {
+        ct(e) ? e() : e.unsubscribe();
+      }
+      const tn = {
+          onUnhandledError: null,
+          onStoppedNotification: null,
+          Promise: void 0,
+          useDeprecatedSynchronousErrorHandling: !1,
+          useDeprecatedNextContext: !1,
+        },
+        yi = {
+          setTimeout(e, t, ...n) {
+            const { delegate: r } = yi;
+            return r?.setTimeout
+              ? r.setTimeout(e, t, ...n)
+              : setTimeout(e, t, ...n);
+          },
+          clearTimeout(e) {
+            const { delegate: t } = yi;
+            return (t?.clearTimeout || clearTimeout)(e);
+          },
+          delegate: void 0,
+        };
+      function sf() {}
+      const ME = ka("C", void 0, void 0);
+      function ka(e, t, n) {
+        return { kind: e, value: t, error: n };
+      }
+      let nn = null;
+      function Di(e) {
+        if (tn.useDeprecatedSynchronousErrorHandling) {
+          const t = !nn;
+          if ((t && (nn = { errorThrown: !1, error: null }), e(), t)) {
+            const { errorThrown: n, error: r } = nn;
+            if (((nn = null), n)) throw r;
+          }
+        } else e();
+      }
+      class Oa extends Ge {
+        constructor(t) {
+          super(),
+            (this.isStopped = !1),
+            t
+              ? ((this.destination = t), rf(t) && t.add(this))
+              : (this.destination = FE);
+        }
+        static create(t, n, r) {
+          return new Pa(t, n, r);
+        }
+        next(t) {
+          this.isStopped
+            ? La(
+                (function AE(e) {
+                  return ka("N", e, void 0);
+                })(t),
+                this
+              )
+            : this._next(t);
+        }
+        error(t) {
+          this.isStopped
+            ? La(
+                (function NE(e) {
+                  return ka("E", void 0, e);
+                })(t),
+                this
+              )
+            : ((this.isStopped = !0), this._error(t));
+        }
+        complete() {
+          this.isStopped
+            ? La(ME, this)
+            : ((this.isStopped = !0), this._complete());
+        }
+        unsubscribe() {
+          this.closed ||
+            ((this.isStopped = !0),
+            super.unsubscribe(),
+            (this.destination = null));
+        }
+        _next(t) {
+          this.destination.next(t);
+        }
+        _error(t) {
+          try {
+            this.destination.error(t);
+          } finally {
+            this.unsubscribe();
+          }
+        }
+        _complete() {
+          try {
+            this.destination.complete();
+          } finally {
+            this.unsubscribe();
+          }
+        }
+      }
+      const xE = Function.prototype.bind;
+      function Fa(e, t) {
+        return xE.call(e, t);
+      }
+      class kE {
+        constructor(t) {
+          this.partialObserver = t;
+        }
+        next(t) {
+          const { partialObserver: n } = this;
+          if (n.next)
+            try {
+              n.next(t);
+            } catch (r) {
+              vi(r);
+            }
+        }
+        error(t) {
+          const { partialObserver: n } = this;
+          if (n.error)
+            try {
+              n.error(t);
+            } catch (r) {
+              vi(r);
+            }
+          else vi(t);
+        }
+        complete() {
+          const { partialObserver: t } = this;
+          if (t.complete)
+            try {
+              t.complete();
+            } catch (n) {
+              vi(n);
+            }
+        }
+      }
+      class Pa extends Oa {
+        constructor(t, n, r) {
+          let o;
+          if ((super(), ct(t) || !t))
+            o = {
+              next: t ?? void 0,
+              error: n ?? void 0,
+              complete: r ?? void 0,
+            };
+          else {
+            let i;
+            this && tn.useDeprecatedNextContext
+              ? ((i = Object.create(t)),
+                (i.unsubscribe = () => this.unsubscribe()),
+                (o = {
+                  next: t.next && Fa(t.next, i),
+                  error: t.error && Fa(t.error, i),
+                  complete: t.complete && Fa(t.complete, i),
+                }))
+              : (o = t);
+          }
+          this.destination = new kE(o);
+        }
+      }
+      function vi(e) {
+        tn.useDeprecatedSynchronousErrorHandling
+          ? (function RE(e) {
+              tn.useDeprecatedSynchronousErrorHandling &&
+                nn &&
+                ((nn.errorThrown = !0), (nn.error = e));
+            })(e)
+          : (function SE(e) {
+              yi.setTimeout(() => {
+                const { onUnhandledError: t } = tn;
+                if (!t) throw e;
+                t(e);
+              });
+            })(e);
+      }
+      function La(e, t) {
+        const { onStoppedNotification: n } = tn;
+        n && yi.setTimeout(() => n(e, t));
+      }
+      const FE = {
+          closed: !0,
+          next: sf,
+          error: function OE(e) {
+            throw e;
+          },
+          complete: sf,
+        },
+        PE =
+          ("function" == typeof Symbol && Symbol.observable) || "@@observable";
+      function LE(e) {
+        return e;
+      }
+      let ja = (() => {
+        class e {
+          constructor(n) {
+            n && (this._subscribe = n);
+          }
+          lift(n) {
+            const r = new e();
+            return (r.source = this), (r.operator = n), r;
+          }
+          subscribe(n, r, o) {
+            const i = (function BE(e) {
+              return (
+                (e && e instanceof Oa) ||
+                ((function jE(e) {
+                  return e && ct(e.next) && ct(e.error) && ct(e.complete);
+                })(e) &&
+                  rf(e))
+              );
+            })(n)
+              ? n
+              : new Pa(n, r, o);
+            return (
+              Di(() => {
+                const { operator: s, source: a } = this;
+                i.add(
+                  s
+                    ? s.call(i, a)
+                    : a
+                    ? this._subscribe(i)
+                    : this._trySubscribe(i)
+                );
+              }),
+              i
+            );
+          }
+          _trySubscribe(n) {
+            try {
+              return this._subscribe(n);
+            } catch (r) {
+              n.error(r);
+            }
+          }
+          forEach(n, r) {
+            return new (r = cf(r))((o, i) => {
+              const s = new Pa({
+                next: (a) => {
+                  try {
+                    n(a);
+                  } catch (c) {
+                    i(c), s.unsubscribe();
+                  }
+                },
+                error: i,
+                complete: o,
+              });
+              this.subscribe(s);
+            });
+          }
+          _subscribe(n) {
+            var r;
+            return null === (r = this.source) || void 0 === r
+              ? void 0
+              : r.subscribe(n);
+          }
+          [PE]() {
+            return this;
+          }
+          pipe(...n) {
+            return (function af(e) {
+              return 0 === e.length
+                ? LE
+                : 1 === e.length
+                ? e[0]
+                : function (n) {
+                    return e.reduce((r, o) => o(r), n);
+                  };
+            })(n)(this);
+          }
+          toPromise(n) {
+            return new (n = cf(n))((r, o) => {
+              let i;
+              this.subscribe(
+                (s) => (i = s),
+                (s) => o(s),
+                () => r(i)
+              );
+            });
+          }
+        }
+        return (e.create = (t) => new e(t)), e;
+      })();
+      function cf(e) {
+        var t;
+        return null !== (t = e ?? tn.Promise) && void 0 !== t ? t : Promise;
+      }
+      const VE = tf(
+        (e) =>
+          function () {
+            e(this),
+              (this.name = "ObjectUnsubscribedError"),
+              (this.message = "object unsubscribed");
+          }
+      );
+      let $r = (() => {
+        class e extends ja {
+          constructor() {
+            super(),
+              (this.closed = !1),
+              (this.currentObservers = null),
+              (this.observers = []),
+              (this.isStopped = !1),
+              (this.hasError = !1),
+              (this.thrownError = null);
+          }
+          lift(n) {
+            const r = new uf(this, this);
+            return (r.operator = n), r;
+          }
+          _throwIfClosed() {
+            if (this.closed) throw new VE();
+          }
+          next(n) {
+            Di(() => {
+              if ((this._throwIfClosed(), !this.isStopped)) {
+                this.currentObservers ||
+                  (this.currentObservers = Array.from(this.observers));
+                for (const r of this.currentObservers) r.next(n);
+              }
+            });
+          }
+          error(n) {
+            Di(() => {
+              if ((this._throwIfClosed(), !this.isStopped)) {
+                (this.hasError = this.isStopped = !0), (this.thrownError = n);
+                const { observers: r } = this;
+                for (; r.length; ) r.shift().error(n);
+              }
+            });
+          }
+          complete() {
+            Di(() => {
+              if ((this._throwIfClosed(), !this.isStopped)) {
+                this.isStopped = !0;
+                const { observers: n } = this;
+                for (; n.length; ) n.shift().complete();
+              }
+            });
+          }
+          unsubscribe() {
+            (this.isStopped = this.closed = !0),
+              (this.observers = this.currentObservers = null);
+          }
+          get observed() {
+            var n;
+            return (
+              (null === (n = this.observers) || void 0 === n
+                ? void 0
+                : n.length) > 0
+            );
+          }
+          _trySubscribe(n) {
+            return this._throwIfClosed(), super._trySubscribe(n);
+          }
+          _subscribe(n) {
+            return (
+              this._throwIfClosed(),
+              this._checkFinalizedStatuses(n),
+              this._innerSubscribe(n)
+            );
+          }
+          _innerSubscribe(n) {
+            const { hasError: r, isStopped: o, observers: i } = this;
+            return r || o
+              ? nf
+              : ((this.currentObservers = null),
+                i.push(n),
+                new Ge(() => {
+                  (this.currentObservers = null), xa(i, n);
+                }));
+          }
+          _checkFinalizedStatuses(n) {
+            const { hasError: r, thrownError: o, isStopped: i } = this;
+            r ? n.error(o) : i && n.complete();
+          }
+          asObservable() {
+            const n = new ja();
+            return (n.source = this), n;
+          }
+        }
+        return (e.create = (t, n) => new uf(t, n)), e;
+      })();
+      class uf extends $r {
+        constructor(t, n) {
+          super(), (this.destination = t), (this.source = n);
+        }
+        next(t) {
+          var n, r;
+          null ===
+            (r =
+              null === (n = this.destination) || void 0 === n
+                ? void 0
+                : n.next) ||
+            void 0 === r ||
+            r.call(n, t);
+        }
+        error(t) {
+          var n, r;
+          null ===
+            (r =
+              null === (n = this.destination) || void 0 === n
+                ? void 0
+                : n.error) ||
+            void 0 === r ||
+            r.call(n, t);
+        }
+        complete() {
+          var t, n;
+          null ===
+            (n =
+              null === (t = this.destination) || void 0 === t
+                ? void 0
+                : t.complete) ||
+            void 0 === n ||
+            n.call(t);
+        }
+        _subscribe(t) {
+          var n, r;
+          return null !==
+            (r =
+              null === (n = this.source) || void 0 === n
+                ? void 0
+                : n.subscribe(t)) && void 0 !== r
+            ? r
+            : nf;
+        }
+      }
+      class HE extends $r {
+        constructor(t) {
+          super(), (this._value = t);
+        }
+        get value() {
+          return this.getValue();
+        }
+        _subscribe(t) {
+          const n = super._subscribe(t);
+          return !n.closed && t.next(this._value), n;
+        }
+        getValue() {
+          const { hasError: t, thrownError: n, _value: r } = this;
+          if (t) throw n;
+          return this._throwIfClosed(), r;
+        }
+        next(t) {
+          super.next((this._value = t));
+        }
+      }
+      class E extends Error {
+        code;
+        constructor(t, n) {
+          super(
+            (function kt(e, t) {
+              return `${(function $E(e) {
+                return `NG0${Math.abs(e)}`;
+              })(e)}${t ? ": " + t : ""}`;
+            })(t, n)
+          ),
+            (this.code = t);
+        }
+      }
+      const oe = globalThis;
+      function J(e) {
+        for (let t in e) if (e[t] === J) return t;
+        throw Error("");
+      }
+      function De(e) {
+        if ("string" == typeof e) return e;
+        if (Array.isArray(e)) return `[${e.map(De).join(", ")}]`;
+        if (null == e) return "" + e;
+        const t = e.overriddenName || e.name;
+        if (t) return `${t}`;
+        const n = e.toString();
+        if (null == n) return "" + n;
+        const r = n.indexOf("\n");
+        return r >= 0 ? n.slice(0, r) : n;
+      }
+      function Ba(e, t) {
+        return e ? (t ? `${e} ${t}` : e) : t || "";
+      }
+      const zE = J({ __forward_ref__: J });
+      function Va(e) {
+        return (
+          (e.__forward_ref__ = Va),
+          (e.toString = function () {
+            return De(this());
+          }),
+          e
+        );
+      }
+      function A(e) {
+        return (function Ei(e) {
+          return (
+            "function" == typeof e &&
+            e.hasOwnProperty(zE) &&
+            e.__forward_ref__ === Va
+          );
+        })(e)
+          ? e()
+          : e;
+      }
+      function L(e) {
+        return {
+          token: e.token,
+          providedIn: e.providedIn || null,
+          factory: e.factory,
+          value: void 0,
+        };
+      }
+      function $n(e) {
+        return { providers: e.providers || [], imports: e.imports || [] };
+      }
+      function Ii(e) {
+        return (function ZE(e, t) {
+          return (e.hasOwnProperty(t) && e[t]) || null;
+        })(e, wi);
+      }
+      function Ci(e) {
+        return e && e.hasOwnProperty(Ha) ? e[Ha] : null;
+      }
+      const wi = J({ ɵprov: J }),
+        Ha = J({ ɵinj: J });
+      class I {
+        _desc;
+        ngMetadataName = "InjectionToken";
+        ɵprov;
+        constructor(t, n) {
+          (this._desc = t),
+            (this.ɵprov = void 0),
+            "number" == typeof n
+              ? (this.__NG_ELEMENT_ID__ = n)
+              : void 0 !== n &&
+                (this.ɵprov = L({
+                  token: this,
+                  providedIn: n.providedIn || "root",
+                  factory: n.factory,
+                }));
+        }
+        get multi() {
+          return this;
+        }
+        toString() {
+          return `InjectionToken ${this._desc}`;
+        }
+      }
+      function Ua(e) {
+        return e && !!e.ɵproviders;
+      }
+      const za = J({ ɵcmp: J }),
+        XE = J({ ɵdir: J }),
+        eI = J({ ɵpipe: J }),
+        ff = J({ ɵmod: J }),
+        on = J({ ɵfac: J }),
+        Gr = J({ __NG_ELEMENT_ID__: J }),
+        hf = J({ __NG_ENV_ID__: J });
+      function N(e) {
+        return "string" == typeof e ? e : null == e ? "" : String(e);
+      }
+      function pf(e, t) {
+        throw new E(-200, e);
+      }
+      function Ga(e, t) {
+        throw new E(-201, !1);
+      }
+      let qa;
+      function gf() {
+        return qa;
+      }
+      function Re(e) {
+        const t = qa;
+        return (qa = e), t;
+      }
+      function mf(e, t, n) {
+        const r = Ii(e);
+        return r && "root" == r.providedIn
+          ? void 0 === r.value
+            ? (r.value = r.factory())
+            : r.value
+          : 8 & n
+          ? null
+          : void 0 !== t
+          ? t
+          : void Ga();
+      }
+      const sn = {};
+      class rI {
+        injector;
+        constructor(t) {
+          this.injector = t;
+        }
+        retrieve(t, n) {
+          const r = qr(n) || 0;
+          try {
+            return this.injector.get(t, 8 & r ? null : sn, r);
+          } catch (o) {
+            if (li(o)) return o;
+            throw o;
+          }
+        }
+      }
+      const bi = "ngTempTokenPath",
+        iI = /\n/gm,
+        _f = "__source";
+      function aI(e, t = 0) {
+        const n = ui();
+        if (void 0 === n) throw new E(-203, !1);
+        if (null === n) return mf(e, void 0, t);
+        {
+          const r = (function cI(e) {
+              return {
+                optional: !!(8 & e),
+                host: !!(1 & e),
+                self: !!(2 & e),
+                skipSelf: !!(4 & e),
+              };
+            })(t),
+            o = n.retrieve(e, r);
+          if (li(o)) {
+            if (r.optional) return null;
+            throw o;
+          }
+          return o;
+        }
+      }
+      function j(e, t = 0) {
+        return (gf() || aI)(A(e), t);
+      }
+      function w(e, t) {
+        return j(e, qr(t));
+      }
+      function qr(e) {
+        return typeof e > "u" || "number" == typeof e
+          ? e
+          : 0 |
+              (e.optional && 8) |
+              (e.host && 1) |
+              (e.self && 2) |
+              (e.skipSelf && 4);
+      }
+      function Za(e) {
+        const t = [];
+        for (let n = 0; n < e.length; n++) {
+          const r = A(e[n]);
+          if (Array.isArray(r)) {
+            if (0 === r.length) throw new E(900, !1);
+            let o,
+              i = 0;
+            for (let s = 0; s < r.length; s++) {
+              const a = r[s],
+                c = uI(a);
+              "number" == typeof c
+                ? -1 === c
+                  ? (o = a.token)
+                  : (i |= c)
+                : (o = a);
+            }
+            t.push(j(o, i));
+          } else t.push(j(r));
+        }
+        return t;
+      }
+      function uI(e) {
+        return e.__NG_DI_FLAG__;
+      }
+      function an(e, t) {
+        return e.hasOwnProperty(on) ? e[on] : null;
+      }
+      function Un(e, t) {
+        e.forEach((n) => (Array.isArray(n) ? Un(n, t) : t(n)));
+      }
+      function Df(e, t, n) {
+        t >= e.length ? e.push(n) : e.splice(t, 0, n);
+      }
+      function Ti(e, t) {
+        return t >= e.length - 1 ? e.pop() : e.splice(t, 1)[0];
+      }
+      const ut = {},
+        Q = [],
+        cn = new I(""),
+        If = new I("", -1),
+        Qa = new I("");
+      class Ni {
+        get(t, n = sn) {
+          if (n === sn)
+            throw new _E(`NullInjectorError: No provider for ${De(t)}!`);
+          return n;
+        }
+      }
+      function V(e) {
+        return e[za] || null;
+      }
+      function be(e) {
+        return e[XE] || null;
+      }
+      function dt(e) {
+        return e[eI] || null;
+      }
+      function gI(...e) {
+        return { ɵproviders: Ja(0, e), ɵfromNgModule: !0 };
+      }
+      function Ja(e, ...t) {
+        const n = [],
+          r = new Set();
+        let o;
+        const i = (s) => {
+          n.push(s);
+        };
+        return (
+          Un(t, (s) => {
+            const a = s;
+            Ai(a, i, [], r) && ((o ||= []), o.push(a));
+          }),
+          void 0 !== o && wf(o, i),
+          n
+        );
+      }
+      function wf(e, t) {
+        for (let n = 0; n < e.length; n++) {
+          const { ngModule: r, providers: o } = e[n];
+          Xa(o, (i) => {
+            t(i, r);
+          });
+        }
+      }
+      function Ai(e, t, n, r) {
+        if (!(e = A(e))) return !1;
+        let o = null,
+          i = Ci(e);
+        const s = !i && V(e);
+        if (i || s) {
+          if (s && !s.standalone) return !1;
+          o = e;
+        } else {
+          const c = e.ngModule;
+          if (((i = Ci(c)), !i)) return !1;
+          o = c;
+        }
+        const a = r.has(o);
+        if (s) {
+          if (a) return !1;
+          if ((r.add(o), s.dependencies)) {
+            const c =
+              "function" == typeof s.dependencies
+                ? s.dependencies()
+                : s.dependencies;
+            for (const u of c) Ai(u, t, n, r);
+          }
+        } else {
+          if (!i) return !1;
+          {
+            if (null != i.imports && !a) {
+              let u;
+              r.add(o);
+              try {
+                Un(i.imports, (l) => {
+                  Ai(l, t, n, r) && ((u ||= []), u.push(l));
+                });
+              } finally {
+              }
+              void 0 !== u && wf(u, t);
+            }
+            if (!a) {
+              const u = an(o) || (() => new o());
+              t({ provide: o, useFactory: u, deps: Q }, o),
+                t({ provide: Qa, useValue: o, multi: !0 }, o),
+                t({ provide: cn, useValue: () => j(o), multi: !0 }, o);
+            }
+            const c = i.providers;
+            if (null != c && !a) {
+              const u = e;
+              Xa(c, (l) => {
+                t(l, u);
+              });
+            }
+          }
+        }
+        return o !== e && void 0 !== e.providers;
+      }
+      function Xa(e, t) {
+        for (let n of e)
+          Ua(n) && (n = n.ɵproviders), Array.isArray(n) ? Xa(n, t) : t(n);
+      }
+      const mI = J({ provide: String, useValue: J });
+      function ec(e) {
+        return null !== e && "object" == typeof e && mI in e;
+      }
+      function Ft(e) {
+        return "function" == typeof e;
+      }
+      const tc = new I(""),
+        Ri = {},
+        Sf = {};
+      let nc;
+      function rc() {
+        return void 0 === nc && (nc = new Ni()), nc;
+      }
+      class We {}
+      class un extends We {
+        parent;
+        source;
+        scopes;
+        records = new Map();
+        _ngOnDestroyHooks = new Set();
+        _onDestroyHooks = [];
+        get destroyed() {
+          return this._destroyed;
+        }
+        _destroyed = !1;
+        injectorDefTypes;
+        constructor(t, n, r, o) {
+          super(),
+            (this.parent = n),
+            (this.source = r),
+            (this.scopes = o),
+            ic(t, (s) => this.processProvider(s)),
+            this.records.set(If, zn(void 0, this)),
+            o.has("environment") && this.records.set(We, zn(void 0, this));
+          const i = this.records.get(tc);
+          null != i && "string" == typeof i.value && this.scopes.add(i.value),
+            (this.injectorDefTypes = new Set(this.get(Qa, Q, { self: !0 })));
+        }
+        retrieve(t, n) {
+          const r = qr(n) || 0;
+          try {
+            return this.get(t, sn, r);
+          } catch (o) {
+            if (li(o)) return o;
+            throw o;
+          }
+        }
+        destroy() {
+          Qr(this), (this._destroyed = !0);
+          const t = T(null);
+          try {
+            for (const r of this._ngOnDestroyHooks) r.ngOnDestroy();
+            const n = this._onDestroyHooks;
+            this._onDestroyHooks = [];
+            for (const r of n) r();
+          } finally {
+            this.records.clear(),
+              this._ngOnDestroyHooks.clear(),
+              this.injectorDefTypes.clear(),
+              T(t);
+          }
+        }
+        onDestroy(t) {
+          return (
+            Qr(this),
+            this._onDestroyHooks.push(t),
+            () => this.removeOnDestroy(t)
+          );
+        }
+        runInContext(t) {
+          Qr(this);
+          const n = yt(this),
+            r = Re(void 0);
+          try {
+            return t();
+          } finally {
+            yt(n), Re(r);
+          }
+        }
+        get(t, n = sn, r) {
+          if ((Qr(this), t.hasOwnProperty(hf))) return t[hf](this);
+          const o = qr(r),
+            s = yt(this),
+            a = Re(void 0);
+          try {
+            if (!(4 & o)) {
+              let u = this.records.get(t);
+              if (void 0 === u) {
+                const l =
+                  (function II(e) {
+                    return (
+                      "function" == typeof e ||
+                      ("object" == typeof e &&
+                        "InjectionToken" === e.ngMetadataName)
+                    );
+                  })(t) && Ii(t);
+                (u = l && this.injectableDefInScope(l) ? zn(oc(t), Ri) : null),
+                  this.records.set(t, u);
+              }
+              if (null != u) return this.hydrate(t, u);
+            }
+            return (2 & o ? rc() : this.parent).get(
+              t,
+              (n = 8 & o && n === sn ? null : n)
+            );
+          } catch (c) {
+            if (li(c)) {
+              if (((c[bi] = c[bi] || []).unshift(De(t)), s)) throw c;
+              return (function lI(e, t, n, r) {
+                const o = e[bi];
+                throw (
+                  (t[_f] && o.unshift(t[_f]),
+                  (e.message = (function dI(e, t, n, r = null) {
+                    e =
+                      e && "\n" === e.charAt(0) && "\u0275" == e.charAt(1)
+                        ? e.slice(2)
+                        : e;
+                    let o = De(t);
+                    if (Array.isArray(t)) o = t.map(De).join(" -> ");
+                    else if ("object" == typeof t) {
+                      let i = [];
+                      for (let s in t)
+                        if (t.hasOwnProperty(s)) {
+                          let a = t[s];
+                          i.push(
+                            s +
+                              ":" +
+                              ("string" == typeof a ? JSON.stringify(a) : De(a))
+                          );
+                        }
+                      o = `{${i.join(", ")}}`;
+                    }
+                    return `${n}${r ? "(" + r + ")" : ""}[${o}]: ${e.replace(
+                      iI,
+                      "\n  "
+                    )}`;
+                  })("\n" + e.message, o, n, r)),
+                  (e.ngTokenPath = o),
+                  (e[bi] = null),
+                  e)
+                );
+              })(c, t, "R3InjectorError", this.source);
+            }
+            throw c;
+          } finally {
+            Re(a), yt(s);
+          }
+        }
+        resolveInjectorInitializers() {
+          const t = T(null),
+            n = yt(this),
+            r = Re(void 0);
+          try {
+            const i = this.get(cn, Q, { self: !0 });
+            for (const s of i) s();
+          } finally {
+            yt(n), Re(r), T(t);
+          }
+        }
+        toString() {
+          const t = [],
+            n = this.records;
+          for (const r of n.keys()) t.push(De(r));
+          return `R3Injector[${t.join(", ")}]`;
+        }
+        processProvider(t) {
+          let n = Ft((t = A(t))) ? t : A(t && t.provide);
+          const r = (function DI(e) {
+            return ec(e)
+              ? zn(void 0, e.useValue)
+              : zn(
+                  (function Mf(e, t, n) {
+                    let r;
+                    if (Ft(e)) {
+                      const o = A(e);
+                      return an(o) || oc(o);
+                    }
+                    if (ec(e)) r = () => A(e.useValue);
+                    else if (
+                      (function Tf(e) {
+                        return !(!e || !e.useFactory);
+                      })(e)
+                    )
+                      r = () => e.useFactory(...Za(e.deps || []));
+                    else if (
+                      (function bf(e) {
+                        return !(!e || !e.useExisting);
+                      })(e)
+                    )
+                      r = () => j(A(e.useExisting));
+                    else {
+                      const o = A(e && (e.useClass || e.provide));
+                      if (
+                        !(function vI(e) {
+                          return !!e.deps;
+                        })(e)
+                      )
+                        return an(o) || oc(o);
+                      r = () => new o(...Za(e.deps));
+                    }
+                    return r;
+                  })(e),
+                  Ri
+                );
+          })(t);
+          if (!Ft(t) && !0 === t.multi) {
+            let o = this.records.get(n);
+            o ||
+              ((o = zn(void 0, Ri, !0)),
+              (o.factory = () => Za(o.multi)),
+              this.records.set(n, o)),
+              (n = t),
+              o.multi.push(t);
+          }
+          this.records.set(n, r);
+        }
+        hydrate(t, n) {
+          const r = T(null);
+          try {
+            return (
+              n.value === Sf
+                ? pf(De(t))
+                : n.value === Ri && ((n.value = Sf), (n.value = n.factory())),
+              "object" == typeof n.value &&
+                n.value &&
+                (function EI(e) {
+                  return (
+                    null !== e &&
+                    "object" == typeof e &&
+                    "function" == typeof e.ngOnDestroy
+                  );
+                })(n.value) &&
+                this._ngOnDestroyHooks.add(n.value),
+              n.value
+            );
+          } finally {
+            T(r);
+          }
+        }
+        injectableDefInScope(t) {
+          if (!t.providedIn) return !1;
+          const n = A(t.providedIn);
+          return "string" == typeof n
+            ? "any" === n || this.scopes.has(n)
+            : this.injectorDefTypes.has(n);
+        }
+        removeOnDestroy(t) {
+          const n = this._onDestroyHooks.indexOf(t);
+          -1 !== n && this._onDestroyHooks.splice(n, 1);
+        }
+      }
+      function oc(e) {
+        const t = Ii(e),
+          n = null !== t ? t.factory : an(e);
+        if (null !== n) return n;
+        if (e instanceof I) throw new E(204, !1);
+        if (e instanceof Function)
+          return (function yI(e) {
+            if (e.length > 0) throw new E(204, !1);
+            const n = (function YE(e) {
+              return (e?.[wi] ?? null) || null;
+            })(e);
+            return null !== n ? () => n.factory(e) : () => new e();
+          })(e);
+        throw new E(204, !1);
+      }
+      function Qr(e) {
+        if (e.destroyed) throw new E(205, !1);
+      }
+      function zn(e, t, n = !1) {
+        return { factory: e, value: t, multi: n ? [] : void 0 };
+      }
+      function ic(e, t) {
+        for (const n of e)
+          Array.isArray(n) ? ic(n, t) : n && Ua(n) ? ic(n.ɵproviders, t) : t(n);
+      }
+      function Nf(e, t) {
+        let n;
+        e instanceof un ? (Qr(e), (n = e)) : (n = new rI(e));
+        const o = yt(n),
+          i = Re(void 0);
+        try {
+          return t();
+        } finally {
+          yt(o), Re(i);
+        }
+      }
+      function sc() {
+        return void 0 !== gf() || null != ui();
+      }
+      const F = 11,
+        M = 26;
+      function re(e) {
+        return Array.isArray(e) && "object" == typeof e[1];
+      }
+      function Te(e) {
+        return Array.isArray(e) && !0 === e[1];
+      }
+      function uc(e) {
+        return !!(4 & e.flags);
+      }
+      function jt(e) {
+        return e.componentOffset > -1;
+      }
+      function Oi(e) {
+        return !(1 & ~e.flags);
+      }
+      function $e(e) {
+        return !!e.template;
+      }
+      function Bt(e) {
+        return !!(512 & e[2]);
+      }
+      function Et(e) {
+        return !(256 & ~e[2]);
+      }
+      function ye(e) {
+        for (; Array.isArray(e); ) e = e[0];
+        return e;
+      }
+      function xe(e, t) {
+        return ye(t[e.index]);
+      }
+      function Se(e, t) {
+        const n = t[e];
+        return re(n) ? n : n[0];
+      }
+      function dc(e) {
+        return !(128 & ~e[2]);
+      }
+      function ke(e, t) {
+        return null == t ? null : e[t];
+      }
+      function Pf(e) {
+        e[17] = 0;
+      }
+      function Lf(e) {
+        1024 & e[2] || ((e[2] |= 1024), dc(e) && Kn(e));
+      }
+      function Pi(e) {
+        return !!(9216 & e[2] || e[24]?.dirty);
+      }
+      function fc(e) {
+        e[10].changeDetectionScheduler?.notify(8),
+          64 & e[2] && (e[2] |= 1024),
+          Pi(e) && Kn(e);
+      }
+      function Kn(e) {
+        e[10].changeDetectionScheduler?.notify(0);
+        let t = It(e);
+        for (; null !== t && !(8192 & t[2]) && ((t[2] |= 8192), dc(t)); )
+          t = It(t);
+      }
+      function Li(e, t) {
+        if (Et(e)) throw new E(911, !1);
+        null === e[21] && (e[21] = []), e[21].push(t);
+      }
+      function It(e) {
+        const t = e[3];
+        return Te(t) ? t[3] : t;
+      }
+      function Bf(e) {
+        return (e[7] ??= []);
+      }
+      function Vf(e) {
+        return (e.cleanup ??= []);
+      }
+      const S = {
+        lFrame: Jf(null),
+        bindingsEnabled: !0,
+        skipHydrationRootTNode: null,
+      };
+      let gc = !1;
+      function m() {
+        return S.lFrame.lView;
+      }
+      function R() {
+        return S.lFrame.tView;
+      }
+      function O() {
+        let e = zf();
+        for (; null !== e && 64 === e.type; ) e = e.parent;
+        return e;
+      }
+      function zf() {
+        return S.lFrame.currentTNode;
+      }
+      function nt(e, t) {
+        const n = S.lFrame;
+        (n.currentTNode = e), (n.isParent = t);
+      }
+      function _c() {
+        return S.lFrame.isParent;
+      }
+      function Wf() {
+        return gc;
+      }
+      function ji(e) {
+        const t = gc;
+        return (gc = e), t;
+      }
+      function jI(e, t) {
+        const n = S.lFrame;
+        (n.bindingIndex = n.bindingRootIndex = e), Dc(t);
+      }
+      function Dc(e) {
+        S.lFrame.currentDirectiveIndex = e;
+      }
+      function Ec() {
+        return S.lFrame.currentQueryIndex;
+      }
+      function Bi(e) {
+        S.lFrame.currentQueryIndex = e;
+      }
+      function VI(e) {
+        const t = e[1];
+        return 2 === t.type ? t.declTNode : 1 === t.type ? e[5] : null;
+      }
+      function Qf(e, t, n) {
+        if (4 & n) {
+          let o = t,
+            i = e;
+          for (
+            ;
+            !((o = o.parent),
+            null !== o ||
+              1 & n ||
+              ((o = VI(i)), null === o || ((i = i[14]), 10 & o.type)));
+
+          );
+          if (null === o) return !1;
+          (t = o), (e = i);
+        }
+        const r = (S.lFrame = Kf());
+        return (r.currentTNode = t), (r.lView = e), !0;
+      }
+      function Ic(e) {
+        const t = Kf(),
+          n = e[1];
+        (S.lFrame = t),
+          (t.currentTNode = n.firstChild),
+          (t.lView = e),
+          (t.tView = n),
+          (t.contextLView = e),
+          (t.bindingIndex = n.bindingStartIndex),
+          (t.inI18n = !1);
+      }
+      function Kf() {
+        const e = S.lFrame,
+          t = null === e ? null : e.child;
+        return null === t ? Jf(e) : t;
+      }
+      function Jf(e) {
+        const t = {
+          currentTNode: null,
+          isParent: !0,
+          lView: null,
+          tView: null,
+          selectedIndex: -1,
+          contextLView: null,
+          elementDepthCount: 0,
+          currentNamespace: null,
+          currentDirectiveIndex: -1,
+          bindingRootIndex: -1,
+          bindingIndex: -1,
+          currentQueryIndex: 0,
+          parent: e,
+          child: null,
+          inI18n: !1,
+        };
+        return null !== e && (e.child = t), t;
+      }
+      function Xf() {
+        const e = S.lFrame;
+        return (
+          (S.lFrame = e.parent), (e.currentTNode = null), (e.lView = null), e
+        );
+      }
+      const eh = Xf;
+      function Cc() {
+        const e = Xf();
+        (e.isParent = !0),
+          (e.tView = null),
+          (e.selectedIndex = -1),
+          (e.contextLView = null),
+          (e.elementDepthCount = 0),
+          (e.currentDirectiveIndex = -1),
+          (e.currentNamespace = null),
+          (e.bindingRootIndex = -1),
+          (e.bindingIndex = -1),
+          (e.currentQueryIndex = 0);
+      }
+      function ve() {
+        return S.lFrame.selectedIndex;
+      }
+      function gn(e) {
+        S.lFrame.selectedIndex = e;
+      }
+      let th = !0;
+      function eo() {
+        return th;
+      }
+      function to(e) {
+        th = e;
+      }
+      function nh(e, t = null, n = null, r) {
+        const o = rh(e, t, n, r);
+        return o.resolveInjectorInitializers(), o;
+      }
+      function rh(e, t = null, n = null, r, o = new Set()) {
+        const i = [n || Q, gI(e)];
+        return (
+          (r = r || ("object" == typeof e ? void 0 : De(e))),
+          new un(i, t || rc(), r || null, o)
+        );
+      }
+      class rt {
+        static THROW_IF_NOT_FOUND = sn;
+        static NULL = new Ni();
+        static create(t, n) {
+          if (Array.isArray(t)) return nh({ name: "" }, n, t, "");
+          {
+            const r = t.name ?? "";
+            return nh({ name: r }, t.parent, t.providers, r);
+          }
+        }
+        static ɵprov = L({
+          token: rt,
+          providedIn: "any",
+          factory: () => j(If),
+        });
+        static __NG_ELEMENT_ID__ = -1;
+      }
+      const Vt = new I("");
+      let mn = (() =>
+        class e {
+          static __NG_ELEMENT_ID__ = WI;
+          static __NG_ENV_ID__ = (n) => n;
+        })();
+      class oh extends mn {
+        _lView;
+        constructor(t) {
+          super(), (this._lView = t);
+        }
+        get destroyed() {
+          return Et(this._lView);
+        }
+        onDestroy(t) {
+          const n = this._lView;
+          return (
+            Li(n, t),
+            () =>
+              (function hc(e, t) {
+                if (null === e[21]) return;
+                const n = e[21].indexOf(t);
+                -1 !== n && e[21].splice(n, 1);
+              })(n, t)
+          );
+        }
+      }
+      function WI() {
+        return new oh(m());
+      }
+      class Xn {
+        _console = console;
+        handleError(t) {
+          this._console.error("ERROR", t);
+        }
+      }
+      const bt = new I("", {
+          providedIn: "root",
+          factory: () => {
+            const e = w(We);
+            let t;
+            return (n) => {
+              e.destroyed && !t
+                ? setTimeout(() => {
+                    throw n;
+                  })
+                : ((t ??= e.get(Xn)), t.handleError(n));
+            };
+          },
+        }),
+        ZI = {
+          provide: cn,
+          useValue: () => {
+            w(Xn);
+          },
+          multi: !0,
+        };
+      class er {}
+      const ch = new I("", { providedIn: "root", factory: () => !1 }),
+        uh = new I(""),
+        lh = new I("");
+      let tr = (() => {
+        class e {
+          taskId = 0;
+          pendingTasks = new Set();
+          destroyed = !1;
+          pendingTask = new HE(!1);
+          get hasPendingTasks() {
+            return !this.destroyed && this.pendingTask.value;
+          }
+          get hasPendingTasksObservable() {
+            return this.destroyed
+              ? new ja((n) => {
+                  n.next(!1), n.complete();
+                })
+              : this.pendingTask;
+          }
+          add() {
+            !this.hasPendingTasks &&
+              !this.destroyed &&
+              this.pendingTask.next(!0);
+            const n = this.taskId++;
+            return this.pendingTasks.add(n), n;
+          }
+          has(n) {
+            return this.pendingTasks.has(n);
+          }
+          remove(n) {
+            this.pendingTasks.delete(n),
+              0 === this.pendingTasks.size &&
+                this.hasPendingTasks &&
+                this.pendingTask.next(!1);
+          }
+          ngOnDestroy() {
+            this.pendingTasks.clear(),
+              this.hasPendingTasks && this.pendingTask.next(!1),
+              (this.destroyed = !0),
+              this.pendingTask.unsubscribe();
+          }
+          static ɵprov = L({
+            token: e,
+            providedIn: "root",
+            factory: () => new e(),
+          });
+        }
+        return e;
+      })();
+      function no(...e) {}
+      let fh = (() => {
+        class e {
+          static ɵprov = L({
+            token: e,
+            providedIn: "root",
+            factory: () => new KI(),
+          });
+        }
+        return e;
+      })();
+      class KI {
+        dirtyEffectCount = 0;
+        queues = new Map();
+        add(t) {
+          this.enqueue(t), this.schedule(t);
+        }
+        schedule(t) {
+          t.dirty && this.dirtyEffectCount++;
+        }
+        remove(t) {
+          const r = this.queues.get(t.zone);
+          r.has(t) && (r.delete(t), t.dirty && this.dirtyEffectCount--);
+        }
+        enqueue(t) {
+          const n = t.zone;
+          this.queues.has(n) || this.queues.set(n, new Set());
+          const r = this.queues.get(n);
+          r.has(t) || r.add(t);
+        }
+        flush() {
+          for (; this.dirtyEffectCount > 0; ) {
+            let t = !1;
+            for (const [n, r] of this.queues)
+              t ||=
+                null === n
+                  ? this.flushQueue(r)
+                  : n.run(() => this.flushQueue(r));
+            t || (this.dirtyEffectCount = 0);
+          }
+        }
+        flushQueue(t) {
+          let n = !1;
+          for (const r of t)
+            r.dirty && (this.dirtyEffectCount--, (n = !0), r.run());
+          return n;
+        }
+      }
+      class tC extends Oa {
+        constructor(t, n, r, o, i, s) {
+          super(t),
+            (this.onFinalize = i),
+            (this.shouldUnsubscribe = s),
+            (this._next = n
+              ? function (a) {
+                  try {
+                    n(a);
+                  } catch (c) {
+                    t.error(c);
+                  }
+                }
+              : super._next),
+            (this._error = o
+              ? function (a) {
+                  try {
+                    o(a);
+                  } catch (c) {
+                    t.error(c);
+                  } finally {
+                    this.unsubscribe();
+                  }
+                }
+              : super._error),
+            (this._complete = r
+              ? function () {
+                  try {
+                    r();
+                  } catch (a) {
+                    t.error(a);
+                  } finally {
+                    this.unsubscribe();
+                  }
+                }
+              : super._complete);
+        }
+        unsubscribe() {
+          var t;
+          if (!this.shouldUnsubscribe || this.shouldUnsubscribe()) {
+            const { closed: n } = this;
+            super.unsubscribe(),
+              !n &&
+                (null === (t = this.onFinalize) ||
+                  void 0 === t ||
+                  t.call(this));
+          }
+        }
+      }
+      function nC(e, t) {
+        return (function XI(e) {
+          return (t) => {
+            if (
+              (function JI(e) {
+                return ct(e?.lift);
+              })(t)
+            )
+              return t.lift(function (n) {
+                try {
+                  return e(n, this);
+                } catch (r) {
+                  this.error(r);
+                }
+              });
+            throw new TypeError("Unable to lift unknown Observable type");
+          };
+        })((n, r) => {
+          let o = 0;
+          n.subscribe(
+            (function eC(e, t, n, r, o) {
+              return new tC(e, t, n, r, o);
+            })(r, (i) => {
+              r.next(e.call(t, i, o++));
+            })
+          );
+        });
+      }
+      function Tt(e) {
+        return { toString: e }.toString();
+      }
+      class hC {
+        previousValue;
+        currentValue;
+        firstChange;
+        constructor(t, n, r) {
+          (this.previousValue = t),
+            (this.currentValue = n),
+            (this.firstChange = r);
+        }
+        isFirstChange() {
+          return this.firstChange;
+        }
+      }
+      function mh(e, t, n, r) {
+        null !== t ? t.applyValueToInputSignal(t, r) : (e[n] = r);
+      }
+      function pC() {
+        const e = Dh(this),
+          t = e?.current;
+        if (t) {
+          const n = e.previous;
+          if (n === ut) e.previous = t;
+          else for (let r in t) n[r] = t[r];
+          (e.current = null), this.ngOnChanges(t);
+        }
+      }
+      function gC(e, t, n, r, o) {
+        const i = this.declaredInputs[r],
+          s =
+            Dh(e) ||
+            (function mC(e, t) {
+              return (e[yh] = t);
+            })(e, { previous: ut, current: null }),
+          a = s.current || (s.current = {}),
+          c = s.previous,
+          u = c[i];
+        (a[i] = new hC(u && u.currentValue, n, c === ut)), mh(e, t, o, n);
+      }
+      const yh = "__ngSimpleChanges__";
+      function Dh(e) {
+        return e[yh] || null;
+      }
+      const _n = [],
+        U = function (e, t = null, n) {
+          for (let r = 0; r < _n.length; r++) (0, _n[r])(e, t, n);
+        };
+      function Hi(e, t, n) {
+        vh(e, t, 3, n);
+      }
+      function $i(e, t, n, r) {
+        (3 & e[2]) === n && vh(e, t, n, r);
+      }
+      function xc(e, t) {
+        let n = e[2];
+        (3 & n) === t && ((n &= 16383), (n += 1), (e[2] = n));
+      }
+      function vh(e, t, n, r) {
+        const i = r ?? -1,
+          s = t.length - 1;
+        let a = 0;
+        for (let c = void 0 !== r ? 65535 & e[17] : 0; c < s; c++)
+          if ("number" == typeof t[c + 1]) {
+            if (((a = t[c]), null != r && a >= r)) break;
+          } else
+            t[c] < 0 && (e[17] += 65536),
+              (a < i || -1 == i) &&
+                (EC(e, n, t, c), (e[17] = (4294901760 & e[17]) + c + 2)),
+              c++;
+      }
+      function Eh(e, t) {
+        U(4, e, t);
+        const n = T(null);
+        try {
+          t.call(e);
+        } finally {
+          T(n), U(5, e, t);
+        }
+      }
+      function EC(e, t, n, r) {
+        const o = n[r] < 0,
+          i = n[r + 1],
+          a = e[o ? -n[r] : n[r]];
+        o
+          ? e[2] >> 14 < e[17] >> 16 &&
+            (3 & e[2]) === t &&
+            ((e[2] += 16384), Eh(a, i))
+          : Eh(a, i);
+      }
+      class io {
+        factory;
+        injectImpl;
+        resolving = !1;
+        canSeeViewProviders;
+        multi;
+        componentProviders;
+        index;
+        providerFactory;
+        constructor(t, n, r) {
+          (this.factory = t),
+            (this.canSeeViewProviders = n),
+            (this.injectImpl = r);
+        }
+      }
+      function Ch(e) {
+        return 3 === e || 4 === e || 6 === e;
+      }
+      function wh(e) {
+        return 64 === e.charCodeAt(0);
+      }
+      function ar(e, t) {
+        if (null !== t && 0 !== t.length)
+          if (null === e || 0 === e.length) e = t.slice();
+          else {
+            let n = -1;
+            for (let r = 0; r < t.length; r++) {
+              const o = t[r];
+              "number" == typeof o
+                ? (n = o)
+                : 0 === n ||
+                  bh(e, n, o, 0, -1 === n || 2 === n ? t[++r] : null);
+            }
+          }
+        return e;
+      }
+      function bh(e, t, n, r, o) {
+        let i = 0,
+          s = e.length;
+        if (-1 === t) s = -1;
+        else
+          for (; i < e.length; ) {
+            const a = e[i++];
+            if ("number" == typeof a) {
+              if (a === t) {
+                s = -1;
+                break;
+              }
+              if (a > t) {
+                s = i - 1;
+                break;
+              }
+            }
+          }
+        for (; i < e.length; ) {
+          const a = e[i];
+          if ("number" == typeof a) break;
+          if (a === n) return void (null !== o && (e[i + 1] = o));
+          i++, null !== o && i++;
+        }
+        -1 !== s && (e.splice(s, 0, t), (i = s + 1)),
+          e.splice(i++, 0, n),
+          null !== o && e.splice(i++, 0, o);
+      }
+      function Oc(e) {
+        return -1 !== e;
+      }
+      function so(e) {
+        return 32767 & e;
+      }
+      function ao(e, t) {
+        let n = (function bC(e) {
+            return e >> 16;
+          })(e),
+          r = t;
+        for (; n > 0; ) (r = r[14]), n--;
+        return r;
+      }
+      let Fc = !0;
+      function Ui(e) {
+        const t = Fc;
+        return (Fc = e), t;
+      }
+      let TC = 0;
+      const ht = {};
+      function zi(e, t) {
+        const n = Mh(e, t);
+        if (-1 !== n) return n;
+        const r = t[1];
+        r.firstCreatePass &&
+          ((e.injectorIndex = t.length),
+          Pc(r.data, e),
+          Pc(t, null),
+          Pc(r.blueprint, null));
+        const o = Gi(e, t),
+          i = e.injectorIndex;
+        if (Oc(o)) {
+          const s = so(o),
+            a = ao(o, t),
+            c = a[1].data;
+          for (let u = 0; u < 8; u++) t[i + u] = a[s + u] | c[s + u];
+        }
+        return (t[i + 8] = o), i;
+      }
+      function Pc(e, t) {
+        e.push(0, 0, 0, 0, 0, 0, 0, 0, t);
+      }
+      function Mh(e, t) {
+        return -1 === e.injectorIndex ||
+          (e.parent && e.parent.injectorIndex === e.injectorIndex) ||
+          null === t[e.injectorIndex + 8]
+          ? -1
+          : e.injectorIndex;
+      }
+      function Gi(e, t) {
+        if (e.parent && -1 !== e.parent.injectorIndex)
+          return e.parent.injectorIndex;
+        let n = 0,
+          r = null,
+          o = t;
+        for (; null !== o; ) {
+          if (((r = Fh(o)), null === r)) return -1;
+          if ((n++, (o = o[14]), -1 !== r.injectorIndex))
+            return r.injectorIndex | (n << 16);
+        }
+        return -1;
+      }
+      function Lc(e, t, n) {
+        !(function SC(e, t, n) {
+          let r;
+          "string" == typeof n
+            ? (r = n.charCodeAt(0) || 0)
+            : n.hasOwnProperty(Gr) && (r = n[Gr]),
+            null == r && (r = n[Gr] = TC++);
+          const o = 255 & r;
+          t.data[e + (o >> 5)] |= 1 << o;
+        })(e, t, n);
+      }
+      function Nh(e, t, n) {
+        if (8 & n || void 0 !== e) return e;
+        Ga();
+      }
+      function Ah(e, t, n, r) {
+        if ((8 & n && void 0 === r && (r = null), !(3 & n))) {
+          const o = e[9],
+            i = Re(void 0);
+          try {
+            return o ? o.get(t, r, 8 & n) : mf(t, r, 8 & n);
+          } finally {
+            Re(i);
+          }
+        }
+        return Nh(r, 0, n);
+      }
+      function Rh(e, t, n, r = 0, o) {
+        if (null !== e) {
+          if (2048 & t[2] && !(2 & r)) {
+            const s = (function kC(e, t, n, r, o) {
+              let i = e,
+                s = t;
+              for (; null !== i && null !== s && 2048 & s[2] && !Bt(s); ) {
+                const a = xh(i, s, n, 2 | r, ht);
+                if (a !== ht) return a;
+                let c = i.parent;
+                if (!c) {
+                  const u = s[20];
+                  if (u) {
+                    const l = u.get(n, ht, r);
+                    if (l !== ht) return l;
+                  }
+                  (c = Fh(s)), (s = s[14]);
+                }
+                i = c;
+              }
+              return o;
+            })(e, t, n, r, ht);
+            if (s !== ht) return s;
+          }
+          const i = xh(e, t, n, r, ht);
+          if (i !== ht) return i;
+        }
+        return Ah(t, n, r, o);
+      }
+      function xh(e, t, n, r, o) {
+        const i = (function AC(e) {
+          if ("string" == typeof e) return e.charCodeAt(0) || 0;
+          const t = e.hasOwnProperty(Gr) ? e[Gr] : void 0;
+          return "number" == typeof t ? (t >= 0 ? 255 & t : RC) : t;
+        })(n);
+        if ("function" == typeof i) {
+          if (!Qf(t, e, r)) return 1 & r ? Nh(o, 0, r) : Ah(t, n, r, o);
+          try {
+            let s;
+            if (((s = i(r)), null != s || 8 & r)) return s;
+            Ga();
+          } finally {
+            eh();
+          }
+        } else if ("number" == typeof i) {
+          let s = null,
+            a = Mh(e, t),
+            c = -1,
+            u = 1 & r ? t[15][5] : null;
+          for (
+            (-1 === a || 4 & r) &&
+            ((c = -1 === a ? Gi(e, t) : t[a + 8]),
+            -1 !== c && Oh(r, !1)
+              ? ((s = t[1]), (a = so(c)), (t = ao(c, t)))
+              : (a = -1));
+            -1 !== a;
+
+          ) {
+            const l = t[1];
+            if (kh(i, a, l.data)) {
+              const d = NC(a, t, n, s, r, u);
+              if (d !== ht) return d;
+            }
+            (c = t[a + 8]),
+              -1 !== c && Oh(r, t[1].data[a + 8] === u) && kh(i, a, t)
+                ? ((s = l), (a = so(c)), (t = ao(c, t)))
+                : (a = -1);
+          }
+        }
+        return o;
+      }
+      function NC(e, t, n, r, o, i) {
+        const s = t[1],
+          a = s.data[e + 8],
+          l = qi(
+            a,
+            s,
+            n,
+            null == r ? jt(a) && Fc : r != s && !!(3 & a.type),
+            1 & o && i === a
+          );
+        return null !== l ? co(t, s, l, a) : ht;
+      }
+      function qi(e, t, n, r, o) {
+        const i = e.providerIndexes,
+          s = t.data,
+          a = 1048575 & i,
+          c = e.directiveStart,
+          l = i >> 20,
+          h = o ? a + l : e.directiveEnd;
+        for (let f = r ? a : a + l; f < h; f++) {
+          const p = s[f];
+          if ((f < c && n === p) || (f >= c && p.type === n)) return f;
+        }
+        if (o) {
+          const f = s[c];
+          if (f && $e(f) && f.type === n) return c;
+        }
+        return null;
+      }
+      function co(e, t, n, r) {
+        let o = e[n];
+        const i = t.data;
+        if (o instanceof io) {
+          const s = o;
+          s.resolving &&
+            pf(
+              (function B(e) {
+                return "function" == typeof e
+                  ? e.name || e.toString()
+                  : "object" == typeof e &&
+                    null != e &&
+                    "function" == typeof e.type
+                  ? e.type.name || e.type.toString()
+                  : N(e);
+              })(i[n])
+            );
+          const a = Ui(s.canSeeViewProviders);
+          s.resolving = !0;
+          const l = s.injectImpl ? Re(s.injectImpl) : null;
+          Qf(e, r, 0);
+          try {
+            (o = e[n] = s.factory(void 0, i, e, r)),
+              t.firstCreatePass &&
+                n >= r.directiveStart &&
+                (function vC(e, t, n) {
+                  const {
+                    ngOnChanges: r,
+                    ngOnInit: o,
+                    ngDoCheck: i,
+                  } = t.type.prototype;
+                  if (r) {
+                    const s = (function _h(e) {
+                      return (
+                        e.type.prototype.ngOnChanges && (e.setInput = gC), pC
+                      );
+                    })(t);
+                    (n.preOrderHooks ??= []).push(e, s),
+                      (n.preOrderCheckHooks ??= []).push(e, s);
+                  }
+                  o && (n.preOrderHooks ??= []).push(0 - e, o),
+                    i &&
+                      ((n.preOrderHooks ??= []).push(e, i),
+                      (n.preOrderCheckHooks ??= []).push(e, i));
+                })(n, i[n], t);
+          } finally {
+            null !== l && Re(l), Ui(a), (s.resolving = !1), eh();
+          }
+        }
+        return o;
+      }
+      function kh(e, t, n) {
+        return !!(n[t + (e >> 5)] & (1 << e));
+      }
+      function Oh(e, t) {
+        return !(2 & e || (1 & e && t));
+      }
+      class ae {
+        _tNode;
+        _lView;
+        constructor(t, n) {
+          (this._tNode = t), (this._lView = n);
+        }
+        get(t, n, r) {
+          return Rh(this._tNode, this._lView, t, qr(r), n);
+        }
+      }
+      function RC() {
+        return new ae(O(), m());
+      }
+      function Fh(e) {
+        const t = e[1],
+          n = t.type;
+        return 2 === n ? t.declTNode : 1 === n ? e[5] : null;
+      }
+      function HC() {
+        return cr(O(), m());
+      }
+      function cr(e, t) {
+        return new ur(xe(e, t));
+      }
+      let ur = (() =>
+        class e {
+          nativeElement;
+          constructor(n) {
+            this.nativeElement = n;
+          }
+          static __NG_ELEMENT_ID__ = HC;
+        })();
+      function Vh(e) {
+        return e instanceof ur ? e.nativeElement : e;
+      }
+      function $C() {
+        return this._results[Symbol.iterator]();
+      }
+      class UC {
+        _emitDistinctChangesOnly;
+        dirty = !0;
+        _onDirty = void 0;
+        _results = [];
+        _changesDetected = !1;
+        _changes = void 0;
+        length = 0;
+        first = void 0;
+        last = void 0;
+        get changes() {
+          return (this._changes ??= new $r());
+        }
+        constructor(t = !1) {
+          this._emitDistinctChangesOnly = t;
+        }
+        get(t) {
+          return this._results[t];
+        }
+        map(t) {
+          return this._results.map(t);
+        }
+        filter(t) {
+          return this._results.filter(t);
+        }
+        find(t) {
+          return this._results.find(t);
+        }
+        reduce(t, n) {
+          return this._results.reduce(t, n);
+        }
+        forEach(t) {
+          this._results.forEach(t);
+        }
+        some(t) {
+          return this._results.some(t);
+        }
+        toArray() {
+          return this._results.slice();
+        }
+        toString() {
+          return this._results.toString();
+        }
+        reset(t, n) {
+          this.dirty = !1;
+          const r = (function qe(e) {
+            return e.flat(Number.POSITIVE_INFINITY);
+          })(t);
+          (this._changesDetected = !(function fI(e, t, n) {
+            if (e.length !== t.length) return !1;
+            for (let r = 0; r < e.length; r++) {
+              let o = e[r],
+                i = t[r];
+              if ((n && ((o = n(o)), (i = n(i))), i !== o)) return !1;
+            }
+            return !0;
+          })(this._results, r, n)) &&
+            ((this._results = r),
+            (this.length = r.length),
+            (this.last = r[this.length - 1]),
+            (this.first = r[0]));
+        }
+        notifyOnChanges() {
+          void 0 !== this._changes &&
+            (this._changesDetected || !this._emitDistinctChangesOnly) &&
+            this._changes.next(this);
+        }
+        onDirty(t) {
+          this._onDirty = t;
+        }
+        setDirty() {
+          (this.dirty = !0), this._onDirty?.();
+        }
+        destroy() {
+          void 0 !== this._changes &&
+            (this._changes.complete(), this._changes.unsubscribe());
+        }
+        [Symbol.iterator] = $C;
+      }
+      function uo(e) {
+        return !(128 & ~e.flags);
+      }
+      var Zi = (function (e) {
+        return (
+          (e[(e.OnPush = 0)] = "OnPush"), (e[(e.Default = 1)] = "Default"), e
+        );
+      })(Zi || {});
+      const Yi = new Map();
+      let qC = 0;
+      function $c(e) {
+        Yi.delete(e[19]);
+      }
+      const zc = "__ngContext__";
+      function Fe(e, t) {
+        re(t)
+          ? ((e[zc] = t[19]),
+            (function ZC(e) {
+              Yi.set(e[19], e);
+            })(t))
+          : (e[zc] = t);
+      }
+      function Kh(e) {
+        return Xh(e[12]);
+      }
+      function Jh(e) {
+        return Xh(e[4]);
+      }
+      function Xh(e) {
+        for (; null !== e && !Te(e); ) e = e[4];
+        return e;
+      }
+      let Gc;
+      const Ki = new I("", { providedIn: "root", factory: () => mw }),
+        mw = "ng",
+        sp = new I(""),
+        qc = new I("", { providedIn: "platform", factory: () => "unknown" }),
+        ap = new I("", {
+          providedIn: "root",
+          factory: () =>
+            (function Dn() {
+              if (void 0 !== Gc) return Gc;
+              if (typeof document < "u") return document;
+              throw new E(210, !1);
+            })()
+              .body?.querySelector("[ngCspNonce]")
+              ?.getAttribute("ngCspNonce") || null,
+        }),
+        bw = new I("", { providedIn: "root", factory: () => !1 });
+      function Ap(e, t) {
+        const n = e.contentQueries;
+        if (null !== n) {
+          const r = T(null);
+          try {
+            for (let o = 0; o < n.length; o += 2) {
+              const s = n[o + 1];
+              if (-1 !== s) {
+                const a = e.data[s];
+                Bi(n[o]), a.contentQueries(2, t[s], s);
+              }
+            }
+          } finally {
+            T(r);
+          }
+        }
+      }
+      function uu(e, t, n) {
+        Bi(0);
+        const r = T(null);
+        try {
+          t(e, n);
+        } finally {
+          T(r);
+        }
+      }
+      function lu(e, t, n) {
+        if (uc(t)) {
+          const r = T(null);
+          try {
+            const i = t.directiveEnd;
+            for (let s = t.directiveStart; s < i; s++) {
+              const a = e.data[s];
+              a.contentQueries && a.contentQueries(1, n[s], s);
+            }
+          } finally {
+            T(r);
+          }
+        }
+      }
+      var St = (function (e) {
+        return (
+          (e[(e.Emulated = 0)] = "Emulated"),
+          (e[(e.None = 2)] = "None"),
+          (e[(e.ShadowDom = 3)] = "ShadowDom"),
+          e
+        );
+      })(St || {});
+      function Qp(e) {
+        return e.ownerDocument.defaultView;
+      }
+      function Lb(e, t, n) {
+        let r = e.length;
+        for (;;) {
+          const o = e.indexOf(t, n);
+          if (-1 === o) return o;
+          if (0 === o || e.charCodeAt(o - 1) <= 32) {
+            const i = t.length;
+            if (o + i === r || e.charCodeAt(o + i) <= 32) return o;
+          }
+          n = o + 1;
+        }
+      }
+      const tg = "ng-template";
+      function jb(e, t, n, r) {
+        let o = 0;
+        if (r) {
+          for (; o < t.length && "string" == typeof t[o]; o += 2)
+            if ("class" === t[o] && -1 !== Lb(t[o + 1].toLowerCase(), n, 0))
+              return !0;
+        } else if (yu(e)) return !1;
+        if (((o = t.indexOf(1, o)), o > -1)) {
+          let i;
+          for (; ++o < t.length && "string" == typeof (i = t[o]); )
+            if (i.toLowerCase() === n) return !0;
+        }
+        return !1;
+      }
+      function yu(e) {
+        return 4 === e.type && e.value !== tg;
+      }
+      function Bb(e, t, n) {
+        return t === (4 !== e.type || n ? e.value : tg);
+      }
+      function Vb(e, t, n) {
+        let r = 4;
+        const o = e.attrs,
+          i =
+            null !== o
+              ? (function Ub(e) {
+                  for (let t = 0; t < e.length; t++) if (Ch(e[t])) return t;
+                  return e.length;
+                })(o)
+              : 0;
+        let s = !1;
+        for (let a = 0; a < t.length; a++) {
+          const c = t[a];
+          if ("number" != typeof c) {
+            if (!s)
+              if (4 & r) {
+                if (
+                  ((r = 2 | (1 & r)),
+                  ("" !== c && !Bb(e, c, n)) || ("" === c && 1 === t.length))
+                ) {
+                  if (ot(r)) return !1;
+                  s = !0;
+                }
+              } else if (8 & r) {
+                if (null === o || !jb(e, o, c, n)) {
+                  if (ot(r)) return !1;
+                  s = !0;
+                }
+              } else {
+                const u = t[++a],
+                  l = Hb(c, o, yu(e), n);
+                if (-1 === l) {
+                  if (ot(r)) return !1;
+                  s = !0;
+                  continue;
+                }
+                if ("" !== u) {
+                  let d;
+                  if (
+                    ((d = l > i ? "" : o[l + 1].toLowerCase()),
+                    2 & r && u !== d)
+                  ) {
+                    if (ot(r)) return !1;
+                    s = !0;
+                  }
+                }
+              }
+          } else {
+            if (!s && !ot(r) && !ot(c)) return !1;
+            if (s && ot(c)) continue;
+            (s = !1), (r = c | (1 & r));
+          }
+        }
+        return ot(r) || s;
+      }
+      function ot(e) {
+        return !(1 & e);
+      }
+      function Hb(e, t, n, r) {
+        if (null === t) return -1;
+        let o = 0;
+        if (r || !n) {
+          let i = !1;
+          for (; o < t.length; ) {
+            const s = t[o];
+            if (s === e) return o;
+            if (3 === s || 6 === s) i = !0;
+            else {
+              if (1 === s || 2 === s) {
+                let a = t[++o];
+                for (; "string" == typeof a; ) a = t[++o];
+                continue;
+              }
+              if (4 === s) break;
+              if (0 === s) {
+                o += 4;
+                continue;
+              }
+            }
+            o += i ? 1 : 2;
+          }
+          return -1;
+        }
+        return (function zb(e, t) {
+          let n = e.indexOf(4);
+          if (n > -1)
+            for (n++; n < e.length; ) {
+              const r = e[n];
+              if ("number" == typeof r) return -1;
+              if (r === t) return n;
+              n++;
+            }
+          return -1;
+        })(t, e);
+      }
+      function ng(e, t, n = !1) {
+        for (let r = 0; r < t.length; r++) if (Vb(e, t[r], n)) return !0;
+        return !1;
+      }
+      function rg(e, t) {
+        return e ? ":not(" + t.trim() + ")" : t;
+      }
+      function qb(e) {
+        let t = e[0],
+          n = 1,
+          r = 2,
+          o = "",
+          i = !1;
+        for (; n < e.length; ) {
+          let s = e[n];
+          if ("string" == typeof s)
+            if (2 & r) {
+              const a = e[++n];
+              o += "[" + s + (a.length > 0 ? '="' + a + '"' : "") + "]";
+            } else 8 & r ? (o += "." + s) : 4 & r && (o += " " + s);
+          else
+            "" !== o && !ot(s) && ((t += rg(i, o)), (o = "")),
+              (r = s),
+              (i = i || !ot(r));
+          n++;
+        }
+        return "" !== o && (t += rg(i, o)), t;
+      }
+      const $ = {};
+      function cs(e, t, n) {
+        return e.createElement(t, n);
+      }
+      function En(e, t, n, r, o) {
+        e.insertBefore(t, n, r, o);
+      }
+      function ig(e, t, n) {
+        e.appendChild(t, n);
+      }
+      function sg(e, t, n, r, o) {
+        null !== r ? En(e, t, n, r, o) : ig(e, t, n);
+      }
+      function cg(e, t, n) {
+        const { mergedAttrs: r, classes: o, styles: i } = n;
+        null !== r &&
+          (function wC(e, t, n) {
+            let r = 0;
+            for (; r < n.length; ) {
+              const o = n[r];
+              if ("number" == typeof o) {
+                if (0 !== o) break;
+                r++;
+                const i = n[r++],
+                  s = n[r++],
+                  a = n[r++];
+                e.setAttribute(t, s, a, i);
+              } else {
+                const i = o,
+                  s = n[++r];
+                wh(i) ? e.setProperty(t, i, s) : e.setAttribute(t, i, s), r++;
+              }
+            }
+          })(e, t, r),
+          null !== o &&
+            (function Qb(e, t, n) {
+              "" === n
+                ? e.removeAttribute(t, "class")
+                : e.setAttribute(t, "class", n);
+            })(e, t, o),
+          null !== i &&
+            (function Yb(e, t, n) {
+              e.setAttribute(t, "style", n);
+            })(e, t, i);
+      }
+      function Eu(e, t, n, r, o, i, s, a, c, u, l) {
+        const d = M + r,
+          h = d + o,
+          f = (function Kb(e, t) {
+            const n = [];
+            for (let r = 0; r < t; r++) n.push(r < e ? null : $);
+            return n;
+          })(d, h),
+          p = "function" == typeof u ? u() : u;
+        return (f[1] = {
+          type: e,
+          blueprint: f,
+          template: n,
+          queries: null,
+          viewQuery: a,
+          declTNode: t,
+          data: f.slice().fill(null, d),
+          bindingStartIndex: d,
+          expandoStartIndex: h,
+          hostBindingOpCodes: null,
+          firstCreatePass: !0,
+          firstUpdatePass: !0,
+          staticViewQueries: !1,
+          staticContentQueries: !1,
+          preOrderHooks: null,
+          preOrderCheckHooks: null,
+          contentHooks: null,
+          contentCheckHooks: null,
+          viewHooks: null,
+          viewCheckHooks: null,
+          destroyHooks: null,
+          cleanup: null,
+          contentQueries: null,
+          components: null,
+          directiveRegistry: "function" == typeof i ? i() : i,
+          pipeRegistry: "function" == typeof s ? s() : s,
+          firstChild: null,
+          schemas: c,
+          consts: p,
+          incompleteFirstPass: !1,
+          ssrId: l,
+        });
+      }
+      function us(e, t, n, r, o, i, s, a, c, u, l) {
+        const d = t.blueprint.slice();
+        return (
+          (d[0] = o),
+          (d[2] = 1228 | r),
+          (null !== u || (e && 2048 & e[2])) && (d[2] |= 2048),
+          Pf(d),
+          (d[3] = d[14] = e),
+          (d[8] = n),
+          (d[10] = s || (e && e[10])),
+          (d[F] = a || (e && e[F])),
+          (d[9] = c || (e && e[9]) || null),
+          (d[5] = i),
+          (d[19] = (function WC() {
+            return qC++;
+          })()),
+          (d[6] = l),
+          (d[20] = u),
+          (d[15] = 2 == t.type ? e[15] : d),
+          d
+        );
+      }
+      function Iu(e) {
+        let t = 16;
+        return e.signals ? (t = 4096) : e.onPush && (t = 64), t;
+      }
+      function yo(e, t, n, r) {
+        if (0 === n) return -1;
+        const o = t.length;
+        for (let i = 0; i < n; i++)
+          t.push(r), e.blueprint.push(r), e.data.push(null);
+        return o;
+      }
+      function Cu(e, t) {
+        return e[12] ? (e[13][4] = t) : (e[12] = t), (e[13] = t), t;
+      }
+      function ls(e = 1) {
+        lg(R(), m(), ve() + e, !1);
+      }
+      function lg(e, t, n, r) {
+        if (!r)
+          if (3 & ~t[2]) {
+            const i = e.preOrderHooks;
+            null !== i && $i(t, i, 0, n);
+          } else {
+            const i = e.preOrderCheckHooks;
+            null !== i && Hi(t, i, n);
+          }
+        gn(n);
+      }
+      var ds = (function (e) {
+        return (
+          (e[(e.None = 0)] = "None"),
+          (e[(e.SignalBased = 1)] = "SignalBased"),
+          (e[(e.HasDecoratorInputTransform = 2)] =
+            "HasDecoratorInputTransform"),
+          e
+        );
+      })(ds || {});
+      function Do(e, t, n, r) {
+        const o = T(null);
+        try {
+          const [i, s, a] = e.inputs[n];
+          let c = null;
+          0 !== (s & ds.SignalBased) && (c = t[i][Ie]),
+            null !== c && void 0 !== c.transformFn
+              ? (r = c.transformFn(r))
+              : null !== a && (r = a.call(t, r)),
+            null !== e.setInput ? e.setInput(t, c, r, n, i) : mh(t, c, i, r);
+        } finally {
+          T(o);
+        }
+      }
+      function dg(e, t, n, r, o) {
+        const i = ve(),
+          s = 2 & r;
+        try {
+          gn(-1),
+            s && t.length > M && lg(e, t, M, !1),
+            U(s ? 2 : 0, o, n),
+            n(r, o);
+        } finally {
+          gn(i), U(s ? 3 : 1, o, n);
+        }
+      }
+      function fs(e, t, n) {
+        (function oT(e, t, n) {
+          const r = n.directiveStart,
+            o = n.directiveEnd;
+          jt(n) &&
+            (function Jb(e, t, n) {
+              const r = xe(t, e),
+                o = (function ug(e) {
+                  const t = e.tView;
+                  return null === t || t.incompleteFirstPass
+                    ? (e.tView = Eu(
+                        1,
+                        null,
+                        e.template,
+                        e.decls,
+                        e.vars,
+                        e.directiveDefs,
+                        e.pipeDefs,
+                        e.viewQuery,
+                        e.schemas,
+                        e.consts,
+                        e.id
+                      ))
+                    : t;
+                })(n),
+                i = e[10].rendererFactory,
+                s = Cu(
+                  e,
+                  us(
+                    e,
+                    o,
+                    null,
+                    Iu(n),
+                    r,
+                    t,
+                    null,
+                    i.createRenderer(r, n),
+                    null,
+                    null,
+                    null
+                  )
+                );
+              e[t.index] = s;
+            })(t, n, e.data[r + n.componentOffset]),
+            e.firstCreatePass || zi(n, t);
+          const i = n.initialInputs;
+          for (let s = r; s < o; s++) {
+            const a = e.data[s],
+              c = co(t, e, s, n);
+            Fe(c, t),
+              null !== i && cT(0, s - r, c, a, 0, i),
+              $e(a) && (Se(n.index, t)[8] = co(t, e, s, n));
+          }
+        })(e, t, n),
+          !(64 & ~n.flags) &&
+            (function iT(e, t, n) {
+              const r = n.directiveStart,
+                o = n.directiveEnd,
+                i = n.index,
+                s = (function BI() {
+                  return S.lFrame.currentDirectiveIndex;
+                })();
+              try {
+                gn(i);
+                for (let a = r; a < o; a++) {
+                  const c = e.data[a],
+                    u = t[a];
+                  Dc(a),
+                    (null !== c.hostBindings ||
+                      0 !== c.hostVars ||
+                      null !== c.hostAttrs) &&
+                      sT(c, u);
+                }
+              } finally {
+                gn(-1), Dc(s);
+              }
+            })(e, t, n);
+      }
+      let fg = () => null;
+      function sT(e, t) {
+        null !== e.hostBindings && e.hostBindings(1, t);
+      }
+      function Su(e, t) {
+        const n = e.directiveRegistry;
+        let r = null;
+        if (n)
+          for (let o = 0; o < n.length; o++) {
+            const i = n[o];
+            ng(t, i.selectors, !1) &&
+              ((r ??= []), $e(i) ? r.unshift(i) : r.push(i));
+          }
+        return r;
+      }
+      function cT(e, t, n, r, o, i) {
+        const s = i[t];
+        if (null !== s)
+          for (let a = 0; a < s.length; a += 2) Do(r, n, s[a], s[a + 1]);
+      }
+      function Au(e, t, n, r, o) {
+        const i = e.inputs?.[r],
+          s = e.hostDirectiveInputs?.[r];
+        let a = !1;
+        if (s)
+          for (let c = 0; c < s.length; c += 2) {
+            const u = s[c];
+            Do(t.data[u], n[u], s[c + 1], o), (a = !0);
+          }
+        if (i) for (const c of i) Do(t.data[c], n[c], r, o), (a = !0);
+        return a;
+      }
+      function lT(e, t) {
+        const n = Se(t, e),
+          r = n[1];
+        !(function dT(e, t) {
+          for (let n = t.length; n < e.blueprint.length; n++)
+            t.push(e.blueprint[n]);
+        })(r, n);
+        const o = n[0];
+        null !== o && null === n[6] && (n[6] = null),
+          U(18),
+          hs(r, n, n[8]),
+          U(19, n[8]);
+      }
+      function hs(e, t, n) {
+        Ic(t);
+        try {
+          const r = e.viewQuery;
+          null !== r && uu(1, r, n);
+          const o = e.template;
+          null !== o && dg(e, t, o, 1, n),
+            e.firstCreatePass && (e.firstCreatePass = !1),
+            t[18]?.finishViewCreation(e),
+            e.staticContentQueries && Ap(e, t),
+            e.staticViewQueries && uu(2, e.viewQuery, n);
+          const i = e.components;
+          null !== i &&
+            (function fT(e, t) {
+              for (let n = 0; n < t.length; n++) lT(e, t[n]);
+            })(t, i);
+        } catch (r) {
+          throw (
+            (e.firstCreatePass &&
+              ((e.incompleteFirstPass = !0), (e.firstCreatePass = !1)),
+            r)
+          );
+        } finally {
+          (t[2] &= -5), Cc();
+        }
+      }
+      function In(e, t) {
+        return !t || null === t.firstChild || uo(e);
+      }
+      function xu(e, t) {
+        return undefined(e, t);
+      }
+      var zt = (function (e) {
+        return (
+          (e[(e.Important = 1)] = "Important"),
+          (e[(e.DashCase = 2)] = "DashCase"),
+          e
+        );
+      })(zt || {});
+      function Cn(e) {
+        return !(32 & ~e.flags);
+      }
+      function yr(e, t, n, r, o) {
+        if (null != r) {
+          let i,
+            s = !1;
+          Te(r) ? (i = r) : re(r) && ((s = !0), (r = r[0]));
+          const a = ye(r);
+          0 === e && null !== n
+            ? null == o
+              ? ig(t, n, a)
+              : En(t, n, a, o || null, !0)
+            : 1 === e && null !== n
+            ? En(t, n, a, o || null, !0)
+            : 2 === e
+            ? (function _o(e, t, n) {
+                e.removeChild(null, t, n);
+              })(t, a, s)
+            : 3 === e && t.destroyNode(a),
+            null != i &&
+              (function vT(e, t, n, r, o) {
+                const i = n[7];
+                i !== ye(n) && yr(t, e, r, i, o);
+                for (let a = 10; a < n.length; a++) {
+                  const c = n[a];
+                  gs(c[1], c, e, t, r, i);
+                }
+              })(t, e, i, n, o);
+        }
+      }
+      function _g(e, t) {
+        t[10].changeDetectionScheduler?.notify(9),
+          gs(e, t, t[F], 2, null, null);
+      }
+      function ku(e, t) {
+        const n = e[9],
+          r = n.indexOf(t);
+        n.splice(r, 1);
+      }
+      function vo(e, t) {
+        if (Et(t)) return;
+        const n = t[F];
+        n.destroyNode && gs(e, t, n, 3, null, null),
+          (function mT(e) {
+            let t = e[12];
+            if (!t) return Ou(e[1], e);
+            for (; t; ) {
+              let n = null;
+              if (re(t)) n = t[12];
+              else {
+                const r = t[10];
+                r && (n = r);
+              }
+              if (!n) {
+                for (; t && !t[4] && t !== e; )
+                  re(t) && Ou(t[1], t), (t = t[3]);
+                null === t && (t = e), re(t) && Ou(t[1], t), (n = t && t[4]);
+              }
+              t = n;
+            }
+          })(t);
+      }
+      function Ou(e, t) {
+        if (Et(t)) return;
+        const n = T(null);
+        try {
+          (t[2] &= -129),
+            (t[2] |= 256),
+            t[24] && pi(t[24]),
+            (function yT(e, t) {
+              let n;
+              if (null != e && null != (n = e.destroyHooks))
+                for (let r = 0; r < n.length; r += 2) {
+                  const o = t[n[r]];
+                  if (!(o instanceof io)) {
+                    const i = n[r + 1];
+                    if (Array.isArray(i))
+                      for (let s = 0; s < i.length; s += 2) {
+                        const a = o[i[s]],
+                          c = i[s + 1];
+                        U(4, a, c);
+                        try {
+                          c.call(a);
+                        } finally {
+                          U(5, a, c);
+                        }
+                      }
+                    else {
+                      U(4, o, i);
+                      try {
+                        i.call(o);
+                      } finally {
+                        U(5, o, i);
+                      }
+                    }
+                  }
+                }
+            })(e, t),
+            (function _T(e, t) {
+              const n = e.cleanup,
+                r = t[7];
+              if (null !== n)
+                for (let s = 0; s < n.length - 1; s += 2)
+                  if ("string" == typeof n[s]) {
+                    const a = n[s + 3];
+                    a >= 0 ? r[a]() : r[-a].unsubscribe(), (s += 2);
+                  } else n[s].call(r[n[s + 1]]);
+              null !== r && (t[7] = null);
+              const o = t[21];
+              if (null !== o) {
+                t[21] = null;
+                for (let s = 0; s < o.length; s++) (0, o[s])();
+              }
+              const i = t[23];
+              if (null !== i) {
+                t[23] = null;
+                for (const s of i) s.destroy();
+              }
+            })(e, t),
+            1 === t[1].type && t[F].destroy();
+          const r = t[16];
+          if (null !== r && Te(t[3])) {
+            r !== t[3] && ku(r, t);
+            const o = t[18];
+            null !== o && o.detachView(e);
+          }
+          $c(t);
+        } finally {
+          T(n);
+        }
+      }
+      function Fu(e, t, n) {
+        return (function yg(e, t, n) {
+          let r = t;
+          for (; null !== r && 168 & r.type; ) r = (t = r).parent;
+          if (null === r) return n[0];
+          if (jt(r)) {
+            const { encapsulation: o } =
+              e.data[r.directiveStart + r.componentOffset];
+            if (o === St.None || o === St.Emulated) return null;
+          }
+          return xe(r, n);
+        })(e, t.parent, n);
+      }
+      let Eg = function vg(e, t, n) {
+        return 40 & e.type ? xe(e, n) : null;
+      };
+      function ps(e, t, n, r) {
+        const o = Fu(e, r, t),
+          i = t[F],
+          a = (function Dg(e, t, n) {
+            return Eg(e, t, n);
+          })(r.parent || t[5], r, t);
+        if (null != o)
+          if (Array.isArray(n))
+            for (let c = 0; c < n.length; c++) sg(i, o, n[c], a, !1);
+          else sg(i, o, n, a, !1);
+      }
+      function wn(e, t) {
+        if (null !== t) {
+          const n = t.type;
+          if (3 & n) return xe(t, e);
+          if (4 & n) return Lu(-1, e[t.index]);
+          if (8 & n) {
+            const r = t.child;
+            if (null !== r) return wn(e, r);
+            {
+              const o = e[t.index];
+              return Te(o) ? Lu(-1, o) : ye(o);
+            }
+          }
+          if (128 & n) return wn(e, t.next);
+          if (32 & n) return xu(t, e)() || ye(e[t.index]);
+          {
+            const r = Cg(e, t);
+            return null !== r
+              ? Array.isArray(r)
+                ? r[0]
+                : wn(It(e[15]), r)
+              : wn(e, t.next);
+          }
+        }
+        return null;
+      }
+      function Cg(e, t) {
+        return null !== t ? e[15][5].projection[t.projection] : null;
+      }
+      function Lu(e, t) {
+        const n = 10 + e + 1;
+        if (n < t.length) {
+          const r = t[n],
+            o = r[1].firstChild;
+          if (null !== o) return wn(r, o);
+        }
+        return t[7];
+      }
+      function ju(e, t, n, r, o, i, s) {
+        for (; null != n; ) {
+          if (128 === n.type) {
+            n = n.next;
+            continue;
+          }
+          const a = r[n.index],
+            c = n.type;
+          if ((s && 0 === t && (a && Fe(ye(a), r), (n.flags |= 2)), !Cn(n)))
+            if (8 & c) ju(e, t, n.child, r, o, i, !1), yr(t, e, o, a, i);
+            else if (32 & c) {
+              const u = xu(n, r);
+              let l;
+              for (; (l = u()); ) yr(t, e, o, l, i);
+              yr(t, e, o, a, i);
+            } else 16 & c ? wg(e, t, r, n, o, i) : yr(t, e, o, a, i);
+          n = s ? n.projectionNext : n.next;
+        }
+      }
+      function gs(e, t, n, r, o, i) {
+        ju(n, r, e.firstChild, t, o, i, !1);
+      }
+      function wg(e, t, n, r, o, i) {
+        const s = n[15],
+          c = s[5].projection[r.projection];
+        if (Array.isArray(c))
+          for (let u = 0; u < c.length; u++) yr(t, e, o, c[u], i);
+        else {
+          let u = c;
+          const l = s[3];
+          uo(r) && (u.flags |= 128), ju(e, t, u, l, o, i, !0);
+        }
+      }
+      function Eo(e, t, n, r, o = !1) {
+        for (; null !== n; ) {
+          if (128 === n.type) {
+            n = o ? n.projectionNext : n.next;
+            continue;
+          }
+          const i = t[n.index];
+          null !== i && r.push(ye(i)), Te(i) && IT(i, r);
+          const s = n.type;
+          if (8 & s) Eo(e, t, n.child, r);
+          else if (32 & s) {
+            const a = xu(n, t);
+            let c;
+            for (; (c = a()); ) r.push(c);
+          } else if (16 & s) {
+            const a = Cg(t, n);
+            if (Array.isArray(a)) r.push(...a);
+            else {
+              const c = It(t[15]);
+              Eo(c[1], c, a, r, !0);
+            }
+          }
+          n = o ? n.projectionNext : n.next;
+        }
+        return r;
+      }
+      function IT(e, t) {
+        for (let n = 10; n < e.length; n++) {
+          const r = e[n],
+            o = r[1].firstChild;
+          null !== o && Eo(r[1], r, o, t);
+        }
+        e[7] !== e[0] && t.push(e[7]);
+      }
+      function bg(e) {
+        if (null !== e[25]) {
+          for (const t of e[25]) t.impl.addSequence(t);
+          e[25].length = 0;
+        }
+      }
+      let Tg = [];
+      const TT = {
+          ...Bn,
+          consumerIsAlwaysLive: !0,
+          kind: "template",
+          consumerMarkedDirty: (e) => {
+            Kn(e.lView);
+          },
+          consumerOnSignalRead() {
+            this.lView[24] = this;
+          },
+        },
+        MT = {
+          ...Bn,
+          consumerIsAlwaysLive: !0,
+          kind: "template",
+          consumerMarkedDirty: (e) => {
+            let t = It(e.lView);
+            for (; t && !Sg(t[1]); ) t = It(t);
+            t && Lf(t);
+          },
+          consumerOnSignalRead() {
+            this.lView[24] = this;
+          },
+        };
+      function Sg(e) {
+        return 2 !== e.type;
+      }
+      function Mg(e) {
+        if (null === e[23]) return;
+        let t = !0;
+        for (; t; ) {
+          let n = !1;
+          for (const r of e[23])
+            r.dirty &&
+              ((n = !0),
+              null === r.zone || Zone.current === r.zone
+                ? r.run()
+                : r.zone.run(() => r.run()));
+          t = n && !!(8192 & e[2]);
+        }
+      }
+      function ms(e, t = 0) {
+        const r = e[10].rendererFactory;
+        r.begin?.();
+        try {
+          !(function AT(e, t) {
+            const n = Wf();
+            try {
+              ji(!0), Bu(e, t);
+              let r = 0;
+              for (; Pi(e); ) {
+                if (100 === r) throw new E(103, !1);
+                r++, Bu(e, 1);
+              }
+            } finally {
+              ji(n);
+            }
+          })(e, t);
+        } finally {
+          r.end?.();
+        }
+      }
+      function Ng(e, t, n, r) {
+        if (Et(t)) return;
+        const o = t[2];
+        Ic(t);
+        let a = !0,
+          c = null,
+          u = null;
+        Sg(e)
+          ? ((u = (function CT(e) {
+              return (
+                e[24] ??
+                (function wT(e) {
+                  const t = Tg.pop() ?? Object.create(TT);
+                  return (t.lView = e), t;
+                })(e)
+              );
+            })(t)),
+            (c = Vn(u)))
+          : null ===
+            (function Ma() {
+              return ge;
+            })()
+          ? ((a = !1),
+            (u = (function ST(e) {
+              const t = e[24] ?? Object.create(MT);
+              return (t.lView = e), t;
+            })(t)),
+            (c = Vn(u)))
+          : t[24] && (pi(t[24]), (t[24] = null));
+        try {
+          Pf(t),
+            (function Zf(e) {
+              return (S.lFrame.bindingIndex = e);
+            })(e.bindingStartIndex),
+            null !== n && dg(e, t, n, 2, r);
+          const l = !(3 & ~o);
+          if (l) {
+            const f = e.preOrderCheckHooks;
+            null !== f && Hi(t, f, null);
+          } else {
+            const f = e.preOrderHooks;
+            null !== f && $i(t, f, 0, null), xc(t, 0);
+          }
+          if (
+            ((function xT(e) {
+              for (let t = Kh(e); null !== t; t = Jh(t)) {
+                if (!(2 & t[2])) continue;
+                const n = t[9];
+                for (let r = 0; r < n.length; r++) Lf(n[r]);
+              }
+            })(t),
+            Mg(t),
+            Ag(t, 0),
+            null !== e.contentQueries && Ap(e, t),
+            l)
+          ) {
+            const f = e.contentCheckHooks;
+            null !== f && Hi(t, f);
+          } else {
+            const f = e.contentHooks;
+            null !== f && $i(t, f, 1), xc(t, 1);
+          }
+          !(function OT(e, t) {
+            const n = e.hostBindingOpCodes;
+            if (null !== n)
+              try {
+                for (let r = 0; r < n.length; r++) {
+                  const o = n[r];
+                  if (o < 0) gn(~o);
+                  else {
+                    const i = o,
+                      s = n[++r],
+                      a = n[++r];
+                    jI(s, i);
+                    const c = t[i];
+                    U(24, c), a(2, c), U(25, c);
+                  }
+                }
+              } finally {
+                gn(-1);
+              }
+          })(e, t);
+          const d = e.components;
+          null !== d && xg(t, d, 0);
+          const h = e.viewQuery;
+          if ((null !== h && uu(2, h, r), l)) {
+            const f = e.viewCheckHooks;
+            null !== f && Hi(t, f);
+          } else {
+            const f = e.viewHooks;
+            null !== f && $i(t, f, 2), xc(t, 2);
+          }
+          if ((!0 === e.firstUpdatePass && (e.firstUpdatePass = !1), t[22])) {
+            for (const f of t[22]) f();
+            t[22] = null;
+          }
+          bg(t), (t[2] &= -73);
+        } catch (l) {
+          throw (Kn(t), l);
+        } finally {
+          null !== u &&
+            (Vr(u, c),
+            a &&
+              (function bT(e) {
+                e.lView[24] !== e && ((e.lView = null), Tg.push(e));
+              })(u)),
+            Cc();
+        }
+      }
+      function Ag(e, t) {
+        for (let n = Kh(e); null !== n; n = Jh(n))
+          for (let r = 10; r < n.length; r++) Rg(n[r], t);
+      }
+      function kT(e, t, n) {
+        U(18);
+        const r = Se(t, e);
+        Rg(r, n), U(19, r[8]);
+      }
+      function Rg(e, t) {
+        dc(e) && Bu(e, t);
+      }
+      function Bu(e, t) {
+        const r = e[1],
+          o = e[2],
+          i = e[24];
+        let s = !!(0 === t && 16 & o);
+        if (
+          ((s ||= !!(64 & o && 0 === t)),
+          (s ||= !!(1024 & o)),
+          (s ||= !(!i?.dirty || !hi(i))),
+          (s ||= !1),
+          i && (i.dirty = !1),
+          (e[2] &= -9217),
+          s)
+        )
+          Ng(r, e, r.template, e[8]);
+        else if (8192 & o) {
+          const a = T(null);
+          try {
+            Mg(e), Ag(e, 1);
+            const c = r.components;
+            null !== c && xg(e, c, 1), bg(e);
+          } finally {
+            T(a);
+          }
+        }
+      }
+      function xg(e, t, n) {
+        for (let r = 0; r < t.length; r++) kT(e, t[r], n);
+      }
+      function Io(e, t) {
+        const n = Wf() ? 64 : 1088;
+        for (e[10].changeDetectionScheduler?.notify(t); e; ) {
+          e[2] |= n;
+          const r = It(e);
+          if (Bt(e) && !r) return e;
+          e = r;
+        }
+        return null;
+      }
+      function Co(e, t) {
+        if (e.length <= 10) return;
+        const n = 10 + t,
+          r = e[n];
+        if (r) {
+          const o = r[16];
+          null !== o && o !== e && ku(o, r), t > 0 && (e[n - 1][4] = r[4]);
+          const i = Ti(e, 10 + t);
+          !(function mg(e, t) {
+            _g(e, t), (t[0] = null), (t[5] = null);
+          })(r[1], r);
+          const s = i[18];
+          null !== s && s.detachView(i[1]),
+            (r[3] = null),
+            (r[4] = null),
+            (r[2] &= -129);
+        }
+        return r;
+      }
+      function Fg(e, t) {
+        const n = e[9],
+          r = t[3];
+        (re(r) || t[15] !== r[3][15]) && (e[2] |= 2),
+          null === n ? (e[9] = [t]) : n.push(t);
+      }
+      class wo {
+        _lView;
+        _cdRefInjectingView;
+        _appRef = null;
+        _attachedToViewContainer = !1;
+        exhaustive;
+        get rootNodes() {
+          const t = this._lView,
+            n = t[1];
+          return Eo(n, t, n.firstChild, []);
+        }
+        constructor(t, n) {
+          (this._lView = t), (this._cdRefInjectingView = n);
+        }
+        get context() {
+          return this._lView[8];
+        }
+        set context(t) {
+          this._lView[8] = t;
+        }
+        get destroyed() {
+          return Et(this._lView);
+        }
+        destroy() {
+          if (this._appRef) this._appRef.detachView(this);
+          else if (this._attachedToViewContainer) {
+            const t = this._lView[3];
+            if (Te(t)) {
+              const n = t[8],
+                r = n ? n.indexOf(this) : -1;
+              r > -1 && (Co(t, r), Ti(n, r));
+            }
+            this._attachedToViewContainer = !1;
+          }
+          vo(this._lView[1], this._lView);
+        }
+        onDestroy(t) {
+          Li(this._lView, t);
+        }
+        markForCheck() {
+          Io(this._cdRefInjectingView || this._lView, 4);
+        }
+        detach() {
+          this._lView[2] &= -129;
+        }
+        reattach() {
+          fc(this._lView), (this._lView[2] |= 128);
+        }
+        detectChanges() {
+          (this._lView[2] |= 1024), ms(this._lView);
+        }
+        checkNoChanges() {}
+        attachToViewContainerRef() {
+          if (this._appRef) throw new E(902, !1);
+          this._attachedToViewContainer = !0;
+        }
+        detachFromAppRef() {
+          this._appRef = null;
+          const t = Bt(this._lView),
+            n = this._lView[16];
+          null !== n && !t && ku(n, this._lView),
+            _g(this._lView[1], this._lView);
+        }
+        attachToAppRef(t) {
+          if (this._attachedToViewContainer) throw new E(902, !1);
+          this._appRef = t;
+          const n = Bt(this._lView),
+            r = this._lView[16];
+          null !== r && !n && Fg(r, this._lView), fc(this._lView);
+        }
+      }
+      let Nt = (() =>
+        class e {
+          _declarationLView;
+          _declarationTContainer;
+          elementRef;
+          static __NG_ELEMENT_ID__ = PT;
+          constructor(n, r, o) {
+            (this._declarationLView = n),
+              (this._declarationTContainer = r),
+              (this.elementRef = o);
+          }
+          get ssrId() {
+            return this._declarationTContainer.tView?.ssrId || null;
+          }
+          createEmbeddedView(n, r) {
+            return this.createEmbeddedViewImpl(n, r);
+          }
+          createEmbeddedViewImpl(n, r, o) {
+            const i = (function _r(e, t, n, r) {
+              const o = T(null);
+              try {
+                const i = t.tView,
+                  c = us(
+                    e,
+                    i,
+                    n,
+                    4096 & e[2] ? 4096 : 16,
+                    null,
+                    t,
+                    null,
+                    null,
+                    r?.injector ?? null,
+                    r?.embeddedViewInjector ?? null,
+                    r?.dehydratedView ?? null
+                  );
+                c[16] = e[t.index];
+                const l = e[18];
+                return (
+                  null !== l && (c[18] = l.createEmbeddedView(i)),
+                  hs(i, c, n),
+                  c
+                );
+              } finally {
+                T(o);
+              }
+            })(this._declarationLView, this._declarationTContainer, n, {
+              embeddedViewInjector: r,
+              dehydratedView: o,
+            });
+            return new wo(i);
+          }
+        })();
+      function PT() {
+        return _s(O(), m());
+      }
+      function _s(e, t) {
+        return 4 & e.type ? new Nt(t, e, cr(e, t)) : null;
+      }
+      function vr(e, t, n, r, o) {
+        let i = e.data[t];
+        if (null === i)
+          (i = (function zu(e, t, n, r, o) {
+            const i = zf(),
+              s = _c(),
+              c = (e.data[t] = (function GT(e, t, n, r, o, i) {
+                let s = t ? t.injectorIndex : -1,
+                  a = 0;
+                return (
+                  (function Hf() {
+                    return null !== S.skipHydrationRootTNode;
+                  })() && (a |= 128),
+                  {
+                    type: n,
+                    index: r,
+                    insertBeforeIndex: null,
+                    injectorIndex: s,
+                    directiveStart: -1,
+                    directiveEnd: -1,
+                    directiveStylingLast: -1,
+                    componentOffset: -1,
+                    propertyBindings: null,
+                    flags: a,
+                    providerIndexes: 0,
+                    value: o,
+                    attrs: i,
+                    mergedAttrs: null,
+                    localNames: null,
+                    initialInputs: null,
+                    inputs: null,
+                    hostDirectiveInputs: null,
+                    outputs: null,
+                    hostDirectiveOutputs: null,
+                    directiveToIndex: null,
+                    tView: null,
+                    next: null,
+                    prev: null,
+                    projectionNext: null,
+                    child: null,
+                    parent: t,
+                    projection: null,
+                    styles: null,
+                    stylesWithoutHost: null,
+                    residualStyles: void 0,
+                    classes: null,
+                    classesWithoutHost: null,
+                    residualClasses: void 0,
+                    classBindings: 0,
+                    styleBindings: 0,
+                  }
+                );
+              })(0, s ? i : i && i.parent, n, t, r, o));
+            return (
+              (function zT(e, t, n, r) {
+                null === e.firstChild && (e.firstChild = t),
+                  null !== n &&
+                    (r
+                      ? null == n.child && null !== t.parent && (n.child = t)
+                      : null === n.next && ((n.next = t), (t.prev = n)));
+              })(e, c, i, s),
+              c
+            );
+          })(e, t, n, r, o)),
+            (function LI() {
+              return S.lFrame.inI18n;
+            })() && (i.flags |= 32);
+        else if (64 & i.type) {
+          (i.type = n), (i.value = r), (i.attrs = o);
+          const s = (function Xr() {
+            const e = S.lFrame,
+              t = e.currentTNode;
+            return e.isParent ? t : t.parent;
+          })();
+          i.injectorIndex = null === s ? -1 : s.injectorIndex;
+        }
+        return nt(i, !0), i;
+      }
+      let SS = class {},
+        sm = class {};
+      class MS {
+        resolveComponentFactory(t) {
+          throw new E(917, !1);
+        }
+      }
+      let bs = class {
+        static NULL = new MS();
+      };
+      class Ku {}
+      let AS = (() => {
+        class e {
+          static ɵprov = L({
+            token: e,
+            providedIn: "root",
+            factory: () => null,
+          });
+        }
+        return e;
+      })();
+      const Xu = {};
+      class Cr {
+        injector;
+        parentInjector;
+        constructor(t, n) {
+          (this.injector = t), (this.parentInjector = n);
+        }
+        get(t, n, r) {
+          const o = this.injector.get(t, Xu, r);
+          return o !== Xu || n === Xu ? o : this.parentInjector.get(t, n, r);
+        }
+      }
+      function el(e, t, n) {
+        let r = n ? e.styles : null,
+          o = n ? e.classes : null,
+          i = 0;
+        if (null !== t)
+          for (let s = 0; s < t.length; s++) {
+            const a = t[s];
+            "number" == typeof a
+              ? (i = a)
+              : 1 == i
+              ? (o = Ba(o, a))
+              : 2 == i && (r = Ba(r, a + ": " + t[++s] + ";"));
+          }
+        n ? (e.styles = r) : (e.stylesWithoutHost = r),
+          n ? (e.classes = o) : (e.classesWithoutHost = o);
+      }
+      function P(e, t = 0) {
+        const n = m();
+        return null === n ? j(e, t) : Rh(O(), n, A(e), t);
+      }
+      function PS(e, t, n) {
+        (t.componentOffset = n), (e.components ??= []).push(t.index);
+      }
+      function um(e, t, n, r) {
+        const o = 0 === e ? n.inputs : n.outputs;
+        for (const i in o)
+          if (o.hasOwnProperty(i)) {
+            let s;
+            (s = 0 === e ? (t.inputs ??= {}) : (t.outputs ??= {})),
+              (s[i] ??= []),
+              s[i].push(r),
+              dm(t, i);
+          }
+      }
+      function lm(e, t, n, r) {
+        const o = 0 === e ? n.inputs : n.outputs;
+        for (const i in o)
+          if (o.hasOwnProperty(i)) {
+            const s = o[i];
+            let a;
+            (a =
+              0 === e
+                ? (t.hostDirectiveInputs ??= {})
+                : (t.hostDirectiveOutputs ??= {})),
+              (a[s] ??= []),
+              a[s].push(r, i),
+              dm(t, s);
+          }
+      }
+      function dm(e, t) {
+        "class" === t ? (e.flags |= 8) : "style" === t && (e.flags |= 16);
+      }
+      function fm(e, t, n) {
+        const { attrs: r, inputs: o, hostDirectiveInputs: i } = e;
+        if (null === r || (!n && null === o) || (n && null === i) || yu(e))
+          return (e.initialInputs ??= []), void e.initialInputs.push(null);
+        let s = null,
+          a = 0;
+        for (; a < r.length; ) {
+          const c = r[a];
+          if (0 !== c)
+            if (5 !== c) {
+              if ("number" == typeof c) break;
+              if (!n && o.hasOwnProperty(c)) {
+                const u = o[c];
+                for (const l of u)
+                  if (l === t) {
+                    (s ??= []), s.push(c, r[a + 1]);
+                    break;
+                  }
+              } else if (n && i.hasOwnProperty(c)) {
+                const u = i[c];
+                for (let l = 0; l < u.length; l += 2)
+                  if (u[l] === t) {
+                    (s ??= []), s.push(u[l + 1], r[a + 1]);
+                    break;
+                  }
+              }
+              a += 2;
+            } else a += 2;
+          else a += 4;
+        }
+        (e.initialInputs ??= []), e.initialInputs.push(s);
+      }
+      function BS(e, t, n, r, o) {
+        e.data[r] = o;
+        const i = o.factory || (o.factory = an(o.type)),
+          s = new io(i, $e(o), P);
+        (e.blueprint[r] = s),
+          (n[r] = s),
+          (function VS(e, t, n, r, o) {
+            const i = o.hostBindings;
+            if (i) {
+              let s = e.hostBindingOpCodes;
+              null === s && (s = e.hostBindingOpCodes = []);
+              const a = ~t.index;
+              (function HS(e) {
+                let t = e.length;
+                for (; t > 0; ) {
+                  const n = e[--t];
+                  if ("number" == typeof n && n < 0) return n;
+                }
+                return 0;
+              })(s) != a && s.push(a),
+                s.push(n, r, i);
+            }
+          })(e, t, r, yo(e, n, o.hostVars, $), o);
+      }
+      function $S(e, t, n) {
+        if (n) {
+          if (t.exportAs)
+            for (let r = 0; r < t.exportAs.length; r++) n[t.exportAs[r]] = e;
+          $e(t) && (n[""] = e);
+        }
+      }
+      function hm(e, t, n, r, o, i, s, a) {
+        const c = t.consts,
+          l = vr(t, e, 2, r, ke(c, s));
+        return (
+          i &&
+            (function tl(e, t, n, r, o) {
+              const i = null === r ? null : { "": -1 },
+                s = o(e, n);
+              if (null !== s) {
+                let a = s,
+                  c = null,
+                  u = null;
+                for (const l of s)
+                  if (null !== l.resolveHostDirectives) {
+                    [a, c, u] = l.resolveHostDirectives(s);
+                    break;
+                  }
+                !(function LS(e, t, n, r, o, i, s) {
+                  const a = r.length;
+                  let c = !1;
+                  for (let h = 0; h < a; h++) {
+                    const f = r[h];
+                    !c && $e(f) && ((c = !0), PS(e, n, h)),
+                      Lc(zi(n, t), e, f.type);
+                  }
+                  !(function US(e, t, n) {
+                    (e.flags |= 1),
+                      (e.directiveStart = t),
+                      (e.directiveEnd = t + n),
+                      (e.providerIndexes = t);
+                  })(n, e.data.length, a);
+                  for (let h = 0; h < a; h++) {
+                    const f = r[h];
+                    f.providersResolver && f.providersResolver(f);
+                  }
+                  let u = !1,
+                    l = !1,
+                    d = yo(e, t, a, null);
+                  a > 0 && (n.directiveToIndex = new Map());
+                  for (let h = 0; h < a; h++) {
+                    const f = r[h];
+                    if (
+                      ((n.mergedAttrs = ar(n.mergedAttrs, f.hostAttrs)),
+                      BS(e, n, t, d, f),
+                      $S(d, f, o),
+                      null !== s && s.has(f))
+                    ) {
+                      const [g, y] = s.get(f);
+                      n.directiveToIndex.set(f.type, [
+                        d,
+                        g + n.directiveStart,
+                        y + n.directiveStart,
+                      ]);
+                    } else
+                      (null === i || !i.has(f)) &&
+                        n.directiveToIndex.set(f.type, d);
+                    null !== f.contentQueries && (n.flags |= 4),
+                      (null !== f.hostBindings ||
+                        null !== f.hostAttrs ||
+                        0 !== f.hostVars) &&
+                        (n.flags |= 64);
+                    const p = f.type.prototype;
+                    !u &&
+                      (p.ngOnChanges || p.ngOnInit || p.ngDoCheck) &&
+                      ((e.preOrderHooks ??= []).push(n.index), (u = !0)),
+                      !l &&
+                        (p.ngOnChanges || p.ngDoCheck) &&
+                        ((e.preOrderCheckHooks ??= []).push(n.index), (l = !0)),
+                      d++;
+                  }
+                  !(function jS(e, t, n) {
+                    for (let r = t.directiveStart; r < t.directiveEnd; r++) {
+                      const o = e.data[r];
+                      if (null !== n && n.has(o)) {
+                        const i = n.get(o);
+                        lm(0, t, i, r), lm(1, t, i, r), fm(t, r, !0);
+                      } else um(0, t, o, r), um(1, t, o, r), fm(t, r, !1);
+                    }
+                  })(e, n, i);
+                })(e, t, n, a, i, c, u);
+              }
+              null !== i &&
+                null !== r &&
+                (function FS(e, t, n) {
+                  const r = (e.localNames = []);
+                  for (let o = 0; o < t.length; o += 2) {
+                    const i = n[t[o + 1]];
+                    if (null == i) throw new E(-301, !1);
+                    r.push(t[o], i);
+                  }
+                })(n, r, i);
+            })(t, n, l, ke(c, a), o),
+          (l.mergedAttrs = ar(l.mergedAttrs, l.attrs)),
+          null !== l.attrs && el(l, l.attrs, !1),
+          null !== l.mergedAttrs && el(l, l.mergedAttrs, !0),
+          null !== t.queries && t.queries.elementStart(t, l),
+          l
+        );
+      }
+      function pm(e, t) {
+        (function Rc(e, t) {
+          for (let n = t.directiveStart, r = t.directiveEnd; n < r; n++) {
+            const i = e.data[n].type.prototype,
+              {
+                ngAfterContentInit: s,
+                ngAfterContentChecked: a,
+                ngAfterViewInit: c,
+                ngAfterViewChecked: u,
+                ngOnDestroy: l,
+              } = i;
+            s && (e.contentHooks ??= []).push(-n, s),
+              a &&
+                ((e.contentHooks ??= []).push(n, a),
+                (e.contentCheckHooks ??= []).push(n, a)),
+              c && (e.viewHooks ??= []).push(-n, c),
+              u &&
+                ((e.viewHooks ??= []).push(n, u),
+                (e.viewCheckHooks ??= []).push(n, u)),
+              null != l && (e.destroyHooks ??= []).push(n, l);
+          }
+        })(e, t),
+          uc(t) && e.queries.elementEnd(t);
+      }
+      function Ns(e, t, n) {
+        return function r(o) {
+          Io(jt(e) ? Se(e.index, t) : t, 5);
+          const s = t[8];
+          let a = gm(t, s, n, o),
+            c = r.__ngNextListenerFn__;
+          for (; c; ) (a = gm(t, s, c, o) && a), (c = c.__ngNextListenerFn__);
+          return a;
+        };
+      }
+      function gm(e, t, n, r) {
+        const o = T(null);
+        try {
+          return U(6, t, n), !1 !== n(r);
+        } catch (i) {
+          return (
+            (function Nu(e, t) {
+              const n = e[9];
+              n && n.get(bt, null)?.(t);
+            })(e, i),
+            !1
+          );
+        } finally {
+          U(7, t, n), T(o);
+        }
+      }
+      function mm(e, t, n, r, o, i, s) {
+        const a = t.firstCreatePass ? Vf(t) : null,
+          c = Bf(n),
+          u = c.length;
+        c.push(o, i), a && a.push(r, e, u, (u + 1) * (s ? -1 : 1));
+      }
+      function As(e, t, n, r, o, i) {
+        const a = t[1],
+          d = t[n][a.data[n].outputs[r]].subscribe(i);
+        mm(e.index, a, t, o, i, d, !0);
+      }
+      const qt = Symbol("BINDING");
+      class _m extends bs {
+        ngModule;
+        constructor(t) {
+          super(), (this.ngModule = t);
+        }
+        resolveComponentFactory(t) {
+          const n = V(t);
+          return new rl(n, this.ngModule);
+        }
+      }
+      class rl extends sm {
+        componentDef;
+        ngModule;
+        selector;
+        componentType;
+        ngContentSelectors;
+        isBoundToModule;
+        cachedInputs = null;
+        cachedOutputs = null;
+        get inputs() {
+          return (
+            (this.cachedInputs ??= (function nM(e) {
+              return Object.keys(e).map((t) => {
+                const [n, r, o] = e[t],
+                  i = {
+                    propName: n,
+                    templateName: t,
+                    isSignal: 0 !== (r & ds.SignalBased),
+                  };
+                return o && (i.transform = o), i;
+              });
+            })(this.componentDef.inputs)),
+            this.cachedInputs
+          );
+        }
+        get outputs() {
+          return (
+            (this.cachedOutputs ??= (function rM(e) {
+              return Object.keys(e).map((t) => ({
+                propName: e[t],
+                templateName: t,
+              }));
+            })(this.componentDef.outputs)),
+            this.cachedOutputs
+          );
+        }
+        constructor(t, n) {
+          super(),
+            (this.componentDef = t),
+            (this.ngModule = n),
+            (this.componentType = t.type),
+            (this.selector = (function Wb(e) {
+              return e.map(qb).join(",");
+            })(t.selectors)),
+            (this.ngContentSelectors = t.ngContentSelectors ?? []),
+            (this.isBoundToModule = !!n);
+        }
+        create(t, n, r, o, i, s) {
+          U(22);
+          const a = T(null);
+          try {
+            const c = this.componentDef,
+              u = (function aM(e, t, n, r) {
+                const o = e
+                  ? ["ng-version", "20.0.5"]
+                  : (function Zb(e) {
+                      const t = [],
+                        n = [];
+                      let r = 1,
+                        o = 2;
+                      for (; r < e.length; ) {
+                        let i = e[r];
+                        if ("string" == typeof i)
+                          2 === o
+                            ? "" !== i && t.push(i, e[++r])
+                            : 8 === o && n.push(i);
+                        else {
+                          if (!ot(o)) break;
+                          o = i;
+                        }
+                        r++;
+                      }
+                      return n.length && t.push(1, ...n), t;
+                    })(t.selectors[0]);
+                let i = null,
+                  s = null,
+                  a = 0;
+                if (n)
+                  for (const l of n)
+                    (a += l[qt].requiredVars),
+                      l.create && ((l.targetIdx = 0), (i ??= []).push(l)),
+                      l.update && ((l.targetIdx = 0), (s ??= []).push(l));
+                if (r)
+                  for (let l = 0; l < r.length; l++) {
+                    const d = r[l];
+                    if ("function" != typeof d)
+                      for (const h of d.bindings) {
+                        a += h[qt].requiredVars;
+                        const f = l + 1;
+                        h.create && ((h.targetIdx = f), (i ??= []).push(h)),
+                          h.update && ((h.targetIdx = f), (s ??= []).push(h));
+                      }
+                  }
+                const c = [t];
+                if (r)
+                  for (const l of r) {
+                    const h = be("function" == typeof l ? l : l.type);
+                    c.push(h);
+                  }
+                return Eu(
+                  0,
+                  null,
+                  (function cM(e, t) {
+                    return e || t
+                      ? (n) => {
+                          if (1 & n && e) for (const r of e) r.create();
+                          if (2 & n && t) for (const r of t) r.update();
+                        }
+                      : null;
+                  })(i, s),
+                  1,
+                  a,
+                  c,
+                  null,
+                  null,
+                  null,
+                  [o],
+                  null
+                );
+              })(r, c, s, i),
+              l = (function oM(e, t, n) {
+                let r = t instanceof We ? t : t?.injector;
+                return (
+                  r &&
+                    null !== e.getStandaloneInjector &&
+                    (r = e.getStandaloneInjector(r) || r),
+                  r ? new Cr(n, r) : n
+                );
+              })(c, o || this.ngModule, t),
+              d = (function iM(e) {
+                const t = e.get(Ku, null);
+                if (null === t) throw new E(407, !1);
+                return {
+                  rendererFactory: t,
+                  sanitizer: e.get(AS, null),
+                  changeDetectionScheduler: e.get(er, null),
+                  ngReflect: !1,
+                };
+              })(l),
+              h = d.rendererFactory.createRenderer(null, c),
+              f = r
+                ? (function Xb(e, t, n, r) {
+                    const i = r.get(bw, !1) || n === St.ShadowDom,
+                      s = e.selectRootElement(t, i);
+                    return (
+                      (function eT(e) {
+                        fg(e);
+                      })(s),
+                      s
+                    );
+                  })(h, r, c.encapsulation, l)
+                : (function sM(e, t) {
+                    const n = (e.selectors[0][0] || "div").toLowerCase();
+                    return cs(
+                      t,
+                      n,
+                      "svg" === n ? "svg" : "math" === n ? "math" : null
+                    );
+                  })(c, h),
+              p =
+                s?.some(ym) ||
+                i?.some((v) => "function" != typeof v && v.bindings.some(ym)),
+              g = us(
+                null,
+                u,
+                null,
+                512 | Iu(c),
+                null,
+                null,
+                d,
+                h,
+                l,
+                null,
+                null
+              );
+            (g[M] = f), Ic(g);
+            let y = null;
+            try {
+              const v = hm(M, u, g, "#host", () => u.directiveRegistry, !0, 0);
+              f && (cg(h, f, v), Fe(f, g)),
+                fs(u, g, v),
+                lu(u, v, g),
+                pm(u, v),
+                void 0 !== n &&
+                  (function lM(e, t, n) {
+                    const r = (e.projection = []);
+                    for (let o = 0; o < t.length; o++) {
+                      const i = n[o];
+                      r.push(null != i && i.length ? Array.from(i) : null);
+                    }
+                  })(v, this.ngContentSelectors, n),
+                (y = Se(v.index, g)),
+                (g[8] = y[8]),
+                hs(u, g, null);
+            } catch (v) {
+              throw (null !== y && $c(y), $c(g), v);
+            } finally {
+              U(23), Cc();
+            }
+            return new uM(this.componentType, g, !!p);
+          } finally {
+            T(a);
+          }
+        }
+      }
+      function ym(e) {
+        const t = e[qt].kind;
+        return "input" === t || "twoWay" === t;
+      }
+      class uM extends SS {
+        _rootLView;
+        _hasInputBindings;
+        instance;
+        hostView;
+        changeDetectorRef;
+        componentType;
+        location;
+        previousInputValues = null;
+        _tNode;
+        constructor(t, n, r) {
+          super(),
+            (this._rootLView = n),
+            (this._hasInputBindings = r),
+            (this._tNode = (function Qn(e, t) {
+              return e.data[t];
+            })(n[1], M)),
+            (this.location = cr(this._tNode, n)),
+            (this.instance = Se(this._tNode.index, n)[8]),
+            (this.hostView = this.changeDetectorRef = new wo(n, void 0)),
+            (this.componentType = t);
+        }
+        setInput(t, n) {
+          const r = this._tNode;
+          if (
+            ((this.previousInputValues ??= new Map()),
+            this.previousInputValues.has(t) &&
+              Object.is(this.previousInputValues.get(t), n))
+          )
+            return;
+          const o = this._rootLView;
+          Au(r, o[1], o, t, n),
+            this.previousInputValues.set(t, n),
+            Io(Se(r.index, o), 1);
+        }
+        get injector() {
+          return new ae(this._tNode, this._rootLView);
+        }
+        destroy() {
+          this.hostView.destroy();
+        }
+        onDestroy(t) {
+          this.hostView.onDestroy(t);
+        }
+      }
+      let mt = (() =>
+        class e {
+          static __NG_ELEMENT_ID__ = dM;
+        })();
+      function dM() {
+        return Em(O(), m());
+      }
+      const fM = mt,
+        Dm = class extends fM {
+          _lContainer;
+          _hostTNode;
+          _hostLView;
+          constructor(t, n, r) {
+            super(),
+              (this._lContainer = t),
+              (this._hostTNode = n),
+              (this._hostLView = r);
+          }
+          get element() {
+            return cr(this._hostTNode, this._hostLView);
+          }
+          get injector() {
+            return new ae(this._hostTNode, this._hostLView);
+          }
+          get parentInjector() {
+            const t = Gi(this._hostTNode, this._hostLView);
+            if (Oc(t)) {
+              const n = ao(t, this._hostLView),
+                r = so(t);
+              return new ae(n[1].data[r + 8], n);
+            }
+            return new ae(null, this._hostLView);
+          }
+          clear() {
+            for (; this.length > 0; ) this.remove(this.length - 1);
+          }
+          get(t) {
+            const n = vm(this._lContainer);
+            return (null !== n && n[t]) || null;
+          }
+          get length() {
+            return this._lContainer.length - 10;
+          }
+          createEmbeddedView(t, n, r) {
+            let o, i;
+            "number" == typeof r
+              ? (o = r)
+              : null != r && ((o = r.index), (i = r.injector));
+            const a = t.createEmbeddedViewImpl(n || {}, i, null);
+            return this.insertImpl(a, o, In(this._hostTNode, null)), a;
+          }
+          createComponent(t, n, r, o, i, s, a) {
+            const c =
+              t &&
+              !(function oo(e) {
+                return "function" == typeof e;
+              })(t);
+            let u;
+            if (c) u = n;
+            else {
+              const y = n || {};
+              (u = y.index),
+                (r = y.injector),
+                (o = y.projectableNodes),
+                (i = y.environmentInjector || y.ngModuleRef),
+                (s = y.directives),
+                (a = y.bindings);
+            }
+            const l = c ? t : new rl(V(t)),
+              d = r || this.parentInjector;
+            if (!i && null == l.ngModule) {
+              const v = (c ? d : this.parentInjector).get(We, null);
+              v && (i = v);
+            }
+            V(l.componentType ?? {});
+            const g = l.create(d, o, null, i, s, a);
+            return this.insertImpl(g.hostView, u, In(this._hostTNode, null)), g;
+          }
+          insert(t, n) {
+            return this.insertImpl(t, n, !0);
+          }
+          insertImpl(t, n, r) {
+            const o = t._lView;
+            if (
+              (function MI(e) {
+                return Te(e[3]);
+              })(o)
+            ) {
+              const a = this.indexOf(t);
+              if (-1 !== a) this.detach(a);
+              else {
+                const c = o[3],
+                  u = new Dm(c, c[5], c[3]);
+                u.detach(u.indexOf(t));
+              }
+            }
+            const i = this._adjustIndex(n),
+              s = this._lContainer;
+            return (
+              (function Dr(e, t, n, r = !0) {
+                const o = t[1];
+                if (
+                  ((function FT(e, t, n, r) {
+                    const o = 10 + r,
+                      i = n.length;
+                    r > 0 && (n[o - 1][4] = t),
+                      r < i - 10
+                        ? ((t[4] = n[o]), Df(n, 10 + r, t))
+                        : (n.push(t), (t[4] = null)),
+                      (t[3] = n);
+                    const s = t[16];
+                    null !== s && n !== s && Fg(s, t);
+                    const a = t[18];
+                    null !== a && a.insertView(e), fc(t), (t[2] |= 128);
+                  })(o, t, e, n),
+                  r)
+                ) {
+                  const s = Lu(n, e),
+                    a = t[F],
+                    c = a.parentNode(e[7]);
+                  null !== c &&
+                    (function gT(e, t, n, r, o, i) {
+                      (r[0] = o), (r[5] = t), gs(e, r, n, 1, o, i);
+                    })(o, e[5], a, t, c, s);
+                }
+                const i = t[6];
+                null !== i && null !== i.firstChild && (i.firstChild = null);
+              })(s, o, i, r),
+              t.attachToViewContainerRef(),
+              Df(ol(s), i, t),
+              t
+            );
+          }
+          move(t, n) {
+            return this.insert(t, n);
+          }
+          indexOf(t) {
+            const n = vm(this._lContainer);
+            return null !== n ? n.indexOf(t) : -1;
+          }
+          remove(t) {
+            const n = this._adjustIndex(t, -1),
+              r = Co(this._lContainer, n);
+            r && (Ti(ol(this._lContainer), n), vo(r[1], r));
+          }
+          detach(t) {
+            const n = this._adjustIndex(t, -1),
+              r = Co(this._lContainer, n);
+            return r && null != Ti(ol(this._lContainer), n) ? new wo(r) : null;
+          }
+          _adjustIndex(t, n = 0) {
+            return t ?? this.length + n;
+          }
+        };
+      function vm(e) {
+        return e[8];
+      }
+      function ol(e) {
+        return e[8] || (e[8] = []);
+      }
+      function Em(e, t) {
+        let n;
+        const r = t[e.index];
+        return (
+          Te(r)
+            ? (n = r)
+            : ((n = (function kg(e, t, n, r) {
+                return [e, !0, 0, t, null, r, null, n, null, null];
+              })(r, t, null, e)),
+              (t[e.index] = n),
+              Cu(t, n)),
+          Im(n, t, e, r),
+          new Dm(n, e, t)
+        );
+      }
+      let Im = function wm(e, t, n, r) {
+        if (e[7]) return;
+        let o;
+        (o =
+          8 & n.type
+            ? ye(r)
+            : (function hM(e, t) {
+                const n = e[F],
+                  r = n.createComment(""),
+                  o = xe(t, e),
+                  i = n.parentNode(o);
+                return En(n, i, r, n.nextSibling(o), !1), r;
+              })(t, n)),
+          (e[7] = o);
+      };
+      class sl {
+        queryList;
+        matches = null;
+        constructor(t) {
+          this.queryList = t;
+        }
+        clone() {
+          return new sl(this.queryList);
+        }
+        setDirty() {
+          this.queryList.setDirty();
+        }
+      }
+      class al {
+        queries;
+        constructor(t = []) {
+          this.queries = t;
+        }
+        createEmbeddedView(t) {
+          const n = t.queries;
+          if (null !== n) {
+            const r =
+                null !== t.contentQueries ? t.contentQueries[0] : n.length,
+              o = [];
+            for (let i = 0; i < r; i++) {
+              const s = n.getByIndex(i);
+              o.push(this.queries[s.indexInDeclarationView].clone());
+            }
+            return new al(o);
+          }
+          return null;
+        }
+        insertView(t) {
+          this.dirtyQueriesWithMatches(t);
+        }
+        detachView(t) {
+          this.dirtyQueriesWithMatches(t);
+        }
+        finishViewCreation(t) {
+          this.dirtyQueriesWithMatches(t);
+        }
+        dirtyQueriesWithMatches(t) {
+          for (let n = 0; n < this.queries.length; n++)
+            null !== fl(t, n).matches && this.queries[n].setDirty();
+        }
+      }
+      class bm {
+        flags;
+        read;
+        predicate;
+        constructor(t, n, r = null) {
+          (this.flags = n),
+            (this.read = r),
+            (this.predicate =
+              "string" == typeof t
+                ? (function vM(e) {
+                    return e.split(",").map((t) => t.trim());
+                  })(t)
+                : t);
+        }
+      }
+      class cl {
+        queries;
+        constructor(t = []) {
+          this.queries = t;
+        }
+        elementStart(t, n) {
+          for (let r = 0; r < this.queries.length; r++)
+            this.queries[r].elementStart(t, n);
+        }
+        elementEnd(t) {
+          for (let n = 0; n < this.queries.length; n++)
+            this.queries[n].elementEnd(t);
+        }
+        embeddedTView(t) {
+          let n = null;
+          for (let r = 0; r < this.length; r++) {
+            const o = null !== n ? n.length : 0,
+              i = this.getByIndex(r).embeddedTView(t, o);
+            i &&
+              ((i.indexInDeclarationView = r),
+              null !== n ? n.push(i) : (n = [i]));
+          }
+          return null !== n ? new cl(n) : null;
+        }
+        template(t, n) {
+          for (let r = 0; r < this.queries.length; r++)
+            this.queries[r].template(t, n);
+        }
+        getByIndex(t) {
+          return this.queries[t];
+        }
+        get length() {
+          return this.queries.length;
+        }
+        track(t) {
+          this.queries.push(t);
+        }
+      }
+      class ul {
+        metadata;
+        matches = null;
+        indexInDeclarationView = -1;
+        crossesNgTemplate = !1;
+        _declarationNodeIndex;
+        _appliesToNextNode = !0;
+        constructor(t, n = -1) {
+          (this.metadata = t), (this._declarationNodeIndex = n);
+        }
+        elementStart(t, n) {
+          this.isApplyingToNode(n) && this.matchTNode(t, n);
+        }
+        elementEnd(t) {
+          this._declarationNodeIndex === t.index &&
+            (this._appliesToNextNode = !1);
+        }
+        template(t, n) {
+          this.elementStart(t, n);
+        }
+        embeddedTView(t, n) {
+          return this.isApplyingToNode(t)
+            ? ((this.crossesNgTemplate = !0),
+              this.addMatch(-t.index, n),
+              new ul(this.metadata))
+            : null;
+        }
+        isApplyingToNode(t) {
+          if (this._appliesToNextNode && 1 & ~this.metadata.flags) {
+            const n = this._declarationNodeIndex;
+            let r = t.parent;
+            for (; null !== r && 8 & r.type && r.index !== n; ) r = r.parent;
+            return n === (null !== r ? r.index : -1);
+          }
+          return this._appliesToNextNode;
+        }
+        matchTNode(t, n) {
+          const r = this.metadata.predicate;
+          if (Array.isArray(r))
+            for (let o = 0; o < r.length; o++) {
+              const i = r[o];
+              this.matchTNodeWithReadOption(t, n, mM(n, i)),
+                this.matchTNodeWithReadOption(t, n, qi(n, t, i, !1, !1));
+            }
+          else
+            r === Nt
+              ? 4 & n.type && this.matchTNodeWithReadOption(t, n, -1)
+              : this.matchTNodeWithReadOption(t, n, qi(n, t, r, !1, !1));
+        }
+        matchTNodeWithReadOption(t, n, r) {
+          if (null !== r) {
+            const o = this.metadata.read;
+            if (null !== o)
+              if (o === ur || o === mt || (o === Nt && 4 & n.type))
+                this.addMatch(n.index, -2);
+              else {
+                const i = qi(n, t, o, !1, !1);
+                null !== i && this.addMatch(n.index, i);
+              }
+            else this.addMatch(n.index, r);
+          }
+        }
+        addMatch(t, n) {
+          null === this.matches
+            ? (this.matches = [t, n])
+            : this.matches.push(t, n);
+        }
+      }
+      function mM(e, t) {
+        const n = e.localNames;
+        if (null !== n)
+          for (let r = 0; r < n.length; r += 2) if (n[r] === t) return n[r + 1];
+        return null;
+      }
+      function yM(e, t, n, r) {
+        return -1 === n
+          ? (function _M(e, t) {
+              return 11 & e.type ? cr(e, t) : 4 & e.type ? _s(e, t) : null;
+            })(t, e)
+          : -2 === n
+          ? (function DM(e, t, n) {
+              return n === ur
+                ? cr(t, e)
+                : n === Nt
+                ? _s(t, e)
+                : n === mt
+                ? Em(t, e)
+                : void 0;
+            })(e, t, r)
+          : co(e, e[1], n, t);
+      }
+      function Tm(e, t, n, r) {
+        const o = t[18].queries[r];
+        if (null === o.matches) {
+          const i = e.data,
+            s = n.matches,
+            a = [];
+          for (let c = 0; null !== s && c < s.length; c += 2) {
+            const u = s[c];
+            a.push(u < 0 ? null : yM(t, i[u], s[c + 1], n.metadata.read));
+          }
+          o.matches = a;
+        }
+        return o.matches;
+      }
+      function ll(e, t, n, r) {
+        const o = e.queries.getByIndex(n),
+          i = o.matches;
+        if (null !== i) {
+          const s = Tm(e, t, o, n);
+          for (let a = 0; a < i.length; a += 2) {
+            const c = i[a];
+            if (c > 0) r.push(s[a / 2]);
+            else {
+              const u = i[a + 1],
+                l = t[-c];
+              for (let d = 10; d < l.length; d++) {
+                const h = l[d];
+                h[16] === h[3] && ll(h[1], h, u, r);
+              }
+              if (null !== l[9]) {
+                const d = l[9];
+                for (let h = 0; h < d.length; h++) {
+                  const f = d[h];
+                  ll(f[1], f, u, r);
+                }
+              }
+            }
+          }
+        }
+        return r;
+      }
+      function Mm(e, t, n) {
+        const r = R();
+        return (
+          r.firstCreatePass &&
+            ((function Am(e, t, n) {
+              null === e.queries && (e.queries = new cl()),
+                e.queries.track(new ul(t, n));
+            })(r, new bm(e, t, n), -1),
+            !(2 & ~t) && (r.staticViewQueries = !0)),
+          (function Sm(e, t, n) {
+            const r = new UC(!(4 & ~n));
+            return (
+              (function NI(e, t, n, r) {
+                const o = Bf(t);
+                o.push(n), e.firstCreatePass && Vf(e).push(r, o.length - 1);
+              })(e, t, r, r.destroy),
+              (t[18] ??= new al()).queries.push(new sl(r)) - 1
+            );
+          })(r, m(), t)
+        );
+      }
+      function fl(e, t) {
+        return e.queries.getByIndex(t);
+      }
+      function Rm(e, t) {
+        const n = e[1],
+          r = fl(n, t);
+        return r.crossesNgTemplate ? ll(n, e, t, []) : Tm(n, e, r, t);
+      }
+      const Pm = new Set();
+      let Sn = class {},
+        RM = class {};
+      class gl extends Sn {
+        ngModuleType;
+        _parent;
+        _bootstrapComponents = [];
+        _r3Injector;
+        instance;
+        destroyCbs = [];
+        componentFactoryResolver = new _m(this);
+        constructor(t, n, r, o = !0) {
+          super(), (this.ngModuleType = t), (this._parent = n);
+          const i = (function lt(e) {
+            return e[ff] || null;
+          })(t);
+          (this._bootstrapComponents = (function pt(e) {
+            return e instanceof Function ? e() : e;
+          })(i.bootstrap)),
+            (this._r3Injector = rh(
+              t,
+              n,
+              [
+                { provide: Sn, useValue: this },
+                { provide: bs, useValue: this.componentFactoryResolver },
+                ...r,
+              ],
+              De(t),
+              new Set(["environment"])
+            )),
+            o && this.resolveInjectorInitializers();
+        }
+        resolveInjectorInitializers() {
+          this._r3Injector.resolveInjectorInitializers(),
+            (this.instance = this._r3Injector.get(this.ngModuleType));
+        }
+        get injector() {
+          return this._r3Injector;
+        }
+        destroy() {
+          const t = this._r3Injector;
+          !t.destroyed && t.destroy(),
+            this.destroyCbs.forEach((n) => n()),
+            (this.destroyCbs = null);
+        }
+        onDestroy(t) {
+          this.destroyCbs.push(t);
+        }
+      }
+      class Lm extends RM {
+        moduleType;
+        constructor(t) {
+          super(), (this.moduleType = t);
+        }
+        create(t) {
+          return new gl(this.moduleType, t, []);
+        }
+      }
+      class OM extends Sn {
+        injector;
+        componentFactoryResolver = new _m(this);
+        instance = null;
+        constructor(t) {
+          super();
+          const n = new un(
+            [
+              ...t.providers,
+              { provide: Sn, useValue: this },
+              { provide: bs, useValue: this.componentFactoryResolver },
+            ],
+            t.parent || rc(),
+            t.debugName,
+            new Set(["environment"])
+          );
+          (this.injector = n),
+            t.runEnvironmentInitializers && n.resolveInjectorInitializers();
+        }
+        destroy() {
+          this.injector.destroy();
+        }
+        onDestroy(t) {
+          this.injector.onDestroy(t);
+        }
+      }
+      let FM = (() => {
+        class e {
+          _injector;
+          cachedInjectors = new Map();
+          constructor(n) {
+            this._injector = n;
+          }
+          getOrCreateStandaloneInjector(n) {
+            if (!n.standalone) return null;
+            if (!this.cachedInjectors.has(n)) {
+              const r = Ja(0, n.type),
+                o =
+                  r.length > 0
+                    ? (function jm(e, t, n = null) {
+                        return new OM({
+                          providers: e,
+                          parent: t,
+                          debugName: n,
+                          runEnvironmentInitializers: !0,
+                        }).injector;
+                      })([r], this._injector, `Standalone[${n.type.name}]`)
+                    : null;
+              this.cachedInjectors.set(n, o);
+            }
+            return this.cachedInjectors.get(n);
+          }
+          ngOnDestroy() {
+            try {
+              for (const n of this.cachedInjectors.values())
+                null !== n && n.destroy();
+            } finally {
+              this.cachedInjectors.clear();
+            }
+          }
+          static ɵprov = L({
+            token: e,
+            providedIn: "environment",
+            factory: () => new e(j(We)),
+          });
+        }
+        return e;
+      })();
+      function Po(e) {
+        return Tt(() => {
+          const t = (function Bm(e) {
+              const t = {};
+              return {
+                type: e.type,
+                providersResolver: null,
+                factory: null,
+                hostBindings: e.hostBindings || null,
+                hostVars: e.hostVars || 0,
+                hostAttrs: e.hostAttrs || null,
+                contentQueries: e.contentQueries || null,
+                declaredInputs: t,
+                inputConfig: e.inputs || ut,
+                exportAs: e.exportAs || null,
+                standalone: e.standalone ?? !0,
+                signals: !0 === e.signals,
+                selectors: e.selectors || Q,
+                viewQuery: e.viewQuery || null,
+                features: e.features || null,
+                setInput: null,
+                resolveHostDirectives: null,
+                hostDirectives: null,
+                inputs: jM(e.inputs, t),
+                outputs: BM(e.outputs),
+                debugInfo: null,
+              };
+            })(e),
+            n = {
+              ...t,
+              decls: e.decls,
+              vars: e.vars,
+              template: e.template,
+              consts: e.consts || null,
+              ngContentSelectors: e.ngContentSelectors,
+              onPush: e.changeDetection === Zi.OnPush,
+              directiveDefs: null,
+              pipeDefs: null,
+              dependencies: (t.standalone && e.dependencies) || null,
+              getStandaloneInjector: t.standalone
+                ? (o) => o.get(FM).getOrCreateStandaloneInjector(n)
+                : null,
+              getExternalStyles: null,
+              signals: e.signals ?? !1,
+              data: e.data || {},
+              encapsulation: e.encapsulation || St.Emulated,
+              styles: e.styles || Q,
+              _: null,
+              schemas: e.schemas || null,
+              tView: null,
+              id: "",
+            };
+          t.standalone &&
+            (function Ke(e) {
+              Pm.has(e) ||
+                (Pm.add(e),
+                performance?.mark?.("mark_feature_usage", {
+                  detail: { feature: e },
+                }));
+            })("NgStandalone"),
+            (function Vm(e) {
+              e.features?.forEach((t) => t(e));
+            })(n);
+          const r = e.dependencies;
+          return (
+            (n.directiveDefs = Rs(r, !1)),
+            (n.pipeDefs = Rs(r, !0)),
+            (n.id = (function HM(e) {
+              let t = 0;
+              const r = [
+                e.selectors,
+                e.ngContentSelectors,
+                e.hostVars,
+                e.hostAttrs,
+                "function" == typeof e.consts ? "" : e.consts,
+                e.vars,
+                e.decls,
+                e.encapsulation,
+                e.standalone,
+                e.signals,
+                e.exportAs,
+                JSON.stringify(e.inputs),
+                JSON.stringify(e.outputs),
+                Object.getOwnPropertyNames(e.type.prototype),
+                !!e.contentQueries,
+                !!e.viewQuery,
+              ];
+              for (const i of r.join("|"))
+                t = (Math.imul(31, t) + i.charCodeAt(0)) | 0;
+              return (t += 2147483648), "c" + t;
+            })(n)),
+            n
+          );
+        });
+      }
+      function PM(e) {
+        return V(e) || be(e);
+      }
+      function LM(e) {
+        return null !== e;
+      }
+      function Lo(e) {
+        return Tt(() => ({
+          type: e.type,
+          bootstrap: e.bootstrap || Q,
+          declarations: e.declarations || Q,
+          imports: e.imports || Q,
+          exports: e.exports || Q,
+          transitiveCompileScopes: null,
+          schemas: e.schemas || null,
+          id: e.id || null,
+        }));
+      }
+      function jM(e, t) {
+        if (null == e) return ut;
+        const n = {};
+        for (const r in e)
+          if (e.hasOwnProperty(r)) {
+            const o = e[r];
+            let i, s, a, c;
+            Array.isArray(o)
+              ? ((a = o[0]), (i = o[1]), (s = o[2] ?? i), (c = o[3] || null))
+              : ((i = o), (s = o), (a = ds.None), (c = null)),
+              (n[i] = [r, a, c]),
+              (t[i] = s);
+          }
+        return n;
+      }
+      function BM(e) {
+        if (null == e) return ut;
+        const t = {};
+        for (const n in e) e.hasOwnProperty(n) && (t[e[n]] = n);
+        return t;
+      }
+      function Rs(e, t) {
+        if (!e) return null;
+        const n = t ? dt : PM;
+        return () =>
+          ("function" == typeof e ? e() : e).map((r) => n(r)).filter(LM);
+      }
+      var yl = (function (e) {
+        return (
+          (e[(e.CHANGE_DETECTION = 0)] = "CHANGE_DETECTION"),
+          (e[(e.AFTER_NEXT_RENDER = 1)] = "AFTER_NEXT_RENDER"),
+          e
+        );
+      })(yl || {});
+      const Vo = new I(""),
+        e_ = !1,
+        Wt = class iN extends $r {
+          __isAsync;
+          destroyRef = void 0;
+          pendingTasks = void 0;
+          constructor(t = !1) {
+            super(),
+              (this.__isAsync = t),
+              sc() &&
+                ((this.destroyRef = w(mn, { optional: !0 }) ?? void 0),
+                (this.pendingTasks = w(tr, { optional: !0 }) ?? void 0));
+          }
+          emit(t) {
+            const n = T(null);
+            try {
+              super.next(t);
+            } finally {
+              T(n);
+            }
+          }
+          subscribe(t, n, r) {
+            let o = t,
+              i = n || (() => null),
+              s = r;
+            if (t && "object" == typeof t) {
+              const c = t;
+              (o = c.next?.bind(c)),
+                (i = c.error?.bind(c)),
+                (s = c.complete?.bind(c));
+            }
+            this.__isAsync &&
+              ((i = this.wrapInTimeout(i)),
+              o && (o = this.wrapInTimeout(o)),
+              s && (s = this.wrapInTimeout(s)));
+            const a = super.subscribe({ next: o, error: i, complete: s });
+            return t instanceof Ge && t.add(a), a;
+          }
+          wrapInTimeout(t) {
+            return (n) => {
+              const r = this.pendingTasks?.add();
+              setTimeout(() => {
+                try {
+                  t(n);
+                } finally {
+                  void 0 !== r && this.pendingTasks?.remove(r);
+                }
+              });
+            };
+          }
+        };
+      function t_(e) {
+        let t, n;
+        function r() {
+          e = no;
+          try {
+            void 0 !== n &&
+              "function" == typeof cancelAnimationFrame &&
+              cancelAnimationFrame(n),
+              void 0 !== t && clearTimeout(t);
+          } catch {}
+        }
+        return (
+          (t = setTimeout(() => {
+            e(), r();
+          })),
+          "function" == typeof requestAnimationFrame &&
+            (n = requestAnimationFrame(() => {
+              e(), r();
+            })),
+          () => r()
+        );
+      }
+      function n_(e) {
+        return (
+          queueMicrotask(() => e()),
+          () => {
+            e = no;
+          }
+        );
+      }
+      const Dl = "isAngularZone",
+        Fs = Dl + "_ID";
+      let sN = 0;
+      class G {
+        hasPendingMacrotasks = !1;
+        hasPendingMicrotasks = !1;
+        isStable = !0;
+        onUnstable = new Wt(!1);
+        onMicrotaskEmpty = new Wt(!1);
+        onStable = new Wt(!1);
+        onError = new Wt(!1);
+        constructor(t) {
+          const {
+            enableLongStackTrace: n = !1,
+            shouldCoalesceEventChangeDetection: r = !1,
+            shouldCoalesceRunChangeDetection: o = !1,
+            scheduleInRootZone: i = e_,
+          } = t;
+          if (typeof Zone > "u") throw new E(908, !1);
+          Zone.assertZonePatched();
+          const s = this;
+          (s._nesting = 0),
+            (s._outer = s._inner = Zone.current),
+            Zone.TaskTrackingZoneSpec &&
+              (s._inner = s._inner.fork(new Zone.TaskTrackingZoneSpec())),
+            n &&
+              Zone.longStackTraceZoneSpec &&
+              (s._inner = s._inner.fork(Zone.longStackTraceZoneSpec)),
+            (s.shouldCoalesceEventChangeDetection = !o && r),
+            (s.shouldCoalesceRunChangeDetection = o),
+            (s.callbackScheduled = !1),
+            (s.scheduleInRootZone = i),
+            (function uN(e) {
+              const t = () => {
+                  !(function cN(e) {
+                    function t() {
+                      t_(() => {
+                        (e.callbackScheduled = !1),
+                          El(e),
+                          (e.isCheckStableRunning = !0),
+                          vl(e),
+                          (e.isCheckStableRunning = !1);
+                      });
+                    }
+                    e.isCheckStableRunning ||
+                      e.callbackScheduled ||
+                      ((e.callbackScheduled = !0),
+                      e.scheduleInRootZone
+                        ? Zone.root.run(() => {
+                            t();
+                          })
+                        : e._outer.run(() => {
+                            t();
+                          }),
+                      El(e));
+                  })(e);
+                },
+                n = sN++;
+              e._inner = e._inner.fork({
+                name: "angular",
+                properties: { [Dl]: !0, [Fs]: n, [Fs + n]: !0 },
+                onInvokeTask: (r, o, i, s, a, c) => {
+                  if (
+                    (function lN(e) {
+                      return i_(e, "__ignore_ng_zone__");
+                    })(c)
+                  )
+                    return r.invokeTask(i, s, a, c);
+                  try {
+                    return r_(e), r.invokeTask(i, s, a, c);
+                  } finally {
+                    ((e.shouldCoalesceEventChangeDetection &&
+                      "eventTask" === s.type) ||
+                      e.shouldCoalesceRunChangeDetection) &&
+                      t(),
+                      o_(e);
+                  }
+                },
+                onInvoke: (r, o, i, s, a, c, u) => {
+                  try {
+                    return r_(e), r.invoke(i, s, a, c, u);
+                  } finally {
+                    e.shouldCoalesceRunChangeDetection &&
+                      !e.callbackScheduled &&
+                      !(function dN(e) {
+                        return i_(e, "__scheduler_tick__");
+                      })(c) &&
+                      t(),
+                      o_(e);
+                  }
+                },
+                onHasTask: (r, o, i, s) => {
+                  r.hasTask(i, s),
+                    o === i &&
+                      ("microTask" == s.change
+                        ? ((e._hasPendingMicrotasks = s.microTask),
+                          El(e),
+                          vl(e))
+                        : "macroTask" == s.change &&
+                          (e.hasPendingMacrotasks = s.macroTask));
+                },
+                onHandleError: (r, o, i, s) => (
+                  r.handleError(i, s),
+                  e.runOutsideAngular(() => e.onError.emit(s)),
+                  !1
+                ),
+              });
+            })(s);
+        }
+        static isInAngularZone() {
+          return typeof Zone < "u" && !0 === Zone.current.get(Dl);
+        }
+        static assertInAngularZone() {
+          if (!G.isInAngularZone()) throw new E(909, !1);
+        }
+        static assertNotInAngularZone() {
+          if (G.isInAngularZone()) throw new E(909, !1);
+        }
+        run(t, n, r) {
+          return this._inner.run(t, n, r);
+        }
+        runTask(t, n, r, o) {
+          const i = this._inner,
+            s = i.scheduleEventTask("NgZoneEvent: " + o, t, aN, no, no);
+          try {
+            return i.runTask(s, n, r);
+          } finally {
+            i.cancelTask(s);
+          }
+        }
+        runGuarded(t, n, r) {
+          return this._inner.runGuarded(t, n, r);
+        }
+        runOutsideAngular(t) {
+          return this._outer.run(t);
+        }
+      }
+      const aN = {};
+      function vl(e) {
+        if (0 == e._nesting && !e.hasPendingMicrotasks && !e.isStable)
+          try {
+            e._nesting++, e.onMicrotaskEmpty.emit(null);
+          } finally {
+            if ((e._nesting--, !e.hasPendingMicrotasks))
+              try {
+                e.runOutsideAngular(() => e.onStable.emit(null));
+              } finally {
+                e.isStable = !0;
+              }
+          }
+      }
+      function El(e) {
+        e.hasPendingMicrotasks = !!(
+          e._hasPendingMicrotasks ||
+          ((e.shouldCoalesceEventChangeDetection ||
+            e.shouldCoalesceRunChangeDetection) &&
+            !0 === e.callbackScheduled)
+        );
+      }
+      function r_(e) {
+        e._nesting++,
+          e.isStable && ((e.isStable = !1), e.onUnstable.emit(null));
+      }
+      function o_(e) {
+        e._nesting--, vl(e);
+      }
+      class Il {
+        hasPendingMicrotasks = !1;
+        hasPendingMacrotasks = !1;
+        isStable = !0;
+        onUnstable = new Wt();
+        onMicrotaskEmpty = new Wt();
+        onStable = new Wt();
+        onError = new Wt();
+        run(t, n, r) {
+          return t.apply(n, r);
+        }
+        runGuarded(t, n, r) {
+          return t.apply(n, r);
+        }
+        runOutsideAngular(t) {
+          return t();
+        }
+        runTask(t, n, r, o) {
+          return t.apply(n, r);
+        }
+      }
+      function i_(e, t) {
+        return !(!Array.isArray(e) || 1 !== e.length) && !0 === e[0]?.data?.[t];
+      }
+      let s_ = (() => {
+        class e {
+          impl = null;
+          execute() {
+            this.impl?.execute();
+          }
+          static ɵprov = L({
+            token: e,
+            providedIn: "root",
+            factory: () => new e(),
+          });
+        }
+        return e;
+      })();
+      const A_ = new I(""),
+        Vs = new I("");
+      let Rl,
+        Nl = (() => {
+          class e {
+            _ngZone;
+            registry;
+            _isZoneStable = !0;
+            _callbacks = [];
+            _taskTrackingZone = null;
+            _destroyRef;
+            constructor(n, r, o) {
+              (this._ngZone = n),
+                (this.registry = r),
+                sc() && (this._destroyRef = w(mn, { optional: !0 }) ?? void 0),
+                Rl ||
+                  ((function E0(e) {
+                    Rl = e;
+                  })(o),
+                  o.addToWindow(r)),
+                this._watchAngularEvents(),
+                n.run(() => {
+                  this._taskTrackingZone =
+                    typeof Zone > "u"
+                      ? null
+                      : Zone.current.get("TaskTrackingZone");
+                });
+            }
+            _watchAngularEvents() {
+              const n = this._ngZone.onUnstable.subscribe({
+                  next: () => {
+                    this._isZoneStable = !1;
+                  },
+                }),
+                r = this._ngZone.runOutsideAngular(() =>
+                  this._ngZone.onStable.subscribe({
+                    next: () => {
+                      G.assertNotInAngularZone(),
+                        queueMicrotask(() => {
+                          (this._isZoneStable = !0),
+                            this._runCallbacksIfReady();
+                        });
+                    },
+                  })
+                );
+              this._destroyRef?.onDestroy(() => {
+                n.unsubscribe(), r.unsubscribe();
+              });
+            }
+            isStable() {
+              return this._isZoneStable && !this._ngZone.hasPendingMacrotasks;
+            }
+            _runCallbacksIfReady() {
+              if (this.isStable())
+                queueMicrotask(() => {
+                  for (; 0 !== this._callbacks.length; ) {
+                    let n = this._callbacks.pop();
+                    clearTimeout(n.timeoutId), n.doneCb();
+                  }
+                });
+              else {
+                let n = this.getPendingTasks();
+                this._callbacks = this._callbacks.filter(
+                  (r) =>
+                    !r.updateCb ||
+                    !r.updateCb(n) ||
+                    (clearTimeout(r.timeoutId), !1)
+                );
+              }
+            }
+            getPendingTasks() {
+              return this._taskTrackingZone
+                ? this._taskTrackingZone.macroTasks.map((n) => ({
+                    source: n.source,
+                    creationLocation: n.creationLocation,
+                    data: n.data,
+                  }))
+                : [];
+            }
+            addCallback(n, r, o) {
+              let i = -1;
+              r &&
+                r > 0 &&
+                (i = setTimeout(() => {
+                  (this._callbacks = this._callbacks.filter(
+                    (s) => s.timeoutId !== i
+                  )),
+                    n();
+                }, r)),
+                this._callbacks.push({ doneCb: n, timeoutId: i, updateCb: o });
+            }
+            whenStable(n, r, o) {
+              if (o && !this._taskTrackingZone)
+                throw new Error(
+                  'Task tracking zone is required when passing an update callback to whenStable(). Is "zone.js/plugins/task-tracking" loaded?'
+                );
+              this.addCallback(n, r, o), this._runCallbacksIfReady();
+            }
+            registerApplication(n) {
+              this.registry.registerApplication(n, this);
+            }
+            unregisterApplication(n) {
+              this.registry.unregisterApplication(n);
+            }
+            findProviders(n, r, o) {
+              return [];
+            }
+            static ɵfac = function (r) {
+              return new (r || e)(j(G), j(Al), j(Vs));
+            };
+            static ɵprov = L({ token: e, factory: e.ɵfac });
+          }
+          return e;
+        })(),
+        Al = (() => {
+          class e {
+            _applications = new Map();
+            registerApplication(n, r) {
+              this._applications.set(n, r);
+            }
+            unregisterApplication(n) {
+              this._applications.delete(n);
+            }
+            unregisterAllApplications() {
+              this._applications.clear();
+            }
+            getTestability(n) {
+              return this._applications.get(n) || null;
+            }
+            getAllTestabilities() {
+              return Array.from(this._applications.values());
+            }
+            getAllRootElements() {
+              return Array.from(this._applications.keys());
+            }
+            findTestabilityInTree(n, r = !0) {
+              return Rl?.findTestabilityInTree(this, n, r) ?? null;
+            }
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵprov = L({
+              token: e,
+              factory: e.ɵfac,
+              providedIn: "platform",
+            });
+          }
+          return e;
+        })();
+      function xl(e) {
+        return !!e && "function" == typeof e.then;
+      }
+      function R_(e) {
+        return !!e && "function" == typeof e.subscribe;
+      }
+      const x_ = new I("");
+      let k_ = (() => {
+        class e {
+          resolve;
+          reject;
+          initialized = !1;
+          done = !1;
+          donePromise = new Promise((n, r) => {
+            (this.resolve = n), (this.reject = r);
+          });
+          appInits = w(x_, { optional: !0 }) ?? [];
+          injector = w(rt);
+          constructor() {}
+          runInitializers() {
+            if (this.initialized) return;
+            const n = [];
+            for (const o of this.appInits) {
+              const i = Nf(this.injector, o);
+              if (xl(i)) n.push(i);
+              else if (R_(i)) {
+                const s = new Promise((a, c) => {
+                  i.subscribe({ complete: a, error: c });
+                });
+                n.push(s);
+              }
+            }
+            const r = () => {
+              (this.done = !0), this.resolve();
+            };
+            Promise.all(n)
+              .then(() => {
+                r();
+              })
+              .catch((o) => {
+                this.reject(o);
+              }),
+              0 === n.length && r(),
+              (this.initialized = !0);
+          }
+          static ɵfac = function (r) {
+            return new (r || e)();
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac, providedIn: "root" });
+        }
+        return e;
+      })();
+      const I0 = new I("");
+      function O_(e, t) {
+        return Array.isArray(t) ? t.reduce(O_, e) : { ...e, ...t };
+      }
+      let Rn = (() => {
+        class e {
+          _runningTick = !1;
+          _destroyed = !1;
+          _destroyListeners = [];
+          _views = [];
+          internalErrorHandler = w(bt);
+          afterRenderManager = w(s_);
+          zonelessEnabled = w(ch);
+          rootEffectScheduler = w(fh);
+          dirtyFlags = 0;
+          tracingSnapshot = null;
+          allTestViews = new Set();
+          autoDetectTestViews = new Set();
+          includeAllTestViews = !1;
+          afterTick = new $r();
+          get allViews() {
+            return [
+              ...(this.includeAllTestViews
+                ? this.allTestViews
+                : this.autoDetectTestViews
+              ).keys(),
+              ...this._views,
+            ];
+          }
+          get destroyed() {
+            return this._destroyed;
+          }
+          componentTypes = [];
+          components = [];
+          internalPendingTask = w(tr);
+          get isStable() {
+            return this.internalPendingTask.hasPendingTasksObservable.pipe(
+              nC((n) => !n)
+            );
+          }
+          constructor() {
+            w(Vo, { optional: !0 });
+          }
+          whenStable() {
+            let n;
+            return new Promise((r) => {
+              n = this.isStable.subscribe({
+                next: (o) => {
+                  o && r();
+                },
+              });
+            }).finally(() => {
+              n.unsubscribe();
+            });
+          }
+          _injector = w(We);
+          _rendererFactory = null;
+          get injector() {
+            return this._injector;
+          }
+          bootstrap(n, r) {
+            return this.bootstrapImpl(n, r);
+          }
+          bootstrapImpl(n, r, o = rt.NULL) {
+            return this._injector.get(G).run(() => {
+              U(10);
+              const s = n instanceof sm;
+              if (!this._injector.get(k_).done) throw new E(405, "");
+              let c;
+              (c = s ? n : this._injector.get(bs).resolveComponentFactory(n)),
+                this.componentTypes.push(c.componentType);
+              const u = (function w0(e) {
+                  return e.isBoundToModule;
+                })(c)
+                  ? void 0
+                  : this._injector.get(Sn),
+                d = c.create(o, [], r || c.selector, u),
+                h = d.location.nativeElement,
+                f = d.injector.get(A_, null);
+              return (
+                f?.registerApplication(h),
+                d.onDestroy(() => {
+                  this.detachView(d.hostView),
+                    Hs(this.components, d),
+                    f?.unregisterApplication(h);
+                }),
+                this._loadComponent(d),
+                U(11, d),
+                d
+              );
+            });
+          }
+          tick() {
+            this.zonelessEnabled || (this.dirtyFlags |= 1), this._tick();
+          }
+          _tick() {
+            U(12),
+              null !== this.tracingSnapshot
+                ? this.tracingSnapshot.run(yl.CHANGE_DETECTION, this.tickImpl)
+                : this.tickImpl();
+          }
+          tickImpl = () => {
+            if (this._runningTick) throw new E(101, !1);
+            const n = T(null);
+            try {
+              (this._runningTick = !0), this.synchronize();
+            } finally {
+              (this._runningTick = !1),
+                this.tracingSnapshot?.dispose(),
+                (this.tracingSnapshot = null),
+                T(n),
+                this.afterTick.next(),
+                U(13);
+            }
+          };
+          synchronize() {
+            null === this._rendererFactory &&
+              !this._injector.destroyed &&
+              (this._rendererFactory = this._injector.get(Ku, null, {
+                optional: !0,
+              }));
+            let n = 0;
+            for (; 0 !== this.dirtyFlags && n++ < 10; )
+              U(14), this.synchronizeOnce(), U(15);
+          }
+          synchronizeOnce() {
+            16 & this.dirtyFlags &&
+              ((this.dirtyFlags &= -17), this.rootEffectScheduler.flush());
+            let n = !1;
+            if (7 & this.dirtyFlags) {
+              const r = !!(1 & this.dirtyFlags);
+              (this.dirtyFlags &= -8), (this.dirtyFlags |= 8);
+              for (let { _lView: o } of this.allViews)
+                (r || Pi(o)) &&
+                  (ms(o, r && !this.zonelessEnabled ? 0 : 1), (n = !0));
+              if (
+                ((this.dirtyFlags &= -5),
+                this.syncDirtyFlagsWithViews(),
+                23 & this.dirtyFlags)
+              )
+                return;
+            }
+            n ||
+              (this._rendererFactory?.begin?.(),
+              this._rendererFactory?.end?.()),
+              8 & this.dirtyFlags &&
+                ((this.dirtyFlags &= -9), this.afterRenderManager.execute()),
+              this.syncDirtyFlagsWithViews();
+          }
+          syncDirtyFlagsWithViews() {
+            this.allViews.some(({ _lView: n }) => Pi(n))
+              ? (this.dirtyFlags |= 2)
+              : (this.dirtyFlags &= -8);
+          }
+          attachView(n) {
+            const r = n;
+            this._views.push(r), r.attachToAppRef(this);
+          }
+          detachView(n) {
+            const r = n;
+            Hs(this._views, r), r.detachFromAppRef();
+          }
+          _loadComponent(n) {
+            this.attachView(n.hostView);
+            try {
+              this.tick();
+            } catch (o) {
+              this.internalErrorHandler(o);
+            }
+            this.components.push(n),
+              this._injector.get(I0, []).forEach((o) => o(n));
+          }
+          ngOnDestroy() {
+            if (!this._destroyed)
+              try {
+                this._destroyListeners.forEach((n) => n()),
+                  this._views.slice().forEach((n) => n.destroy());
+              } finally {
+                (this._destroyed = !0),
+                  (this._views = []),
+                  (this._destroyListeners = []);
+              }
+          }
+          onDestroy(n) {
+            return (
+              this._destroyListeners.push(n),
+              () => Hs(this._destroyListeners, n)
+            );
+          }
+          destroy() {
+            if (this._destroyed) throw new E(406, !1);
+            const n = this._injector;
+            n.destroy && !n.destroyed && n.destroy();
+          }
+          get viewCount() {
+            return this._views.length;
+          }
+          static ɵfac = function (r) {
+            return new (r || e)();
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac, providedIn: "root" });
+        }
+        return e;
+      })();
+      function Hs(e, t) {
+        const n = e.indexOf(t);
+        n > -1 && e.splice(n, 1);
+      }
+      function Hl(e, t, n, r, o) {
+        Au(t, e, n, o ? "class" : "style", r);
+      }
+      function de(e, t, n, r) {
+        const o = m(),
+          i = R(),
+          s = M + e,
+          a = o[F],
+          c = i.firstCreatePass
+            ? hm(
+                s,
+                i,
+                o,
+                t,
+                Su,
+                (function mc() {
+                  return S.bindingsEnabled;
+                })(),
+                n,
+                r
+              )
+            : i.data[s],
+          u = Z_(i, o, c, a, t, e);
+        o[s] = u;
+        const l = Oi(c);
+        return (
+          nt(c, !0),
+          cg(a, u, c),
+          !Cn(c) && eo() && ps(i, o, u, c),
+          (0 ===
+            (function AI() {
+              return S.lFrame.elementDepthCount;
+            })() ||
+            l) &&
+            Fe(u, o),
+          (function RI() {
+            S.lFrame.elementDepthCount++;
+          })(),
+          l && (fs(i, o, c), lu(i, c, o)),
+          null !== r &&
+            (function wu(e, t, n = xe) {
+              const r = t.localNames;
+              if (null !== r) {
+                let o = t.index + 1;
+                for (let i = 0; i < r.length; i += 2) {
+                  const s = r[i + 1],
+                    a = -1 === s ? n(t, e) : e[s];
+                  e[o++] = a;
+                }
+              }
+            })(o, c),
+          de
+        );
+      }
+      function W() {
+        let e = O();
+        _c()
+          ? (function yc() {
+              S.lFrame.isParent = !1;
+            })()
+          : ((e = e.parent), nt(e, !1));
+        const t = e;
+        (function kI(e) {
+          return S.skipHydrationRootTNode === e;
+        })(t) &&
+          (function PI() {
+            S.skipHydrationRootTNode = null;
+          })(),
+          (function xI() {
+            S.lFrame.elementDepthCount--;
+          })();
+        const n = R();
+        return (
+          n.firstCreatePass && pm(n, t),
+          null != t.classesWithoutHost &&
+            (function IC(e) {
+              return !!(8 & e.flags);
+            })(t) &&
+            Hl(n, t, m(), t.classesWithoutHost, !0),
+          null != t.stylesWithoutHost &&
+            (function CC(e) {
+              return !!(16 & e.flags);
+            })(t) &&
+            Hl(n, t, m(), t.stylesWithoutHost, !1),
+          W
+        );
+      }
+      function zo(e, t, n, r) {
+        return de(e, t, n, r), W(), zo;
+      }
+      let Z_ = (e, t, n, r, o, i) => (
+        to(!0),
+        cs(
+          r,
+          o,
+          (function qI() {
+            return S.lFrame.currentNamespace;
+          })()
+        )
+      );
+      const Us = "en-US";
+      let ny = Us;
+      function Ws(e, t, n) {
+        const r = m(),
+          o = R(),
+          i = O();
+        return (
+          (function ql(e, t, n, r, o, i, s) {
+            let a = !0,
+              c = null;
+            if (
+              ((3 & r.type || s) &&
+                ((c ??= Ns(r, t, i)),
+                (function WS(e, t, n, r, o, i, s, a) {
+                  const c = Oi(e);
+                  let u = !1,
+                    l = null;
+                  if (
+                    (!r &&
+                      c &&
+                      (l = (function ZS(e, t, n, r) {
+                        const o = e.cleanup;
+                        if (null != o)
+                          for (let i = 0; i < o.length - 1; i += 2) {
+                            const s = o[i];
+                            if (s === n && o[i + 1] === r) {
+                              const a = t[7],
+                                c = o[i + 2];
+                              return a && a.length > c ? a[c] : null;
+                            }
+                            "string" == typeof s && (i += 2);
+                          }
+                        return null;
+                      })(t, n, i, e.index)),
+                    null !== l)
+                  )
+                    ((l.__ngLastListenerFn__ || l).__ngNextListenerFn__ = s),
+                      (l.__ngLastListenerFn__ = s),
+                      (u = !0);
+                  else {
+                    const d = xe(e, n),
+                      h = r ? r(d) : d,
+                      f = o.listen(h, i, a);
+                    mm(
+                      r ? (g) => r(ye(g[e.index])) : e.index,
+                      t,
+                      n,
+                      i,
+                      a,
+                      f,
+                      !1
+                    );
+                  }
+                  return u;
+                })(r, e, t, s, n, o, i, c) && (a = !1)),
+              a)
+            ) {
+              const u = r.outputs?.[o],
+                l = r.hostDirectiveOutputs?.[o];
+              if (l && l.length)
+                for (let d = 0; d < l.length; d += 2) {
+                  const h = l[d],
+                    f = l[d + 1];
+                  (c ??= Ns(r, t, i)), As(r, t, h, f, o, c);
+                }
+              if (u && u.length)
+                for (const d of u) (c ??= Ns(r, t, i)), As(r, t, d, o, o, c);
+            }
+          })(o, r, r[F], i, e, t, n),
+          Ws
+        );
+      }
+      function Wl(e, t, n) {
+        Mm(e, t, n);
+      }
+      function Zl(e) {
+        const t = m(),
+          n = R(),
+          r = Ec();
+        Bi(r + 1);
+        const o = fl(n, r);
+        if (
+          e.dirty &&
+          (function SI(e) {
+            return !(4 & ~e[2]);
+          })(t) === !(2 & ~o.metadata.flags)
+        ) {
+          if (null === o.matches) e.reset([]);
+          else {
+            const i = Rm(t, r);
+            e.reset(i, Vh), e.notifyOnChanges();
+          }
+          return !0;
+        }
+        return !1;
+      }
+      function Yl() {
+        return (function dl(e, t) {
+          return e[18].queries[t].queryList;
+        })(m(), Ec());
+      }
+      function te(e, t = "") {
+        const n = m(),
+          r = R(),
+          o = e + M,
+          i = r.firstCreatePass ? vr(r, o, 1, t, null) : r.data[o],
+          s = jy(r, n, i, t, e);
+        (n[o] = s), eo() && ps(r, n, s, i), nt(i, !1);
+      }
+      let jy = (e, t, n, r, o) => (
+        to(!0),
+        (function Du(e, t) {
+          return e.createText(t);
+        })(t[F], r)
+      );
+      function Vy(e, t, n, r = "") {
+        return (function ee(e, t, n) {
+          return n !== $ && !Object.is(e[t], n) && ((e[t] = n), !0);
+        })(
+          e,
+          (function Ue() {
+            return S.lFrame.bindingIndex++;
+          })(),
+          n
+        )
+          ? t + N(n) + r
+          : $;
+      }
+      function Or(e, t, n) {
+        const r = m(),
+          o = Vy(r, e, t, n);
+        return (
+          o !== $ &&
+            (function At(e, t, n) {
+              const r = (function Yn(e, t) {
+                return ye(t[e]);
+              })(t, e);
+              !(function og(e, t, n) {
+                e.setValue(t, n);
+              })(e[F], r, n);
+            })(r, ve(), o),
+          Or
+        );
+      }
+      let ck = (() => {
+        class e {
+          zone = w(G);
+          changeDetectionScheduler = w(er);
+          applicationRef = w(Rn);
+          applicationErrorHandler = w(bt);
+          _onMicrotaskEmptySubscription;
+          initialize() {
+            this._onMicrotaskEmptySubscription ||
+              (this._onMicrotaskEmptySubscription =
+                this.zone.onMicrotaskEmpty.subscribe({
+                  next: () => {
+                    this.changeDetectionScheduler.runningTick ||
+                      this.zone.run(() => {
+                        try {
+                          (this.applicationRef.dirtyFlags |= 1),
+                            this.applicationRef._tick();
+                        } catch (n) {
+                          this.applicationErrorHandler(n);
+                        }
+                      });
+                  },
+                }));
+          }
+          ngOnDestroy() {
+            this._onMicrotaskEmptySubscription?.unsubscribe();
+          }
+          static ɵfac = function (r) {
+            return new (r || e)();
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac, providedIn: "root" });
+        }
+        return e;
+      })();
+      function RD({
+        ngZoneFactory: e,
+        ignoreChangesOutsideZone: t,
+        scheduleInRootZone: n,
+      }) {
+        return (
+          (e ??= () => new G({ ...cd(), scheduleInRootZone: n })),
+          [
+            { provide: G, useFactory: e },
+            {
+              provide: cn,
+              multi: !0,
+              useFactory: () => {
+                const r = w(ck, { optional: !0 });
+                return () => r.initialize();
+              },
+            },
+            {
+              provide: cn,
+              multi: !0,
+              useFactory: () => {
+                const r = w(lk);
+                return () => {
+                  r.initialize();
+                };
+              },
+            },
+            !0 === t ? { provide: uh, useValue: !0 } : [],
+            { provide: lh, useValue: n ?? e_ },
+            {
+              provide: bt,
+              useFactory: () => {
+                const r = w(G),
+                  o = w(We);
+                let i;
+                return (s) => {
+                  r.runOutsideAngular(() => {
+                    o.destroyed && !i
+                      ? setTimeout(() => {
+                          throw s;
+                        })
+                      : ((i ??= o.get(Xn)), i.handleError(s));
+                  });
+                };
+              },
+            },
+          ]
+        );
+      }
+      function cd(e) {
+        return {
+          enableLongStackTrace: !1,
+          shouldCoalesceEventChangeDetection: e?.eventCoalescing ?? !1,
+          shouldCoalesceRunChangeDetection: e?.runCoalescing ?? !1,
+        };
+      }
+      let lk = (() => {
+          class e {
+            subscription = new Ge();
+            initialized = !1;
+            zone = w(G);
+            pendingTasks = w(tr);
+            initialize() {
+              if (this.initialized) return;
+              this.initialized = !0;
+              let n = null;
+              !this.zone.isStable &&
+                !this.zone.hasPendingMacrotasks &&
+                !this.zone.hasPendingMicrotasks &&
+                (n = this.pendingTasks.add()),
+                this.zone.runOutsideAngular(() => {
+                  this.subscription.add(
+                    this.zone.onStable.subscribe(() => {
+                      G.assertNotInAngularZone(),
+                        queueMicrotask(() => {
+                          null !== n &&
+                            !this.zone.hasPendingMacrotasks &&
+                            !this.zone.hasPendingMicrotasks &&
+                            (this.pendingTasks.remove(n), (n = null));
+                        });
+                    })
+                  );
+                }),
+                this.subscription.add(
+                  this.zone.onUnstable.subscribe(() => {
+                    G.assertInAngularZone(), (n ??= this.pendingTasks.add());
+                  })
+                );
+            }
+            ngOnDestroy() {
+              this.subscription.unsubscribe();
+            }
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵprov = L({ token: e, factory: e.ɵfac, providedIn: "root" });
+          }
+          return e;
+        })(),
+        OD = (() => {
+          class e {
+            applicationErrorHandler = w(bt);
+            appRef = w(Rn);
+            taskService = w(tr);
+            ngZone = w(G);
+            zonelessEnabled = w(ch);
+            tracing = w(Vo, { optional: !0 });
+            disableScheduling = w(uh, { optional: !0 }) ?? !1;
+            zoneIsDefined = typeof Zone < "u" && !!Zone.root.run;
+            schedulerTickApplyArgs = [{ data: { __scheduler_tick__: !0 } }];
+            subscriptions = new Ge();
+            angularZoneId = this.zoneIsDefined
+              ? this.ngZone._inner?.get(Fs)
+              : null;
+            scheduleInRootZone =
+              !this.zonelessEnabled &&
+              this.zoneIsDefined &&
+              (w(lh, { optional: !0 }) ?? !1);
+            cancelScheduledCallback = null;
+            useMicrotaskScheduler = !1;
+            runningTick = !1;
+            pendingRenderTaskId = null;
+            constructor() {
+              this.subscriptions.add(
+                this.appRef.afterTick.subscribe(() => {
+                  this.runningTick || this.cleanup();
+                })
+              ),
+                this.subscriptions.add(
+                  this.ngZone.onUnstable.subscribe(() => {
+                    this.runningTick || this.cleanup();
+                  })
+                ),
+                (this.disableScheduling ||=
+                  !this.zonelessEnabled &&
+                  (this.ngZone instanceof Il || !this.zoneIsDefined));
+            }
+            notify(n) {
+              if (!this.zonelessEnabled && 5 === n) return;
+              let r = !1;
+              switch (n) {
+                case 0:
+                  this.appRef.dirtyFlags |= 2;
+                  break;
+                case 3:
+                case 2:
+                case 4:
+                case 5:
+                case 1:
+                  this.appRef.dirtyFlags |= 4;
+                  break;
+                case 6:
+                case 13:
+                  (this.appRef.dirtyFlags |= 2), (r = !0);
+                  break;
+                case 12:
+                  (this.appRef.dirtyFlags |= 16), (r = !0);
+                  break;
+                case 11:
+                  r = !0;
+                  break;
+                default:
+                  this.appRef.dirtyFlags |= 8;
+              }
+              if (
+                ((this.appRef.tracingSnapshot =
+                  this.tracing?.snapshot(this.appRef.tracingSnapshot) ?? null),
+                !this.shouldScheduleTick(r))
+              )
+                return;
+              const o = this.useMicrotaskScheduler ? n_ : t_;
+              (this.pendingRenderTaskId = this.taskService.add()),
+                (this.cancelScheduledCallback = this.scheduleInRootZone
+                  ? Zone.root.run(() => o(() => this.tick()))
+                  : this.ngZone.runOutsideAngular(() => o(() => this.tick())));
+            }
+            shouldScheduleTick(n) {
+              return !(
+                (this.disableScheduling && !n) ||
+                this.appRef.destroyed ||
+                null !== this.pendingRenderTaskId ||
+                this.runningTick ||
+                this.appRef._runningTick ||
+                (!this.zonelessEnabled &&
+                  this.zoneIsDefined &&
+                  Zone.current.get(Fs + this.angularZoneId))
+              );
+            }
+            tick() {
+              if (this.runningTick || this.appRef.destroyed) return;
+              if (0 === this.appRef.dirtyFlags) return void this.cleanup();
+              !this.zonelessEnabled &&
+                7 & this.appRef.dirtyFlags &&
+                (this.appRef.dirtyFlags |= 1);
+              const n = this.taskService.add();
+              try {
+                this.ngZone.run(
+                  () => {
+                    (this.runningTick = !0), this.appRef._tick();
+                  },
+                  void 0,
+                  this.schedulerTickApplyArgs
+                );
+              } catch (r) {
+                this.taskService.remove(n), this.applicationErrorHandler(r);
+              } finally {
+                this.cleanup();
+              }
+              (this.useMicrotaskScheduler = !0),
+                n_(() => {
+                  (this.useMicrotaskScheduler = !1), this.taskService.remove(n);
+                });
+            }
+            ngOnDestroy() {
+              this.subscriptions.unsubscribe(), this.cleanup();
+            }
+            cleanup() {
+              if (
+                ((this.runningTick = !1),
+                this.cancelScheduledCallback?.(),
+                (this.cancelScheduledCallback = null),
+                null !== this.pendingRenderTaskId)
+              ) {
+                const n = this.pendingRenderTaskId;
+                (this.pendingRenderTaskId = null), this.taskService.remove(n);
+              }
+            }
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵprov = L({ token: e, factory: e.ɵfac, providedIn: "root" });
+          }
+          return e;
+        })();
+      const Kt = new I("", {
+        providedIn: "root",
+        factory: () =>
+          w(Kt, { optional: !0, skipSelf: !0 }) ||
+          (function dk() {
+            return (typeof $localize < "u" && $localize.locale) || Us;
+          })(),
+      });
+      new I("").__NG_ELEMENT_ID__ = (e) => {
+        const t = O();
+        if (null === t) throw new E(204, !1);
+        if (2 & t.type) return t.value;
+        if (8 & e) return null;
+        throw new E(204, !1);
+      };
+      const na = new I(""),
+        wk = new I("");
+      function ei(e) {
+        return !e.moduleRef;
+      }
+      let qD;
+      function WD() {
+        qD = bk;
+      }
+      function bk(e, t) {
+        const n = e.injector.get(Rn);
+        if (e._bootstrapComponents.length > 0)
+          e._bootstrapComponents.forEach((r) => n.bootstrap(r));
+        else {
+          if (!e.instance.ngDoBootstrap) throw new E(-403, !1);
+          e.instance.ngDoBootstrap(n);
+        }
+        t.push(e);
+      }
+      let ZD = (() => {
+          class e {
+            _injector;
+            _modules = [];
+            _destroyListeners = [];
+            _destroyed = !1;
+            constructor(n) {
+              this._injector = n;
+            }
+            bootstrapModuleFactory(n, r) {
+              const o = r?.scheduleInRootZone,
+                s = r?.ignoreChangesOutsideZone,
+                a = [
+                  RD({
+                    ngZoneFactory: () =>
+                      (function fN(e = "zone.js", t) {
+                        return "noop" === e
+                          ? new Il()
+                          : "zone.js" === e
+                          ? new G(t)
+                          : e;
+                      })(r?.ngZone, {
+                        ...cd({
+                          eventCoalescing: r?.ngZoneEventCoalescing,
+                          runCoalescing: r?.ngZoneRunCoalescing,
+                        }),
+                        scheduleInRootZone: o,
+                      }),
+                    ignoreChangesOutsideZone: s,
+                  }),
+                  { provide: er, useExisting: OD },
+                  ZI,
+                ],
+                c = (function kM(e, t, n) {
+                  return new gl(e, t, n, !1);
+                })(n.moduleType, this.injector, a);
+              return (
+                WD(),
+                (function GD(e) {
+                  const t = ei(e) ? e.r3Injector : e.moduleRef.injector,
+                    n = t.get(G);
+                  return n.run(() => {
+                    ei(e)
+                      ? e.r3Injector.resolveInjectorInitializers()
+                      : e.moduleRef.resolveInjectorInitializers();
+                    const r = t.get(bt);
+                    let o;
+                    if (
+                      (n.runOutsideAngular(() => {
+                        o = n.onError.subscribe({ next: r });
+                      }),
+                      ei(e))
+                    ) {
+                      const i = () => t.destroy(),
+                        s = e.platformInjector.get(na);
+                      s.add(i),
+                        t.onDestroy(() => {
+                          o.unsubscribe(), s.delete(i);
+                        });
+                    } else {
+                      const i = () => e.moduleRef.destroy(),
+                        s = e.platformInjector.get(na);
+                      s.add(i),
+                        e.moduleRef.onDestroy(() => {
+                          Hs(e.allPlatformModules, e.moduleRef),
+                            o.unsubscribe(),
+                            s.delete(i);
+                        });
+                    }
+                    return (function Tk(e, t, n) {
+                      try {
+                        const r = n();
+                        return xl(r)
+                          ? r.catch((o) => {
+                              throw (t.runOutsideAngular(() => e(o)), o);
+                            })
+                          : r;
+                      } catch (r) {
+                        throw (t.runOutsideAngular(() => e(r)), r);
+                      }
+                    })(r, n, () => {
+                      const i = t.get(k_);
+                      return (
+                        i.runInitializers(),
+                        i.donePromise.then(() => {
+                          if (
+                            ((function NA(e) {
+                              "string" == typeof e &&
+                                (ny = e.toLowerCase().replace(/_/g, "-"));
+                            })(t.get(Kt, Us) || Us),
+                            !t.get(wk, !0))
+                          )
+                            return ei(e)
+                              ? t.get(Rn)
+                              : (e.allPlatformModules.push(e.moduleRef),
+                                e.moduleRef);
+                          if (ei(e)) {
+                            const c = t.get(Rn);
+                            return (
+                              void 0 !== e.rootComponent &&
+                                c.bootstrap(e.rootComponent),
+                              c
+                            );
+                          }
+                          return (
+                            qD?.(e.moduleRef, e.allPlatformModules), e.moduleRef
+                          );
+                        })
+                      );
+                    });
+                  });
+                })({
+                  moduleRef: c,
+                  allPlatformModules: this._modules,
+                  platformInjector: this.injector,
+                })
+              );
+            }
+            bootstrapModule(n, r = []) {
+              const o = O_({}, r);
+              return (
+                WD(),
+                (function vk(e, t, n) {
+                  const r = new Lm(n);
+                  return Promise.resolve(r);
+                })(0, 0, n).then((i) => this.bootstrapModuleFactory(i, o))
+              );
+            }
+            onDestroy(n) {
+              this._destroyListeners.push(n);
+            }
+            get injector() {
+              return this._injector;
+            }
+            destroy() {
+              if (this._destroyed) throw new E(404, !1);
+              this._modules.slice().forEach((r) => r.destroy()),
+                this._destroyListeners.forEach((r) => r());
+              const n = this._injector.get(na, null);
+              n && (n.forEach((r) => r()), n.clear()), (this._destroyed = !0);
+            }
+            get destroyed() {
+              return this._destroyed;
+            }
+            static ɵfac = function (r) {
+              return new (r || e)(j(rt));
+            };
+            static ɵprov = L({
+              token: e,
+              factory: e.ɵfac,
+              providedIn: "platform",
+            });
+          }
+          return e;
+        })(),
+        Jt = null;
+      const YD = new I("");
+      function QD(e, t, n = []) {
+        const r = `Platform: ${t}`,
+          o = new I(r);
+        return (i = []) => {
+          let s = hd();
+          if (!s || s.injector.get(YD, !1)) {
+            const a = [...n, ...i, { provide: o, useValue: !0 }];
+            e
+              ? e(a)
+              : (function Sk(e) {
+                  if (Jt && !Jt.get(YD, !1)) throw new E(400, !1);
+                  (function C0() {
+                    !(function CE(e) {
+                      Kd = e;
+                    })(() => {
+                      throw new E(600, "");
+                    });
+                  })(),
+                    (Jt = e);
+                  const t = e.get(ZD);
+                  (function JD(e) {
+                    const t = e.get(sp, null);
+                    Nf(e, () => {
+                      t?.forEach((n) => n());
+                    });
+                  })(e);
+                })(
+                  (function KD(e = [], t) {
+                    return rt.create({
+                      name: t,
+                      providers: [
+                        { provide: tc, useValue: "platform" },
+                        { provide: na, useValue: new Set([() => (Jt = null)]) },
+                        ...e,
+                      ],
+                    });
+                  })(a, r)
+                );
+          }
+          return (function Mk() {
+            const t = hd();
+            if (!t) throw new E(401, !1);
+            return t;
+          })();
+        };
+      }
+      function hd() {
+        return Jt?.get(ZD) ?? null;
+      }
+      const Hk = QD(null, "core", []);
+      let $k = (() => {
+        class e {
+          constructor(n) {}
+          static ɵfac = function (r) {
+            return new (r || e)(j(Rn));
+          };
+          static ɵmod = Lo({ type: e });
+          static ɵinj = $n({});
+        }
+        return e;
+      })();
+      let vv = null;
+      function _d() {
+        return vv;
+      }
+      class gO {}
+      Error, Error;
+      let S1 = (() => {
+        class e {
+          static ɵfac = function (r) {
+            return new (r || e)();
+          };
+          static ɵmod = Lo({ type: e });
+          static ɵinj = $n({});
+        }
+        return e;
+      })();
+      const Pd = new I("");
+      let Xv = (() => {
+        class e {
+          _zone;
+          _plugins;
+          _eventNameToPlugin = new Map();
+          constructor(n, r) {
+            (this._zone = r),
+              n.forEach((o) => {
+                o.manager = this;
+              }),
+              (this._plugins = n.slice().reverse());
+          }
+          addEventListener(n, r, o, i) {
+            return this._findPluginFor(r).addEventListener(n, r, o, i);
+          }
+          getZone() {
+            return this._zone;
+          }
+          _findPluginFor(n) {
+            let r = this._eventNameToPlugin.get(n);
+            if (r) return r;
+            if (((r = this._plugins.find((i) => i.supports(n))), !r))
+              throw new E(5101, !1);
+            return this._eventNameToPlugin.set(n, r), r;
+          }
+          static ɵfac = function (r) {
+            return new (r || e)(j(Pd), j(G));
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac });
+        }
+        return e;
+      })();
+      class eE {
+        _doc;
+        constructor(t) {
+          this._doc = t;
+        }
+        manager;
+      }
+      const Ia = "ng-app-id";
+      function tE(e) {
+        for (const t of e) t.remove();
+      }
+      function nE(e, t) {
+        const n = t.createElement("style");
+        return (n.textContent = e), n;
+      }
+      function Ld(e, t) {
+        const n = t.createElement("link");
+        return (
+          n.setAttribute("rel", "stylesheet"), n.setAttribute("href", e), n
+        );
+      }
+      let rE = (() => {
+        class e {
+          doc;
+          appId;
+          nonce;
+          inline = new Map();
+          external = new Map();
+          hosts = new Set();
+          isServer;
+          constructor(n, r, o, i = {}) {
+            (this.doc = n),
+              (this.appId = r),
+              (this.nonce = o),
+              (this.isServer = (function EO(e) {
+                return "server" === e;
+              })(i)),
+              (function M1(e, t, n, r) {
+                const o = e.head?.querySelectorAll(
+                  `style[${Ia}="${t}"],link[${Ia}="${t}"]`
+                );
+                if (o)
+                  for (const i of o)
+                    i.removeAttribute(Ia),
+                      i instanceof HTMLLinkElement
+                        ? r.set(i.href.slice(i.href.lastIndexOf("/") + 1), {
+                            usage: 0,
+                            elements: [i],
+                          })
+                        : i.textContent &&
+                          n.set(i.textContent, { usage: 0, elements: [i] });
+              })(n, r, this.inline, this.external),
+              this.hosts.add(n.head);
+          }
+          addStyles(n, r) {
+            for (const o of n) this.addUsage(o, this.inline, nE);
+            r?.forEach((o) => this.addUsage(o, this.external, Ld));
+          }
+          removeStyles(n, r) {
+            for (const o of n) this.removeUsage(o, this.inline);
+            r?.forEach((o) => this.removeUsage(o, this.external));
+          }
+          addUsage(n, r, o) {
+            const i = r.get(n);
+            i
+              ? i.usage++
+              : r.set(n, {
+                  usage: 1,
+                  elements: [...this.hosts].map((s) =>
+                    this.addElement(s, o(n, this.doc))
+                  ),
+                });
+          }
+          removeUsage(n, r) {
+            const o = r.get(n);
+            o && (o.usage--, o.usage <= 0 && (tE(o.elements), r.delete(n)));
+          }
+          ngOnDestroy() {
+            for (const [, { elements: n }] of [
+              ...this.inline,
+              ...this.external,
+            ])
+              tE(n);
+            this.hosts.clear();
+          }
+          addHost(n) {
+            this.hosts.add(n);
+            for (const [r, { elements: o }] of this.inline)
+              o.push(this.addElement(n, nE(r, this.doc)));
+            for (const [r, { elements: o }] of this.external)
+              o.push(this.addElement(n, Ld(r, this.doc)));
+          }
+          removeHost(n) {
+            this.hosts.delete(n);
+          }
+          addElement(n, r) {
+            return (
+              this.nonce && r.setAttribute("nonce", this.nonce),
+              this.isServer && r.setAttribute(Ia, this.appId),
+              n.appendChild(r)
+            );
+          }
+          static ɵfac = function (r) {
+            return new (r || e)(j(Vt), j(Ki), j(ap, 8), j(qc));
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac });
+        }
+        return e;
+      })();
+      const jd = {
+          svg: "http://www.w3.org/2000/svg",
+          xhtml: "http://www.w3.org/1999/xhtml",
+          xlink: "http://www.w3.org/1999/xlink",
+          xml: "http://www.w3.org/XML/1998/namespace",
+          xmlns: "http://www.w3.org/2000/xmlns/",
+          math: "http://www.w3.org/1998/Math/MathML",
+        },
+        Bd = /%COMP%/g,
+        O1 = new I("", { providedIn: "root", factory: () => !0 });
+      function iE(e, t) {
+        return t.map((n) => n.replace(Bd, e));
+      }
+      let sE = (() => {
+        class e {
+          eventManager;
+          sharedStylesHost;
+          appId;
+          removeStylesOnCompDestroy;
+          doc;
+          platformId;
+          ngZone;
+          nonce;
+          tracingService;
+          rendererByCompId = new Map();
+          defaultRenderer;
+          platformIsServer;
+          constructor(n, r, o, i, s, a, c, u = null, l = null) {
+            (this.eventManager = n),
+              (this.sharedStylesHost = r),
+              (this.appId = o),
+              (this.removeStylesOnCompDestroy = i),
+              (this.doc = s),
+              (this.platformId = a),
+              (this.ngZone = c),
+              (this.nonce = u),
+              (this.tracingService = l),
+              (this.platformIsServer = !1),
+              (this.defaultRenderer = new Vd(
+                n,
+                s,
+                c,
+                this.platformIsServer,
+                this.tracingService
+              ));
+          }
+          createRenderer(n, r) {
+            if (!n || !r) return this.defaultRenderer;
+            const o = this.getOrCreateRenderer(n, r);
+            return (
+              o instanceof cE
+                ? o.applyToHost(n)
+                : o instanceof Hd && o.applyStyles(),
+              o
+            );
+          }
+          getOrCreateRenderer(n, r) {
+            const o = this.rendererByCompId;
+            let i = o.get(r.id);
+            if (!i) {
+              const s = this.doc,
+                a = this.ngZone,
+                c = this.eventManager,
+                u = this.sharedStylesHost,
+                l = this.removeStylesOnCompDestroy,
+                d = this.platformIsServer,
+                h = this.tracingService;
+              switch (r.encapsulation) {
+                case St.Emulated:
+                  i = new cE(c, u, r, this.appId, l, s, a, d, h);
+                  break;
+                case St.ShadowDom:
+                  return new j1(c, u, n, r, s, a, this.nonce, d, h);
+                default:
+                  i = new Hd(c, u, r, l, s, a, d, h);
+              }
+              o.set(r.id, i);
+            }
+            return i;
+          }
+          ngOnDestroy() {
+            this.rendererByCompId.clear();
+          }
+          componentReplaced(n) {
+            this.rendererByCompId.delete(n);
+          }
+          static ɵfac = function (r) {
+            return new (r || e)(
+              j(Xv),
+              j(rE),
+              j(Ki),
+              j(O1),
+              j(Vt),
+              j(qc),
+              j(G),
+              j(ap),
+              j(Vo, 8)
+            );
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac });
+        }
+        return e;
+      })();
+      class Vd {
+        eventManager;
+        doc;
+        ngZone;
+        platformIsServer;
+        tracingService;
+        data = Object.create(null);
+        throwOnSyntheticProps = !0;
+        constructor(t, n, r, o, i) {
+          (this.eventManager = t),
+            (this.doc = n),
+            (this.ngZone = r),
+            (this.platformIsServer = o),
+            (this.tracingService = i);
+        }
+        destroy() {}
+        destroyNode = null;
+        createElement(t, n) {
+          return n
+            ? this.doc.createElementNS(jd[n] || n, t)
+            : this.doc.createElement(t);
+        }
+        createComment(t) {
+          return this.doc.createComment(t);
+        }
+        createText(t) {
+          return this.doc.createTextNode(t);
+        }
+        appendChild(t, n) {
+          (aE(t) ? t.content : t).appendChild(n);
+        }
+        insertBefore(t, n, r) {
+          t && (aE(t) ? t.content : t).insertBefore(n, r);
+        }
+        removeChild(t, n) {
+          n.remove();
+        }
+        selectRootElement(t, n) {
+          let r = "string" == typeof t ? this.doc.querySelector(t) : t;
+          if (!r) throw new E(-5104, !1);
+          return n || (r.textContent = ""), r;
+        }
+        parentNode(t) {
+          return t.parentNode;
+        }
+        nextSibling(t) {
+          return t.nextSibling;
+        }
+        setAttribute(t, n, r, o) {
+          if (o) {
+            n = o + ":" + n;
+            const i = jd[o];
+            i ? t.setAttributeNS(i, n, r) : t.setAttribute(n, r);
+          } else t.setAttribute(n, r);
+        }
+        removeAttribute(t, n, r) {
+          if (r) {
+            const o = jd[r];
+            o ? t.removeAttributeNS(o, n) : t.removeAttribute(`${r}:${n}`);
+          } else t.removeAttribute(n);
+        }
+        addClass(t, n) {
+          t.classList.add(n);
+        }
+        removeClass(t, n) {
+          t.classList.remove(n);
+        }
+        setStyle(t, n, r, o) {
+          o & (zt.DashCase | zt.Important)
+            ? t.style.setProperty(n, r, o & zt.Important ? "important" : "")
+            : (t.style[n] = r);
+        }
+        removeStyle(t, n, r) {
+          r & zt.DashCase ? t.style.removeProperty(n) : (t.style[n] = "");
+        }
+        setProperty(t, n, r) {
+          null != t && (t[n] = r);
+        }
+        setValue(t, n) {
+          t.nodeValue = n;
+        }
+        listen(t, n, r, o) {
+          if (
+            "string" == typeof t &&
+            !(t = _d().getGlobalEventTarget(this.doc, t))
+          )
+            throw new E(5102, !1);
+          let i = this.decoratePreventDefault(r);
+          return (
+            this.tracingService?.wrapEventListener &&
+              (i = this.tracingService.wrapEventListener(t, n, i)),
+            this.eventManager.addEventListener(t, n, i, o)
+          );
+        }
+        decoratePreventDefault(t) {
+          return (n) => {
+            if ("__ngUnwrap__" === n) return t;
+            !1 === t(n) && n.preventDefault();
+          };
+        }
+      }
+      function aE(e) {
+        return "TEMPLATE" === e.tagName && void 0 !== e.content;
+      }
+      class j1 extends Vd {
+        sharedStylesHost;
+        hostEl;
+        shadowRoot;
+        constructor(t, n, r, o, i, s, a, c, u) {
+          super(t, i, s, c, u),
+            (this.sharedStylesHost = n),
+            (this.hostEl = r),
+            (this.shadowRoot = r.attachShadow({ mode: "open" })),
+            this.sharedStylesHost.addHost(this.shadowRoot);
+          let l = o.styles;
+          l = iE(o.id, l);
+          for (const h of l) {
+            const f = document.createElement("style");
+            a && f.setAttribute("nonce", a),
+              (f.textContent = h),
+              this.shadowRoot.appendChild(f);
+          }
+          const d = o.getExternalStyles?.();
+          if (d)
+            for (const h of d) {
+              const f = Ld(h, i);
+              a && f.setAttribute("nonce", a), this.shadowRoot.appendChild(f);
+            }
+        }
+        nodeOrShadowRoot(t) {
+          return t === this.hostEl ? this.shadowRoot : t;
+        }
+        appendChild(t, n) {
+          return super.appendChild(this.nodeOrShadowRoot(t), n);
+        }
+        insertBefore(t, n, r) {
+          return super.insertBefore(this.nodeOrShadowRoot(t), n, r);
+        }
+        removeChild(t, n) {
+          return super.removeChild(null, n);
+        }
+        parentNode(t) {
+          return this.nodeOrShadowRoot(
+            super.parentNode(this.nodeOrShadowRoot(t))
+          );
+        }
+        destroy() {
+          this.sharedStylesHost.removeHost(this.shadowRoot);
+        }
+      }
+      class Hd extends Vd {
+        sharedStylesHost;
+        removeStylesOnCompDestroy;
+        styles;
+        styleUrls;
+        constructor(t, n, r, o, i, s, a, c, u) {
+          super(t, i, s, a, c),
+            (this.sharedStylesHost = n),
+            (this.removeStylesOnCompDestroy = o);
+          let l = r.styles;
+          (this.styles = u ? iE(u, l) : l),
+            (this.styleUrls = r.getExternalStyles?.(u));
+        }
+        applyStyles() {
+          this.sharedStylesHost.addStyles(this.styles, this.styleUrls);
+        }
+        destroy() {
+          this.removeStylesOnCompDestroy &&
+            this.sharedStylesHost.removeStyles(this.styles, this.styleUrls);
+        }
+      }
+      class cE extends Hd {
+        contentAttr;
+        hostAttr;
+        constructor(t, n, r, o, i, s, a, c, u) {
+          const l = o + "-" + r.id;
+          super(t, n, r, i, s, a, c, u, l),
+            (this.contentAttr = (function F1(e) {
+              return "_ngcontent-%COMP%".replace(Bd, e);
+            })(l)),
+            (this.hostAttr = (function P1(e) {
+              return "_nghost-%COMP%".replace(Bd, e);
+            })(l));
+        }
+        applyToHost(t) {
+          this.applyStyles(), this.setAttribute(t, this.hostAttr, "");
+        }
+        createElement(t, n) {
+          const r = super.createElement(t, n);
+          return super.setAttribute(r, this.contentAttr, ""), r;
+        }
+      }
+      class $d extends gO {
+        supportsDOMEvents = !0;
+        static makeCurrent() {
+          !(function pO(e) {
+            vv ??= e;
+          })(new $d());
+        }
+        onAndCancel(t, n, r, o) {
+          return (
+            t.addEventListener(n, r, o),
+            () => {
+              t.removeEventListener(n, r, o);
+            }
+          );
+        }
+        dispatchEvent(t, n) {
+          t.dispatchEvent(n);
+        }
+        remove(t) {
+          t.remove();
+        }
+        createElement(t, n) {
+          return (n = n || this.getDefaultDocument()).createElement(t);
+        }
+        createHtmlDocument() {
+          return document.implementation.createHTMLDocument("fakeTitle");
+        }
+        getDefaultDocument() {
+          return document;
+        }
+        isElementNode(t) {
+          return t.nodeType === Node.ELEMENT_NODE;
+        }
+        isShadowRoot(t) {
+          return t instanceof DocumentFragment;
+        }
+        getGlobalEventTarget(t, n) {
+          return "window" === n
+            ? window
+            : "document" === n
+            ? t
+            : "body" === n
+            ? t.body
+            : null;
+        }
+        getBaseHref(t) {
+          const n = (function B1() {
+            return (
+              (ai = ai || document.head.querySelector("base")),
+              ai ? ai.getAttribute("href") : null
+            );
+          })();
+          return null == n
+            ? null
+            : (function V1(e) {
+                return new URL(e, document.baseURI).pathname;
+              })(n);
+        }
+        resetBaseElement() {
+          ai = null;
+        }
+        getUserAgent() {
+          return window.navigator.userAgent;
+        }
+        getCookie(t) {
+          return (function yO(e, t) {
+            t = encodeURIComponent(t);
+            for (const n of e.split(";")) {
+              const r = n.indexOf("="),
+                [o, i] = -1 == r ? [n, ""] : [n.slice(0, r), n.slice(r + 1)];
+              if (o.trim() === t) return decodeURIComponent(i);
+            }
+            return null;
+          })(document.cookie, t);
+        }
+      }
+      let ai = null,
+        $1 = (() => {
+          class e {
+            build() {
+              return new XMLHttpRequest();
+            }
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵprov = L({ token: e, factory: e.ɵfac });
+          }
+          return e;
+        })(),
+        U1 = (() => {
+          class e extends eE {
+            constructor(n) {
+              super(n);
+            }
+            supports(n) {
+              return !0;
+            }
+            addEventListener(n, r, o, i) {
+              return (
+                n.addEventListener(r, o, i),
+                () => this.removeEventListener(n, r, o, i)
+              );
+            }
+            removeEventListener(n, r, o, i) {
+              return n.removeEventListener(r, o, i);
+            }
+            static ɵfac = function (r) {
+              return new (r || e)(j(Vt));
+            };
+            static ɵprov = L({ token: e, factory: e.ɵfac });
+          }
+          return e;
+        })();
+      const uE = ["alt", "control", "meta", "shift"],
+        z1 = {
+          "\b": "Backspace",
+          "\t": "Tab",
+          "\x7f": "Delete",
+          "\x1b": "Escape",
+          Del: "Delete",
+          Esc: "Escape",
+          Left: "ArrowLeft",
+          Right: "ArrowRight",
+          Up: "ArrowUp",
+          Down: "ArrowDown",
+          Menu: "ContextMenu",
+          Scroll: "ScrollLock",
+          Win: "OS",
+        },
+        G1 = {
+          alt: (e) => e.altKey,
+          control: (e) => e.ctrlKey,
+          meta: (e) => e.metaKey,
+          shift: (e) => e.shiftKey,
+        };
+      let q1 = (() => {
+        class e extends eE {
+          constructor(n) {
+            super(n);
+          }
+          supports(n) {
+            return null != e.parseEventName(n);
+          }
+          addEventListener(n, r, o, i) {
+            const s = e.parseEventName(r),
+              a = e.eventCallback(s.fullKey, o, this.manager.getZone());
+            return this.manager
+              .getZone()
+              .runOutsideAngular(() =>
+                _d().onAndCancel(n, s.domEventName, a, i)
+              );
+          }
+          static parseEventName(n) {
+            const r = n.toLowerCase().split("."),
+              o = r.shift();
+            if (0 === r.length || ("keydown" !== o && "keyup" !== o))
+              return null;
+            const i = e._normalizeKey(r.pop());
+            let s = "",
+              a = r.indexOf("code");
+            if (
+              (a > -1 && (r.splice(a, 1), (s = "code.")),
+              uE.forEach((u) => {
+                const l = r.indexOf(u);
+                l > -1 && (r.splice(l, 1), (s += u + "."));
+              }),
+              (s += i),
+              0 != r.length || 0 === i.length)
+            )
+              return null;
+            const c = {};
+            return (c.domEventName = o), (c.fullKey = s), c;
+          }
+          static matchEventFullKeyCode(n, r) {
+            let o = z1[n.key] || n.key,
+              i = "";
+            return (
+              r.indexOf("code.") > -1 && ((o = n.code), (i = "code.")),
+              !(null == o || !o) &&
+                ((o = o.toLowerCase()),
+                " " === o ? (o = "space") : "." === o && (o = "dot"),
+                uE.forEach((s) => {
+                  s !== o && (0, G1[s])(n) && (i += s + ".");
+                }),
+                (i += o),
+                i === r)
+            );
+          }
+          static eventCallback(n, r, o) {
+            return (i) => {
+              e.matchEventFullKeyCode(i, n) && o.runGuarded(() => r(i));
+            };
+          }
+          static _normalizeKey(n) {
+            return "esc" === n ? "escape" : n;
+          }
+          static ɵfac = function (r) {
+            return new (r || e)(j(Vt));
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac });
+        }
+        return e;
+      })();
+      const Q1 = QD(Hk, "browser", [
+          { provide: qc, useValue: "browser" },
+          {
+            provide: sp,
+            useValue: function W1() {
+              $d.makeCurrent();
+            },
+            multi: !0,
+          },
+          {
+            provide: Vt,
+            useFactory: function Y1() {
+              return (
+                (function gw(e) {
+                  Gc = e;
+                })(document),
+                document
+              );
+            },
+          },
+        ]),
+        fE = [
+          {
+            provide: Vs,
+            useClass: class H1 {
+              addToWindow(t) {
+                (oe.getAngularTestability = (r, o = !0) => {
+                  const i = t.findTestabilityInTree(r, o);
+                  if (null == i) throw new E(5103, !1);
+                  return i;
+                }),
+                  (oe.getAllAngularTestabilities = () =>
+                    t.getAllTestabilities()),
+                  (oe.getAllAngularRootElements = () => t.getAllRootElements()),
+                  oe.frameworkStabilizers || (oe.frameworkStabilizers = []),
+                  oe.frameworkStabilizers.push((r) => {
+                    const o = oe.getAllAngularTestabilities();
+                    let i = o.length;
+                    const s = function () {
+                      i--, 0 == i && r();
+                    };
+                    o.forEach((a) => {
+                      a.whenStable(s);
+                    });
+                  });
+              }
+              findTestabilityInTree(t, n, r) {
+                return null == n
+                  ? null
+                  : t.getTestability(n) ??
+                      (r
+                        ? _d().isShadowRoot(n)
+                          ? this.findTestabilityInTree(t, n.host, !0)
+                          : this.findTestabilityInTree(t, n.parentElement, !0)
+                        : null);
+              }
+            },
+          },
+          { provide: A_, useClass: Nl, deps: [G, Al, Vs] },
+          { provide: Nl, useClass: Nl, deps: [G, Al, Vs] },
+        ],
+        hE = [
+          { provide: tc, useValue: "root" },
+          {
+            provide: Xn,
+            useFactory: function Z1() {
+              return new Xn();
+            },
+          },
+          { provide: Pd, useClass: U1, multi: !0, deps: [Vt] },
+          { provide: Pd, useClass: q1, multi: !0, deps: [Vt] },
+          sE,
+          rE,
+          Xv,
+          { provide: Ku, useExisting: sE },
+          { provide: class DO {}, useClass: $1 },
+          [],
+        ];
+      let K1 = (() => {
+        class e {
+          constructor() {}
+          static ɵfac = function (r) {
+            return new (r || e)();
+          };
+          static ɵmod = Lo({ type: e });
+          static ɵinj = $n({ providers: [...hE, ...fE], imports: [S1, $k] });
+        }
+        return e;
+      })();
+      const zd = [
+          "none",
+          "cyan",
+          "blue",
+          "orange",
+          "yellow",
+          "green",
+          "purple",
+          "red",
+        ],
+        J1 = [
+          [],
+          [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+          ],
+          [
+            [2, 0, 0],
+            [2, 2, 2],
+            [0, 0, 0],
+          ],
+          [
+            [0, 0, 3],
+            [3, 3, 3],
+            [0, 0, 0],
+          ],
+          [
+            [4, 4],
+            [4, 4],
+          ],
+          [
+            [0, 5, 5],
+            [5, 5, 0],
+            [0, 0, 0],
+          ],
+          [
+            [0, 6, 0],
+            [6, 6, 6],
+            [0, 0, 0],
+          ],
+          [
+            [7, 7, 0],
+            [0, 7, 7],
+            [0, 0, 0],
+          ],
+        ];
+      let _t = (() =>
+          class e {
+            static ESC = 27;
+            static SPACE = 32;
+            static LEFT = 37;
+            static UP = 38;
+            static RIGHT = 39;
+            static DOWN = 40;
+          })(),
+        ci = (() =>
+          class e {
+            static SINGLE = 100;
+            static DOUBLE = 300;
+            static TRIPLE = 500;
+            static TETRIS = 800;
+            static SOFT_DROP = 1;
+            static HARD_DROP = 2;
+          })();
+      class gE {
+        static 0 = 800;
+        static 1 = 720;
+        static 2 = 630;
+        static 3 = 550;
+        static 4 = 470;
+        static 5 = 380;
+        static 6 = 300;
+        static 7 = 220;
+        static 8 = 130;
+        static 9 = 100;
+        static 10 = 80;
+        static 11 = 80;
+        static 12 = 80;
+        static 13 = 70;
+        static 14 = 70;
+        static 15 = 70;
+        static 16 = 50;
+        static 17 = 50;
+        static 18 = 50;
+        static 19 = 30;
+        static 20 = 30;
+      }
+      class Gd {
+        ctx;
+        x;
+        y;
+        color;
+        shape;
+        constructor(t) {
+          (this.ctx = t), this.spawn();
+        }
+        spawn() {
+          const t = this.randomizeTetrominoType(zd.length - 1);
+          (this.shape = J1[t]),
+            (this.color = zd[t]),
+            (this.x = 4 === t ? 4 : 3),
+            (this.y = 0);
+        }
+        draw() {
+          (this.ctx.fillStyle = this.color),
+            this.shape.forEach((t, n) => {
+              t.forEach((r, o) => {
+                r > 0 && this.ctx.fillRect(this.x + o, this.y + n, 1, 1);
+              });
+            });
+        }
+        drawNext(t) {
+          t.clearRect(0, 0, t.canvas.width, t.canvas.height),
+            (t.fillStyle = this.color),
+            this.shape.forEach((n, r) => {
+              n.forEach((o, i) => {
+                o > 0 && t.fillRect(i, r, 1, 1);
+              });
+            });
+        }
+        move(t) {
+          (this.x = t.x), (this.y = t.y), (this.shape = t.shape);
+        }
+        randomizeTetrominoType(t) {
+          return Math.floor(Math.random() * t + 1);
+        }
+      }
+      let X1 = (() => {
+        class e {
+          valid(n, r) {
+            return n.shape.every((o, i) =>
+              o.every((s, a) => {
+                let c = n.x + a,
+                  u = n.y + i;
+                return (
+                  this.isEmpty(s) ||
+                  (this.insideWalls(c) &&
+                    this.aboveFloor(u) &&
+                    this.notOccuppied(r, c, u))
+                );
+              })
+            );
+          }
+          isEmpty(n) {
+            return 0 === n;
+          }
+          insideWalls(n) {
+            return n >= 0 && n < 10;
+          }
+          aboveFloor(n) {
+            return n <= 20;
+          }
+          notOccuppied(n, r, o) {
+            return n[o] && 0 === n[o][r];
+          }
+          rotate(n) {
+            let r = JSON.parse(JSON.stringify(n));
+            for (let o = 0; o < r.shape.length; ++o)
+              for (let i = 0; i < o; ++i)
+                [r.shape[i][o], r.shape[o][i]] = [r.shape[o][i], r.shape[i][o]];
+            return r.shape.forEach((o) => o.reverse()), r;
+          }
+          getLinesClearedPoints(n, r) {
+            return (
+              (r + 1) *
+              (1 === n
+                ? ci.SINGLE
+                : 2 === n
+                ? ci.DOUBLE
+                : 3 === n
+                ? ci.TETRIS
+                : 0)
+            );
+          }
+          static ɵfac = function (r) {
+            return new (r || e)();
+          };
+          static ɵprov = L({ token: e, factory: e.ɵfac, providedIn: "root" });
+        }
+        return e;
+      })();
+      const eP = ["board"],
+        tP = ["next"];
+      let nP = (() => {
+          class e {
+            service;
+            canvas;
+            canvasNext;
+            ctx;
+            ctxNext;
+            board;
+            piece;
+            next;
+            requestId;
+            time;
+            points;
+            lines;
+            level;
+            moves = {
+              [_t.LEFT]: (n) => ({ ...n, x: n.x - 1 }),
+              [_t.RIGHT]: (n) => ({ ...n, x: n.x + 1 }),
+              [_t.DOWN]: (n) => ({ ...n, y: n.y + 1 }),
+              [_t.SPACE]: (n) => ({ ...n, y: n.y + 1 }),
+              [_t.UP]: (n) => this.service.rotate(n),
+            };
+            keyEvent(n) {
+              if (n.keyCode === _t.ESC) this.gameOver();
+              else if (this.moves[n.keyCode]) {
+                n.preventDefault();
+                let r = this.moves[n.keyCode](this.piece);
+                if (n.keyCode === _t.SPACE)
+                  for (; this.service.valid(r, this.board); )
+                    (this.points += ci.HARD_DROP),
+                      this.piece.move(r),
+                      (r = this.moves[_t.DOWN](this.piece));
+                else
+                  this.service.valid(r, this.board) &&
+                    (this.piece.move(r),
+                    n.keyCode === _t.DOWN && (this.points += ci.SOFT_DROP));
+              }
+            }
+            constructor(n) {
+              this.service = n;
+            }
+            ngOnInit() {
+              this.initBoard(), this.initNext(), this.resetGame();
+            }
+            initBoard() {
+              (this.ctx = this.canvas.nativeElement.getContext("2d")),
+                (this.ctx.canvas.width = 300),
+                (this.ctx.canvas.height = 600),
+                this.ctx.scale(30, 30);
+            }
+            initNext() {
+              (this.ctxNext = this.canvasNext.nativeElement.getContext("2d")),
+                (this.ctxNext.canvas.width = 120),
+                (this.ctxNext.canvas.height = 120),
+                this.ctxNext.scale(30, 30);
+            }
+            play() {
+              this.resetGame(),
+                (this.next = new Gd(this.ctx)),
+                (this.piece = new Gd(this.ctx)),
+                this.next.drawNext(this.ctxNext),
+                (this.time.start = performance.now()),
+                this.requestId && cancelAnimationFrame(this.requestId),
+                this.animate();
+            }
+            resetGame() {
+              (this.points = 0),
+                (this.lines = 0),
+                (this.level = 0),
+                (this.board = this.getEmptyBoard()),
+                (this.time = { start: 0, elapsed: 0, level: gE[this.level] });
+            }
+            animate(n = 0) {
+              (this.time.elapsed = n - this.time.start),
+                this.time.elapsed > this.time.level &&
+                ((this.time.start = n), !this.drop())
+                  ? this.gameOver()
+                  : (this.draw(),
+                    (this.requestId = requestAnimationFrame(
+                      this.animate.bind(this)
+                    )));
+            }
+            draw() {
+              this.ctx.clearRect(
+                0,
+                0,
+                this.ctx.canvas.width,
+                this.ctx.canvas.height
+              ),
+                this.piece.draw(),
+                this.drawBoard();
+            }
+            drop() {
+              let n = this.moves[_t.DOWN](this.piece);
+              if (this.service.valid(n, this.board)) this.piece.move(n);
+              else {
+                if ((this.freeze(), this.clearLines(), 0 === this.piece.y))
+                  return !1;
+                (this.piece = this.next),
+                  (this.next = new Gd(this.ctx)),
+                  this.next.drawNext(this.ctxNext);
+              }
+              return !0;
+            }
+            clearLines() {
+              let n = 0;
+              this.board.forEach((r, o) => {
+                r.every((i) => 0 !== i) &&
+                  (n++,
+                  this.board.splice(o, 1),
+                  this.board.unshift(Array(10).fill(0)));
+              }),
+                n > 0 &&
+                  ((this.points += this.service.getLinesClearedPoints(
+                    n,
+                    this.level
+                  )),
+                  (this.lines += n),
+                  this.lines >= 10 &&
+                    (this.level++,
+                    (this.lines -= 10),
+                    (this.time.level = gE[this.level])));
+            }
+            freeze() {
+              this.piece.shape.forEach((n, r) => {
+                n.forEach((o, i) => {
+                  o > 0 && (this.board[r + this.piece.y][i + this.piece.x] = o);
+                });
+              });
+            }
+            drawBoard() {
+              this.board.forEach((n, r) => {
+                n.forEach((o, i) => {
+                  o > 0 &&
+                    ((this.ctx.fillStyle = zd[o]),
+                    this.ctx.fillRect(i, r, 1, 1));
+                });
+              });
+            }
+            gameOver() {
+              cancelAnimationFrame(this.requestId),
+                (this.ctx.fillStyle = "black"),
+                this.ctx.fillRect(1, 3, 8, 1.2),
+                (this.ctx.font = "1px Arial"),
+                (this.ctx.fillStyle = "red"),
+                this.ctx.fillText("GAME OVER", 1.8, 4);
+            }
+            getEmptyBoard() {
+              return Array.from({ length: 20 }, () => Array(10).fill(0));
+            }
+            static ɵfac = function (r) {
+              return new (r || e)(P(X1));
+            };
+            static ɵcmp = Po({
+              type: e,
+              selectors: [["game-board"]],
+              viewQuery: function (r, o) {
+                if ((1 & r && (Wl(eP, 7), Wl(tP, 7)), 2 & r)) {
+                  let i;
+                  Zl((i = Yl())) && (o.canvas = i.first),
+                    Zl((i = Yl())) && (o.canvasNext = i.first);
+                }
+              },
+              hostBindings: function (r, o) {
+                1 & r &&
+                  Ws(
+                    "keydown",
+                    function (s) {
+                      return o.keyEvent(s);
+                    },
+                    Qp
+                  );
+              },
+              standalone: !1,
+              decls: 18,
+              vars: 3,
+              consts: [
+                ["board", ""],
+                ["next", ""],
+                [1, "container"],
+                [1, "grid"],
+                [1, "game-board"],
+                [1, "right-column"],
+                [1, "next"],
+                [1, "play-button", 3, "click"],
+              ],
+              template: function (r, o) {
+                if (1 & r) {
+                  const i = (function K_() {
+                    return m();
+                  })();
+                  de(0, "div", 2)(1, "div", 3),
+                    zo(2, "canvas", 4, 0),
+                    de(4, "div", 5)(5, "div")(6, "h1"),
+                    te(7, "TETRIS"),
+                    W(),
+                    de(8, "p"),
+                    te(9),
+                    W(),
+                    de(10, "p"),
+                    te(11),
+                    W(),
+                    de(12, "p"),
+                    te(13),
+                    W(),
+                    zo(14, "canvas", 6, 1),
+                    W(),
+                    de(16, "button", 7),
+                    Ws("click", function () {
+                      return (
+                        (function $f(e) {
+                          return (S.lFrame.contextLView = e), e[8];
+                        })(i),
+                        (function Uf(e) {
+                          return (S.lFrame.contextLView = null), e;
+                        })(o.play())
+                      );
+                    }),
+                    te(17, "Play Game"),
+                    W()()()();
+                }
+                2 & r &&
+                  (ls(9),
+                  Or("Score: ", o.points),
+                  ls(2),
+                  Or("Lines: ", o.lines),
+                  ls(2),
+                  Or("Level: ", o.level));
+              },
+              styles: [
+                ".container[_ngcontent-%COMP%]{box-shadow:5px 10px 18px #888;padding:15px;border-radius:15px;width:1280px;margin:0 auto;background-color:#add8e6}.grid[_ngcontent-%COMP%]{width:600px;display:grid;grid-template-columns:360px 200px;border:2px solid black;margin:0 auto;padding:10px;border-radius:15px;background-color:#ddd}.right-column[_ngcontent-%COMP%]{display:flex;flex-direction:column;justify-content:space-between}.game-board[_ngcontent-%COMP%]{border:2px solid grey;background-color:#fff}.play-button[_ngcontent-%COMP%]{border-radius:10px;box-shadow:5px 5px 5px #000;background-color:#4caf50;font-size:16px;padding:15px 30px;cursor:pointer}.play-button[_ngcontent-%COMP%]:hover{background-color:#00ca50}.next[_ngcontent-%COMP%]{border:1px solid grey}",
+              ],
+            });
+          }
+          return e;
+        })(),
+        rP = (() => {
+          class e {
+            constructor() {}
+            ngOnInit() {}
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵcmp = Po({
+              type: e,
+              selectors: [["app-info"]],
+              standalone: !1,
+              decls: 31,
+              vars: 0,
+              consts: [
+                [1, "info"],
+                [1, "keys"],
+              ],
+              template: function (r, o) {
+                1 & r &&
+                  (de(0, "div", 0)(1, "h1"),
+                  te(2, "Information"),
+                  W(),
+                  de(3, "h2"),
+                  te(4, "Keyboard Controls"),
+                  W(),
+                  de(5, "div", 1)(6, "ul")(7, "li")(8, "b"),
+                  te(9, "Move Left:"),
+                  W(),
+                  te(10, " \u2190"),
+                  W(),
+                  de(11, "li")(12, "b"),
+                  te(13, "Move Right:"),
+                  W(),
+                  te(14, " \u2192"),
+                  W(),
+                  de(15, "li")(16, "b"),
+                  te(17, "Move Down (faster):"),
+                  W(),
+                  te(18, " \u2193"),
+                  W(),
+                  de(19, "li")(20, "b"),
+                  te(21, "Rotate:"),
+                  W(),
+                  te(22, " \u2191"),
+                  W(),
+                  de(23, "li")(24, "b"),
+                  te(25, "Immediate Drop:"),
+                  W(),
+                  te(26, " Spacebar"),
+                  W(),
+                  de(27, "li")(28, "b"),
+                  te(29, "Exit Game:"),
+                  W(),
+                  te(30, " Esc"),
+                  W()()()());
+              },
+              styles: [
+                ".info[_ngcontent-%COMP%]{box-shadow:5px 10px 18px #888;padding:15px;border-radius:15px;width:1280px;margin:25px auto 0}h2[_ngcontent-%COMP%]{text-align:center}.keys[_ngcontent-%COMP%]{margin:0 auto}",
+              ],
+            });
+          }
+          return e;
+        })(),
+        oP = (() => {
+          class e {
+            constructor() {}
+            ngOnInit() {}
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵcmp = Po({
+              type: e,
+              selectors: [["app-footer"]],
+              standalone: !1,
+              decls: 13,
+              vars: 0,
+              consts: [
+                [1, "footer"],
+                [
+                  "href",
+                  "https://github.com/joeaoregan/jor-tetris",
+                  "target",
+                  "_blank",
+                ],
+                [
+                  "href",
+                  "https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7",
+                  "target",
+                  "_blank",
+                ],
+                [
+                  "href",
+                  "https://github.com/melcor76/ng-tetris",
+                  "target",
+                  "_blank",
+                ],
+              ],
+              template: function (r, o) {
+                1 & r &&
+                  (de(0, "div", 0)(1, "h2"),
+                  te(2, "Links"),
+                  W(),
+                  de(3, "ul")(4, "li")(5, "a", 1),
+                  te(6, "GitHub"),
+                  W()(),
+                  de(7, "li")(8, "a", 2),
+                  te(9, "Original Tutorial"),
+                  W()(),
+                  de(10, "li")(11, "a", 3),
+                  te(12, "Original Repo"),
+                  W()()()());
+              },
+              styles: [
+                "h2[_ngcontent-%COMP%]{text-align:center}ul[_ngcontent-%COMP%]{list-style-type:none}.footer[_ngcontent-%COMP%]{width:100%;margin-top:20px;padding:15px;height:max-content;background-color:#333;color:#fff}a[_ngcontent-%COMP%]:visited{color:#888}a[_ngcontent-%COMP%]:hover{color:#ccc}",
+              ],
+            });
+          }
+          return e;
+        })(),
+        iP = (() => {
+          class e {
+            title = "ng-tetris";
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵcmp = Po({
+              type: e,
+              selectors: [["app-root"]],
+              standalone: !1,
+              decls: 3,
+              vars: 0,
+              template: function (r, o) {
+                1 & r && zo(0, "game-board")(1, "app-info")(2, "app-footer");
+              },
+              dependencies: [nP, rP, oP],
+              encapsulation: 2,
+            });
+          }
+          return e;
+        })(),
+        sP = (() => {
+          class e {
+            static ɵfac = function (r) {
+              return new (r || e)();
+            };
+            static ɵmod = Lo({ type: e, bootstrap: [iP] });
+            static ɵinj = $n({ imports: [K1] });
+          }
+          return e;
+        })();
+      Q1()
+        .bootstrapModule(sP)
+        .catch((e) => console.error(e));
+    },
+  },
+  (jn) => {
+    jn((jn.s = 716));
+  },
+]);
