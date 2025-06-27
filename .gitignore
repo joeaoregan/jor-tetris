@@ -47,3 +47,7 @@ Thumbs.db
 
 /src/assets
 /angular-build
+
+# Render yarn warning
+
+package-lock.json
