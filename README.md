@@ -1,10 +1,14 @@
-Tetris game in Angular. [Play Web-App on Render](https://tetris-js.onrender.com/)
+Tetris game in Angular:
+
+- [Play App on Render](https://tetris-js.onrender.com/ "See App on Render")
+- [Play App on GitHub Pages](https://joeaoregan.github.io/jor-tetris/ "See App on GitHub Pages")
 
 ---
 
 # JOR Tetris
 
 ![Angular Tetris](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg "Angular Tetris")
+
 ###### Angular Tetris
 
 ---
@@ -17,7 +21,7 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production 
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production
 
 ## Dependencies
 
@@ -37,8 +41,8 @@ To deploy to Heroku the following is required in `package.json` along with the `
 
 ## links
 
-* [Play on Heroku](https://jor-tetris.herokuapp.com/)
-* [Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
+- [Play on Heroku](https://jor-tetris.herokuapp.com/)
+- [Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
 
 ---
 
