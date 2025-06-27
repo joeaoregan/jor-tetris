@@ -9,6 +9,8 @@ Tetris game in Angular:
 
 ![Angular Tetris](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg "Angular Tetris")
 
+![Server](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/server.png "Node.js Server")
+
 ###### Angular Tetris
 
 ---
