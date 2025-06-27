@@ -11,8 +11,10 @@ import { Component } from '@angular/core';
     <app-info></app-info>
     <app-footer></app-footer>
   `,
-  styles: []
+  styles: [],
+  standalone: false
 })
+
 export class AppComponent {
   title = 'ng-tetris';
 }
