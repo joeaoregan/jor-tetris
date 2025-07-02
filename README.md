@@ -1,37 +1,43 @@
+# JOR Tetris
+
 Tetris game in Angular:
 
 - [Play App on Render](https://tetris-js.onrender.com/ "See App on Render")
 - [Play App on GitHub Pages](https://joeaoregan.github.io/jor-tetris/ "See App on GitHub Pages")
 
+Only CSS added, and deployment to ~~Heroku~~ Render to test Angular app deployment.
+
 ---
 
-# JOR Tetris
+## Screenshots
 
 <details closed>
 <summary>
 <img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="100"/>
 <img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/server.png" title="Node.js Server" height="100"/>
-<p>Click for larger images.</p>
+<p>Click here for larger images, or individual thumbnails to go to raw images.</p>
 </summary>
 
 ![Angular Tetris](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg "Angular Tetris")
 
+###### Angular Tetris
+
 ![Server](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/server.png "Node.js Server")
 
+###### Server
+
 </details>
-</div>
-###### Angular Tetris
 
 ---
 
-Only CSS added, and deployment to Heroku to test Angular app deployment.
-
-## links
+## Links
 
 - ~~[Play on Heroku](https://jor-tetris.herokuapp.com/)~~ (Broken Link: I'm not paying for Heroku🤷) [Render Alternative](https://tetris-js.onrender.com/ "See App on Render")
 - [Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
 
 ---
+
+## Angular Stuff
 
 <details closed>
 <summary>Dev, Dependencies, Deploy, Build</summary>
