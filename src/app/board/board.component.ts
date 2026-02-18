@@ -29,6 +29,7 @@ import { GameService } from "../game.service";
   standalone: false,
 })
 export class BoardComponent implements OnInit {
+  isAnimating = false;
   highScore: number = 0;
   @ViewChild("board", { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
@@ -54,6 +55,8 @@ export class BoardComponent implements OnInit {
 
   @HostListener("window:keydown", ["$event"])
   keyEvent(event: KeyboardEvent) {
+    if (this.isAnimating) return;
+
     if (event.keyCode === KEY.ESC) {
       this.gameOver();
     } else if (this.moves[event.keyCode]) {
@@ -133,6 +136,12 @@ export class BoardComponent implements OnInit {
   }
 
   animate(now = 0) {
+    if (this.isAnimating) {
+      this.draw(); // Keep drawing the flash
+      this.requestId = requestAnimationFrame(this.animate.bind(this));
+      return;
+    }
+
     this.time.elapsed = now - this.time.start;
     if (this.time.elapsed > this.time.level) {
       this.time.start = now;
@@ -170,16 +179,40 @@ export class BoardComponent implements OnInit {
     return true;
   }
 
-  clearLines() {
+  async clearLines() {
     let lines = 0;
+    let linesToFlash: number[] = [];
+
+
     this.board.forEach((row, y) => {
       if (row.every((value) => value !== 0)) {
         lines++;
-        this.board.splice(y, 1);
-        this.board.unshift(Array(COLS).fill(0));
+        linesToFlash.push(y);
+        // this.board.splice(y, 1);
+        // this.board.unshift(Array(COLS).fill(0));
       }
     });
+
     if (lines > 0) {
+      this.isAnimating = true;
+
+      const originalBoard = JSON.parse(JSON.stringify(this.board));
+      linesToFlash.forEach(y => {
+        this.board[y].fill(-1); // Use -1 to represent the flash state
+      });
+    
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      linesToFlash.forEach(() => {
+        // Note: we remove one-by-one; using a filter/splice approach
+        this.board.forEach((row, y) => {
+          if (row.every(value => value === -1)) {
+            this.board.splice(y, 1);
+            this.board.unshift(Array(COLS).fill(0));
+          }
+        });
+      });
+
       this.updateScore(this.service.getLinesClearedPoints(lines, this.level));
       this.lines += lines;
 
@@ -193,6 +226,8 @@ export class BoardComponent implements OnInit {
         this.lines -= LINES_PER_LEVEL;
         this.time.level = LEVEL[this.level];
       }
+      this.isAnimating = false
+      this.time.start = performance.now();
     }
   }
 
@@ -217,9 +252,10 @@ export class BoardComponent implements OnInit {
   drawBoard() {
     this.board.forEach((row, y) => {
       row.forEach((value, x) => {
-        if (value > 0) {
-          this.ctx.fillStyle = COLORS[value];
+        if (value !== 0) { // Changed from > 0
+          this.ctx.fillStyle = value === -1 ? 'white' : COLORS[value];
           this.ctx.fillRect(x, y, 1, 1);
+
           this.ctx.strokeStyle = "#000000";
           this.ctx.lineWidth = 0.05;
           this.ctx.strokeRect(x, y, 1, 1);
