@@ -58,13 +58,16 @@ export class BoardComponent implements OnInit {
       event.preventDefault();
       // Get new state
       let p = this.moves[event.keyCode](this.piece);
+
       if (event.keyCode === KEY.SPACE) {
         // Hard drop
+        // let p = this.moves[KEY.DOWN](this.piece);
         while (this.service.valid(p, this.board)) {
           this.points += POINTS.HARD_DROP;
           this.piece.move(p);
           p = this.moves[KEY.DOWN](this.piece);
         }
+        this.drop();
       } else if (this.service.valid(p, this.board)) {
         this.piece.move(p);
         if (event.keyCode === KEY.DOWN) {
@@ -105,7 +108,7 @@ export class BoardComponent implements OnInit {
 
   play() {
     this.resetGame();
-    this.next = new Piece(this.ctx);
+    this.next = new Piece(this.ctxNext);
     this.piece = new Piece(this.ctx);
     this.next.drawNext(this.ctxNext);
     this.time.start = performance.now();
@@ -141,7 +144,7 @@ export class BoardComponent implements OnInit {
 
   draw() {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-    this.piece.draw();
+    this.piece.drawMain();
     this.drawBoard();
   }
 
@@ -157,7 +160,8 @@ export class BoardComponent implements OnInit {
         return false;
       }
       this.piece = this.next;
-      this.next = new Piece(this.ctx);
+      this.piece.setContext(this.ctx);
+      this.next = new Piece(this.ctxNext);
       this.next.drawNext(this.ctxNext);
     }
     return true;
@@ -199,6 +203,9 @@ export class BoardComponent implements OnInit {
         if (value > 0) {
           this.ctx.fillStyle = COLORS[value];
           this.ctx.fillRect(x, y, 1, 1);
+          this.ctx.strokeStyle = "#000000";
+          this.ctx.lineWidth = 0.05;
+          this.ctx.strokeRect(x, y, 1, 1);
         }
       });
     });
