@@ -15,6 +15,8 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "importHelpers": true,
     "target": "ES2022",
     "typeRoots": [
