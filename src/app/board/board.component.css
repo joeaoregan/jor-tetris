@@ -48,3 +48,10 @@
 .next {
     border: 1px solid grey;
 }
+
+.high-score {
+    color: #ffca28; /* A gold/yellow color to represent the record */
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}

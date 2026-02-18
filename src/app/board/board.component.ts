@@ -17,6 +17,7 @@ import {
   LEVEL,
   POINTS,
   KEY,
+  HIGH_SCORE_KEY,
 } from "../constants";
 import { Piece, IPiece } from "../piece.component";
 import { GameService } from "../game.service";
@@ -28,6 +29,7 @@ import { GameService } from "../game.service";
   standalone: false,
 })
 export class BoardComponent implements OnInit {
+  highScore: number = 0;
   @ViewChild("board", { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild("next", { static: true })
@@ -63,7 +65,7 @@ export class BoardComponent implements OnInit {
         // Hard drop
         // let p = this.moves[KEY.DOWN](this.piece);
         while (this.service.valid(p, this.board)) {
-          this.points += POINTS.HARD_DROP;
+          this.updateScore(POINTS.HARD_DROP);
           this.piece.move(p);
           p = this.moves[KEY.DOWN](this.piece);
         }
@@ -71,7 +73,7 @@ export class BoardComponent implements OnInit {
       } else if (this.service.valid(p, this.board)) {
         this.piece.move(p);
         if (event.keyCode === KEY.DOWN) {
-          this.points += POINTS.SOFT_DROP;
+          this.updateScore(POINTS.SOFT_DROP);
         }
       }
     }
@@ -83,6 +85,7 @@ export class BoardComponent implements OnInit {
     this.initBoard();
     this.initNext();
     this.resetGame();
+    this.highScore = Number(localStorage.getItem(HIGH_SCORE_KEY)) || 0;
   }
 
   initBoard() {
@@ -177,13 +180,27 @@ export class BoardComponent implements OnInit {
       }
     });
     if (lines > 0) {
-      this.points += this.service.getLinesClearedPoints(lines, this.level);
+      this.updateScore(this.service.getLinesClearedPoints(lines, this.level));
       this.lines += lines;
+
+      // Check if we beat the high score
+      if (this.points > this.highScore) {
+        this.highScore = this.points;
+        localStorage.setItem(HIGH_SCORE_KEY, this.highScore.toString());
+      }
       if (this.lines >= LINES_PER_LEVEL) {
         this.level++;
         this.lines -= LINES_PER_LEVEL;
         this.time.level = LEVEL[this.level];
       }
+    }
+  }
+
+  updateScore(pointsToAdd: number) {
+    this.points += pointsToAdd;
+    if (this.points > this.highScore) {
+      this.highScore = this.points;
+      localStorage.setItem(HIGH_SCORE_KEY, this.highScore.toString());
     }
   }
 
