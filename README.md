@@ -17,7 +17,10 @@ Tetris game in Angular:
 
 ## Video
 
-[![App Demo](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg height=200)](https://youtu.be/xD_03mSvV3s)
+
+<a href="https://youtu.be/xD_03mSvV3s"><img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="150"/></a>
+
+[https://youtu.be/xD_03mSvV3s](https://youtu.be/xD_03mSvV3s)
 
 ## Screenshots
 
