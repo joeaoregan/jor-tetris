@@ -188,23 +188,30 @@ export class BoardComponent implements OnInit {
       if (row.every((value) => value !== 0)) {
         lines++;
         linesToFlash.push(y);
-        // this.board.splice(y, 1);
-        // this.board.unshift(Array(COLS).fill(0));
       }
     });
 
     if (lines > 0) {
       this.isAnimating = true;
 
+      const originalValues = linesToFlash.map(y => [...this.board[y]]);
+
       const originalBoard = JSON.parse(JSON.stringify(this.board));
-      linesToFlash.forEach(y => {
-        this.board[y].fill(-1); // Use -1 to represent the flash state
+      // linesToFlash.forEach(y => {
+      //   this.board[y].fill(-1); // Use -1 to represent the flash state
+      // });
+      linesToFlash.forEach(y => this.board[y].fill(-1));
+      await new Promise(resolve => setTimeout(resolve, 200));
+      linesToFlash.forEach((y, index) => {
+        this.board[y] = [...originalValues[index]];
       });
-    
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // FLASH 2: Turn white again
+      linesToFlash.forEach(y => this.board[y].fill(-1));
       await new Promise(resolve => setTimeout(resolve, 200));
 
       linesToFlash.forEach(() => {
-        // Note: we remove one-by-one; using a filter/splice approach
         this.board.forEach((row, y) => {
           if (row.every(value => value === -1)) {
             this.board.splice(y, 1);
