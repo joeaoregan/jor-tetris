@@ -5,7 +5,13 @@ Tetris game in Angular:
 - [Play App on Render](https://tetris-js.onrender.com/ "See App on Render")
 - [Play App on GitHub Pages](https://joeaoregan.github.io/jor-tetris/ "See App on GitHub Pages")
 
-Only CSS added, and deployment to ~~Heroku~~ Render to test Angular app deployment.
+- CSS added
+- Deployment to Render to test Angular app deployment.
+- Dependencies updated
+- Angular version updated
+- Added borders to Tetromino pieces
+- High Score
+- Flash when lines complete / cleared
 
 ---
 
@@ -32,7 +38,7 @@ Only CSS added, and deployment to ~~Heroku~~ Render to test Angular app deployme
 
 ## Links
 
-- ~~[Play on Heroku](https://jor-tetris.herokuapp.com/)~~ (Broken Link: I'm not paying for Heroku🤷) [Render Alternative](https://tetris-js.onrender.com/ "See App on Render")
+- [Render App](https://tetris-js.onrender.com/ "See App on Render")
 - [Original Tutorial (Michael Karen)](https://medium.com/angular-in-depth/game-development-tetris-in-angular-64ef96ce56f7)
 
 ---
