@@ -15,6 +15,7 @@
 ![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?style=flat-square&logo=eslint)
 ![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/jor-tetris)
 ![GitHub license](https://img.shields.io/github/license/joeaoregan/jor-tetris)
+![Stars](https://img.shields.io/github/stars/joeaoregan/jor-tetris?style=social)
 
 ---
 
