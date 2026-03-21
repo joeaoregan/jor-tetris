@@ -1,5 +1,23 @@
 # JOR Tetris
 
+<p align="left">
+  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <a href="https://tetris-js.onrender.com/">
+  <img src="https://img.shields.io/badge/Render-Live%20Demo-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render" />
+</a>
+</p>
+
+![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/jor-tetris?color=orange)
+![GitHub last commit](https://img.shields.io/github/last-commit/joeaoregan/jor-tetris?color=blue)
+![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?style=flat-square&logo=eslint)
+![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/jor-tetris)
+![GitHub license](https://img.shields.io/github/license/joeaoregan/jor-tetris)
+
+---
+
 Tetris game in Angular:
 
 - [Play App on Render](https://tetris-js.onrender.com/ "See App on Render")
@@ -16,7 +34,6 @@ Tetris game in Angular:
 ---
 
 ## Video
-
 
 <a href="https://youtu.be/xD_03mSvV3s"><img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="150"/></a>
 
@@ -79,9 +96,11 @@ To deploy to Heroku the following is required in `package.json` along with the `
 
 `"start": "node server.js"` \
 `"scripts": { "heroku-postbuild": "ng build --prod" }` \
-`"engines": { "node": "~10.16.2", "npm": "~6.9.0" }`
+`"engines": { "node": "v22.16.0", "npm": "11.4.1" }`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+This project was updated to Angular 21 [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/joeaoregan/jor-tetris)
 
 ## Development server
 
