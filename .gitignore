@@ -50,5 +50,4 @@ Thumbs.db
 
 # Render yarn warning
 
-package-lock.json
 .angular/cache

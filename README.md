@@ -10,11 +10,14 @@
 </a>
 </p>
 
-![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/jor-tetris?color=orange)
-![GitHub last commit](https://img.shields.io/github/last-commit/joeaoregan/jor-tetris?color=blue)
+
 ![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?style=flat-square&logo=eslint)
 ![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/jor-tetris)
 ![GitHub license](https://img.shields.io/github/license/joeaoregan/jor-tetris)
+![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/jor-tetris?color=orange)
+![GitHub last commit](https://img.shields.io/github/last-commit/joeaoregan/jor-tetris?color=blue)
 ![Stars](https://img.shields.io/github/stars/joeaoregan/jor-tetris?style=social)
 
 ---
@@ -93,13 +96,13 @@ This project has the following dependencies: express, path, angular
 
 ## Deploy
 
-To deploy to Heroku the following is required in `package.json` along with the `server.js` file
+To deploy, the following is required in `package.json` along with the `server.js` file:
 
 `"start": "node server.js"` \
-`"scripts": { "heroku-postbuild": "ng build --prod" }` \
+`"scripts": { "build": "ng build" }` \
 `"engines": { "node": "v22.16.0", "npm": "11.4.1" }`
 
-This project was updated to Angular 21 [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+This project was updated to **Angular 21** ([Angular CLI](https://github.com/angular/angular-cli) version 21.2.3).
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/joeaoregan/jor-tetris)
 
