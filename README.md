@@ -10,10 +10,11 @@
 </a>
 </p>
 
-
+![Angular](https://img.shields.io/badge/Angular-21-DD0031?style=flat-square&logo=angular&logoColor=white)
+![RxJS](https://img.shields.io/badge/RxJS-7.8-B7178C?style=flat-square&logo=reactivex&logoColor=white)
 ![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?style=flat-square&logo=eslint)
 ![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/jor-tetris)
-![GitHub license](https://img.shields.io/github/license/joeaoregan/jor-tetris)
+![Responsive](https://img.shields.io/badge/UI-Responsive-0A8F08?style=flat-square)
 ![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/jor-tetris?color=orange)
