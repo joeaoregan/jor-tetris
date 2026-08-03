@@ -100,3 +100,26 @@ body {
 .theme-toggle:hover {
     background: var(--hover);
 }
+
+/* Better link contrast on dark theme */
+a {
+    color: #8ab4ff;
+}
+
+a:hover,
+a:focus {
+    color: #b3ccff;
+}
+
+/* Optional: visited color still readable */
+a:visited {
+    color: #c29bff;
+}
+
+/* If footer has its own container/class, keep links brighter there */
+footer a,
+.app-footer a,
+.links a {
+    color: #9ec5ff;
+    text-decoration: underline;
+}
