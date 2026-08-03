@@ -74,6 +74,27 @@ Tetris game in Angular:
 
 ## Angular Stuff
 
+## GitHub Pages Deploy (Angular 21)
+
+```bash
+# from repo root, on master
+git checkout master
+ng build --configuration production --base-href /Angular-Tetris/
+npx angular-cli-ghpages --dir=dist/Angular-Tetris/browser --repo=https://github.com/JoeORegan/Angular-Tetris.git --branch=gh-pages
+```
+
+Open: <https://joeoregan.github.io/Angular-Tetris/>
+
+## Local Production Test
+
+```bash
+ng build --configuration production --base-href /
+npx http-server ./dist/Angular-Tetris/browser -p 8080
+```
+
+Open: <http://localhost:8080>
+
+
 <details closed>
 <summary>Dev, Dependencies, Deploy, Build</summary>
 
