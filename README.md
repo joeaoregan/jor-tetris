@@ -1,4 +1,4 @@
-# JOR Tetris
+# Tetris (Angular/TypeScript)
 
 <p align="left">
   <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
@@ -13,20 +13,20 @@
 ![Angular](https://img.shields.io/badge/Angular-21-DD0031?style=flat-square&logo=angular&logoColor=white)
 ![RxJS](https://img.shields.io/badge/RxJS-7.8-B7178C?style=flat-square&logo=reactivex&logoColor=white)
 ![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?style=flat-square&logo=eslint)
-![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/jor-tetris)
+![GitHub top language](https://img.shields.io/github/languages/top/joeoregan/Angular-Tetris)
 ![Responsive](https://img.shields.io/badge/UI-Responsive-0A8F08?style=flat-square)
 ![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/jor-tetris?color=orange)
-![GitHub last commit](https://img.shields.io/github/last-commit/joeaoregan/jor-tetris?color=blue)
-![Stars](https://img.shields.io/github/stars/joeaoregan/jor-tetris?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/joeoregan/Angular-Tetris?color=orange)
+![GitHub last commit](https://img.shields.io/github/last-commit/joeoregan/Angular-Tetris?color=blue)
+![Stars](https://img.shields.io/github/stars/joeoregan/Angular-Tetris?style=social)
 
 ---
 
 Tetris game in Angular:
 
 - [Play App on Render](https://tetris-js.onrender.com/ "See App on Render")
-- [Play App on GitHub Pages](https://joeaoregan.github.io/jor-tetris/ "See App on GitHub Pages")
+- [Play App on GitHub Pages](https://joeoregan.github.io/Angular-Tetris/ "See App on GitHub Pages")
 
 - CSS added
 - Deployment to Render to test Angular app deployment.
@@ -40,7 +40,7 @@ Tetris game in Angular:
 
 ## Video
 
-<a href="https://youtu.be/xD_03mSvV3s"><img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="150"/></a>
+<a href="https://youtu.be/xD_03mSvV3s"><img src="https://raw.githubusercontent.com/joeoregan/Angular-Tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="150"/></a>
 
 [https://youtu.be/xD_03mSvV3s](https://youtu.be/xD_03mSvV3s)
 
@@ -48,16 +48,16 @@ Tetris game in Angular:
 
 <details closed>
 <summary>
-<img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="100"/>
-<img src="https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/server.png" title="Node.js Server" height="100"/>
+<img src="https://raw.githubusercontent.com/joeoregan/Angular-Tetris/master/screenshot/tetris1.jpg" title="Angular Tetris" height="100"/>
+<img src="https://raw.githubusercontent.com/joeoregan/Angular-Tetris/master/screenshot/server.png" title="Node.js Server" height="100"/>
 <p>Click here for larger images, or individual thumbnails to go to raw images.</p>
 </summary>
 
-![Angular Tetris](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/tetris1.jpg "Angular Tetris")
+![Angular Tetris](https://raw.githubusercontent.com/joeoregan/Angular-Tetris/master/screenshot/tetris1.jpg "Angular Tetris")
 
 ###### Angular Tetris
 
-![Server](https://raw.githubusercontent.com/joeaoregan/jor-tetris/master/screenshot/server.png "Node.js Server")
+![Server](https://raw.githubusercontent.com/joeoregan/Angular-Tetris/master/screenshot/server.png "Node.js Server")
 
 ###### Server
 
@@ -105,7 +105,7 @@ To deploy, the following is required in `package.json` along with the `server.js
 
 This project was updated to **Angular 21** ([Angular CLI](https://github.com/angular/angular-cli) version 21.2.3).
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/joeaoregan/jor-tetris)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/joeoregan/Angular-Tetris)
 
 ## Development server
 
@@ -157,6 +157,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 2026 Joe O'Regan
 
-[⬆️ Back to Top](https://github.com/joeaoregan/jor-tetris)
+[⬆️ Back to Top](https://github.com/joeoregan/Angular-Tetris)
 
 </div>

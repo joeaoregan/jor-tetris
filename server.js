@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
 
-const buildPath = path.join(__dirname, 'dist', 'jor-tetris', 'browser');
+const buildPath = path.join(__dirname, 'dist', 'Angular-Tetris', 'browser');
 
 console.log(`Server will serve files from: ${buildPath}`);
 

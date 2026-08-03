@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "jor-tetris": {
+    "angular-tetris": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "outputPath": "dist/Angular-Tetris",
             "outputHashing": "none",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -40,18 +41,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "jor-tetris:build"
+            "buildTarget": "angular-tetris:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "jor-tetris:build:production"
+              "buildTarget": "angular-tetris:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "jor-tetris:build"
+            "buildTarget": "angular-tetris:build"
           }
         }
       }

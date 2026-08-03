@@ -1,7 +1,7 @@
 {
-  "name": "jor-tetris",
+  "name": "Angular-Tetris",
   "description": "A Tetris game built with Angular",
-  "homepage": "https://github.com/joeaoregan/jor-tetris#readme",
+  "homepage": "https://github.com/joeoregan/Angular-Tetris#readme",
   "author": "Joe O'Regan",
   "version": "0.0.0",
   "scripts": {
