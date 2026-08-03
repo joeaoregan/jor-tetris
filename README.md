@@ -172,7 +172,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/joeaoregan)
+[![GitHub (Main)](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/joeaoregan)
+[![GitHub (Games)](https://img.shields.io/badge/GitHub-Games-181717?style=flat&logo=github&logoColor=white)](https://github.com/joeoregan)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joeaoregan/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:joeaoregan@yahoo.ie)
 
