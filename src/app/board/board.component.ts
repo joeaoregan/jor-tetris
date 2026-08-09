@@ -30,22 +30,26 @@ import { GameService } from "../game.service";
 })
 export class BoardComponent implements OnInit {
   isAnimating = false;
-  highScore: number = 0;
+  highScore = 0;
+
   @ViewChild("board", { static: true })
-  canvas: ElementRef<HTMLCanvasElement>;
+  canvas!: ElementRef<HTMLCanvasElement>;
+
   @ViewChild("next", { static: true })
-  canvasNext: ElementRef<HTMLCanvasElement>;
-  ctx: CanvasRenderingContext2D;
-  ctxNext: CanvasRenderingContext2D;
-  board: number[][];
-  piece: Piece;
-  next: Piece;
-  requestId: number;
-  time: { start: number; elapsed: number; level: number };
-  points: number;
-  lines: number;
-  level: number;
-  moves = {
+  canvasNext!: ElementRef<HTMLCanvasElement>;
+
+  ctx!: CanvasRenderingContext2D;
+  ctxNext!: CanvasRenderingContext2D;
+  board!: number[][];
+  piece!: Piece;
+  next!: Piece;
+  requestId = 0;
+  time!: { start: number; elapsed: number; level: number };
+  points = 0;
+  lines = 0;
+  level = 0;
+
+  moves: Record<number, (p: IPiece) => IPiece> = {
     [KEY.LEFT]: (p: IPiece): IPiece => ({ ...p, x: p.x - 1 }),
     [KEY.RIGHT]: (p: IPiece): IPiece => ({ ...p, x: p.x + 1 }),
     [KEY.DOWN]: (p: IPiece): IPiece => ({ ...p, y: p.y + 1 }),
@@ -57,16 +61,17 @@ export class BoardComponent implements OnInit {
   keyEvent(event: KeyboardEvent) {
     if (this.isAnimating) return;
 
-    if (event.keyCode === KEY.ESC) {
-      this.gameOver();
-    } else if (this.moves[event.keyCode]) {
-      event.preventDefault();
-      // Get new state
-      let p = this.moves[event.keyCode](this.piece);
+    const keyCode = event.keyCode;
+    const move = this.moves[keyCode];
 
-      if (event.keyCode === KEY.SPACE) {
-        // Hard drop
-        // let p = this.moves[KEY.DOWN](this.piece);
+    if (keyCode === KEY.ESC) {
+      this.gameOver();
+    } else if (move) {
+      event.preventDefault();
+
+      let p = move(this.piece);
+
+      if (keyCode === KEY.SPACE) {
         while (this.service.valid(p, this.board)) {
           this.updateScore(POINTS.HARD_DROP);
           this.piece.move(p);
@@ -75,7 +80,7 @@ export class BoardComponent implements OnInit {
         this.drop();
       } else if (this.service.valid(p, this.board)) {
         this.piece.move(p);
-        if (event.keyCode === KEY.DOWN) {
+        if (keyCode === KEY.DOWN) {
           this.updateScore(POINTS.SOFT_DROP);
         }
       }
@@ -92,23 +97,24 @@ export class BoardComponent implements OnInit {
   }
 
   initBoard() {
-    this.ctx = this.canvas.nativeElement.getContext("2d");
+    const ctx = this.canvas.nativeElement.getContext("2d");
+    if (!ctx)
+      throw new Error("Could not get 2D context for main board canvas.");
+    this.ctx = ctx;
 
-    // Calculate size of canvas from constants.
     this.ctx.canvas.width = COLS * BLOCK_SIZE;
     this.ctx.canvas.height = ROWS * BLOCK_SIZE;
-
-    // Scale so we don't need to give size on every draw.
     this.ctx.scale(BLOCK_SIZE, BLOCK_SIZE);
   }
 
   initNext() {
-    this.ctxNext = this.canvasNext.nativeElement.getContext("2d");
+    const ctxNext = this.canvasNext.nativeElement.getContext("2d");
+    if (!ctxNext)
+      throw new Error("Could not get 2D context for next-piece canvas.");
+    this.ctxNext = ctxNext;
 
-    // Calculate size of canvas from constants.
     this.ctxNext.canvas.width = 4 * BLOCK_SIZE;
     this.ctxNext.canvas.height = 4 * BLOCK_SIZE;
-
     this.ctxNext.scale(BLOCK_SIZE, BLOCK_SIZE);
   }
 
@@ -119,7 +125,6 @@ export class BoardComponent implements OnInit {
     this.next.drawNext(this.ctxNext);
     this.time.start = performance.now();
 
-    // If we have an old game running a game then cancel the old
     if (this.requestId) {
       cancelAnimationFrame(this.requestId);
     }
@@ -132,12 +137,16 @@ export class BoardComponent implements OnInit {
     this.lines = 0;
     this.level = 0;
     this.board = this.getEmptyBoard();
-    this.time = { start: 0, elapsed: 0, level: LEVEL[this.level] };
+    this.time = {
+      start: 0,
+      elapsed: 0,
+      level: (LEVEL as unknown as Record<number, number>)[this.level],
+    };
   }
 
   animate(now = 0) {
     if (this.isAnimating) {
-      this.draw(); // Keep drawing the flash
+      this.draw();
       this.requestId = requestAnimationFrame(this.animate.bind(this));
       return;
     }
@@ -168,7 +177,6 @@ export class BoardComponent implements OnInit {
       this.freeze();
       this.clearLines();
       if (this.piece.y === 0) {
-        // Game over
         return false;
       }
       this.piece = this.next;
@@ -181,8 +189,7 @@ export class BoardComponent implements OnInit {
 
   async clearLines() {
     let lines = 0;
-    let linesToFlash: number[] = [];
-
+    const linesToFlash: number[] = [];
 
     this.board.forEach((row, y) => {
       if (row.every((value) => value !== 0)) {
@@ -194,26 +201,21 @@ export class BoardComponent implements OnInit {
     if (lines > 0) {
       this.isAnimating = true;
 
-      const originalValues = linesToFlash.map(y => [...this.board[y]]);
+      const originalValues = linesToFlash.map((y) => [...this.board[y]]);
+      linesToFlash.forEach((y) => this.board[y].fill(-1));
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-      const originalBoard = JSON.parse(JSON.stringify(this.board));
-      // linesToFlash.forEach(y => {
-      //   this.board[y].fill(-1); // Use -1 to represent the flash state
-      // });
-      linesToFlash.forEach(y => this.board[y].fill(-1));
-      await new Promise(resolve => setTimeout(resolve, 200));
       linesToFlash.forEach((y, index) => {
         this.board[y] = [...originalValues[index]];
       });
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-      // FLASH 2: Turn white again
-      linesToFlash.forEach(y => this.board[y].fill(-1));
-      await new Promise(resolve => setTimeout(resolve, 200));
+      linesToFlash.forEach((y) => this.board[y].fill(-1));
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
       linesToFlash.forEach(() => {
         this.board.forEach((row, y) => {
-          if (row.every(value => value === -1)) {
+          if (row.every((value) => value === -1)) {
             this.board.splice(y, 1);
             this.board.unshift(Array(COLS).fill(0));
           }
@@ -223,17 +225,19 @@ export class BoardComponent implements OnInit {
       this.updateScore(this.service.getLinesClearedPoints(lines, this.level));
       this.lines += lines;
 
-      // Check if we beat the high score
       if (this.points > this.highScore) {
         this.highScore = this.points;
         localStorage.setItem(HIGH_SCORE_KEY, this.highScore.toString());
       }
+
       if (this.lines >= LINES_PER_LEVEL) {
         this.level++;
         this.lines -= LINES_PER_LEVEL;
-        this.time.level = LEVEL[this.level];
+        this.time.level =
+          (LEVEL as unknown as Record<number, number>)[this.level] ?? 30;
       }
-      this.isAnimating = false
+
+      this.isAnimating = false;
       this.time.start = performance.now();
     }
   }
@@ -259,8 +263,8 @@ export class BoardComponent implements OnInit {
   drawBoard() {
     this.board.forEach((row, y) => {
       row.forEach((value, x) => {
-        if (value !== 0) { // Changed from > 0
-          this.ctx.fillStyle = value === -1 ? 'white' : COLORS[value];
+        if (value !== 0) {
+          this.ctx.fillStyle = value === -1 ? "white" : COLORS[value];
           this.ctx.fillRect(x, y, 1, 1);
 
           this.ctx.strokeStyle = "#000000";
@@ -280,10 +284,7 @@ export class BoardComponent implements OnInit {
     this.ctx.fillText("GAME OVER", 1.8, 4);
   }
 
-  /*
-        Empty cell represented with 0, colours are values 1 to 7
-    */
   getEmptyBoard(): number[][] {
-    return Array.from({ length: ROWS }, () => Array(COLS).fill(0)); // Clear board with fill(0)
+    return Array.from({ length: ROWS }, () => Array(COLS).fill(0));
   }
 }
