@@ -10,7 +10,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:gh": "ng build --configuration production --base-href /Angular-Tetris/",
+    "deploy:gh": "angular-cli-ghpages --dir=dist/Angular-Tetris/browser --branch=gh-pages --repo=https://github.com/JoeORegan/Angular-Tetris.git"
   },
   "private": true,
   "dependencies": {
