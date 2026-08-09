@@ -8,10 +8,10 @@ export interface IPiece {
 }
 
 export class Piece implements IPiece {
-  x: number;
-  y: number;
-  color: string;
-  shape: number[][];
+  x!: number;
+  y!: number;
+  color!: string;
+  shape!: number[][];
 
   constructor(private ctx: CanvasRenderingContext2D) {
     this.spawn();
@@ -26,27 +26,27 @@ export class Piece implements IPiece {
   }
 
   draw(ctx: CanvasRenderingContext2D, offsetX = this.x, offsetY = this.y) {
-  this.shape.forEach((row, y) => {
-    row.forEach((value, x) => {
-      if (value > 0) {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(offsetX + x, offsetY + y, 1, 1);
-        ctx.strokeStyle = "#000000";
-        ctx.lineWidth = 0.05;
-        ctx.strokeRect(offsetX + x, offsetY + y, 1, 1);
-      }
+    this.shape.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value > 0) {
+          ctx.fillStyle = this.color;
+          ctx.fillRect(offsetX + x, offsetY + y, 1, 1);
+          ctx.strokeStyle = "#000000";
+          ctx.lineWidth = 0.05;
+          ctx.strokeRect(offsetX + x, offsetY + y, 1, 1);
+        }
+      });
     });
-  });
-}
+  }
 
-drawMain() {
-  this.draw(this.ctx);
-}
+  drawMain() {
+    this.draw(this.ctx);
+  }
 
-drawNext(ctxNext: CanvasRenderingContext2D) {
-  ctxNext.clearRect(0, 0, ctxNext.canvas.width, ctxNext.canvas.height);
-  this.draw(ctxNext, 0, 0); // Draw at 0,0 in the small canvas
-}
+  drawNext(ctxNext: CanvasRenderingContext2D) {
+    ctxNext.clearRect(0, 0, ctxNext.canvas.width, ctxNext.canvas.height);
+    this.draw(ctxNext, 0, 0);
+  }
 
   move(p: IPiece) {
     this.x = p.x;

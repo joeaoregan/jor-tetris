@@ -6,16 +6,15 @@
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
   <a href="https://tetris-js.onrender.com/">
-  <img src="https://img.shields.io/badge/Render-Live%20Demo-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render" />
-</a>
+    <img src="https://img.shields.io/badge/Render-Live%20Demo-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render" />
+  </a>
 </p>
 
-![Angular](https://img.shields.io/badge/Angular-21-DD0031?style=flat-square&logo=angular&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-22-DD0031?style=flat-square&logo=angular&logoColor=white)
 ![RxJS](https://img.shields.io/badge/RxJS-7.8-B7178C?style=flat-square&logo=reactivex&logoColor=white)
 ![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?style=flat-square&logo=eslint)
 ![GitHub top language](https://img.shields.io/github/languages/top/joeoregan/Angular-Tetris)
 ![Responsive](https://img.shields.io/badge/UI-Responsive-0A8F08?style=flat-square)
-![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/joeoregan/Angular-Tetris?color=orange)
 ![GitHub last commit](https://img.shields.io/github/last-commit/joeoregan/Angular-Tetris?color=blue)
@@ -29,7 +28,7 @@ Tetris game in Angular:
 - [Play App on GitHub Pages](https://joeoregan.github.io/Angular-Tetris/ "See App on GitHub Pages")
 
 - CSS added
-- Deployment to Render to test Angular app deployment.
+- Deployment to Render to test Angular app deployment
 - Dependencies updated
 - Angular version updated
 - Added borders to Tetromino pieces
@@ -74,7 +73,7 @@ Tetris game in Angular:
 
 ## Angular Stuff
 
-## GitHub Pages Deploy (Angular 21)
+## GitHub Pages Deploy (Angular 22)
 
 ```bash
 # from repo root, on master
@@ -88,85 +87,55 @@ Open: <https://joeoregan.github.io/Angular-Tetris/>
 ## Local Production Test
 
 ```bash
-ng build --configuration production --base-href /
+# Git Bash on Windows: prevent / path conversion
+MSYS_NO_PATHCONV=1 ng build --configuration production --base-href /
 npx http-server ./dist/Angular-Tetris/browser -p 8080
 ```
 
 Open: <http://localhost:8080>
-
 
 <details closed>
 <summary>Dev, Dependencies, Deploy, Build</summary>
 
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. \
-The app will automatically reload if you change any of the source files.
+Run `npm start` to start a local server at `http://localhost:4200/`.  
+The app will automatically reload if you change source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. \
-Use the `--prod` flag for a production
+Run `ng build` to build the project.  
+The build artifacts are stored in the `dist/` directory.
 
 ## Dependencies
 
-This project has the following dependencies: express, path, angular
-
-- `npm install express  --save`
-- `npm install @angular/cli@latest @angular/compiler-cli --save-dev`
-- `npm install express path --save`
+This project uses Angular, TypeScript, Node.js and Express.
 
 ## Deploy
 
-To deploy, the following is required in `package.json` along with the `server.js` file:
+To deploy, this project uses:
 
-`"start": "node server.js"` \
-`"scripts": { "build": "ng build" }` \
-`"engines": { "node": "v22.16.0", "npm": "11.4.1" }`
+- `server.js`
+- `"start": "node server.js"` in `package.json`
+- `"build": "ng build"` in `package.json`
+- `"engines": { "node": ">=22.22.3", "npm": ">=11.4.1" }` in `package.json`
 
-This project was updated to **Angular 21** ([Angular CLI](https://github.com/angular/angular-cli) version 21.2.3).
+This project is updated to **Angular 22** ([Angular CLI](https://github.com/angular/angular-cli) 22.1.x).
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/joeoregan/Angular-Tetris)
 
-## Development server
-
-Run `ng serve` for a dev server. \
-Navigate to `http://localhost:4200/`. \
-The app will automatically reload if you change any of the source files.
-
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. \
+Run `ng generate component component-name` to generate a new component.  
 You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
-
-Run `ng build` to build the project. \
-The build artifacts will be stored in the `dist/` directory. \
-Use the `--prod` flag for a production build.
-
 </details>
 
-<details closed><summary>Tests</summary>
+## Security note
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-</details>
-
-<details closed>
-<summary value="test">Angular Stuff</summary>
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-</details>
+`npm audit` currently reports vulnerabilities from a transitive dev dependency chain (`@angular-devkit/build-angular -> less -> image-size`).  
+The project already resolves `image-size@2.0.2` via overrides, and `npm audit fix --force` proposes a breaking/incorrect Angular devkit downgrade.  
+This is tracked as an accepted dev-tooling residual risk pending upstream advisory/tooling alignment.
 
 ---
 
